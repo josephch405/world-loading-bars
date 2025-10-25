@@ -5,8 +5,8 @@
 }
 
 :root {
-    --primary-color: #6366f1;
-    --secondary-color: #8b5cf6;
+    --primary-color: #f97316;
+    --secondary-color: #ea580c;
     --success-color: #10b981;
     --background: #0f172a;
     --card-bg: #1e293b;
@@ -72,7 +72,7 @@ header h1 {
 
 .stat-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 15px 40px rgba(249, 115, 22, 0.2);
 }
 
 @keyframes fadeInUp {
