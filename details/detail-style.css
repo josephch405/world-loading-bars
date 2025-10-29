@@ -1,0 +1,229 @@
+/* Detail page specific styles */
+
+.breadcrumb {
+    margin-bottom: 30px;
+}
+
+.breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-color);
+}
+
+.detail-header {
+    margin-bottom: 50px;
+}
+
+.detail-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.detail-main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Current Stat Section */
+.current-stat {
+    text-align: center;
+    padding: 40px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    margin-bottom: 50px;
+}
+
+.big-number {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.progress-bar-large {
+    height: 40px;
+    background: #fef2ed;
+    border: 2px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill-large {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: width 1.5s ease;
+}
+
+/* Timeline Section */
+.timeline-section {
+    margin-bottom: 60px;
+}
+
+.timeline-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--border-color);
+}
+
+.timeline-item {
+    position: relative;
+    padding: 20px 0 20px 20px;
+    margin-bottom: 20px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -47px;
+    top: 25px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 3px solid var(--border-color);
+}
+
+.timeline-item.highlight::before {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    width: 20px;
+    height: 20px;
+    left: -49px;
+    top: 23px;
+}
+
+.timeline-year {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.timeline-stat {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.timeline-content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Chart Section */
+.chart-section {
+    margin-bottom: 60px;
+}
+
+.chart-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+.chart-container {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    padding: 30px;
+    max-height: 500px;
+}
+
+/* Insights Section */
+.insights-section {
+    margin-bottom: 60px;
+}
+
+.insights-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.insight-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    padding: 25px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.insight-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+}
+
+.insight-card h3 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.insight-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .detail-header h1 {
+        font-size: 2rem;
+    }
+
+    .big-number {
+        font-size: 3.5rem;
+    }
+
+    .current-stat {
+        padding: 30px 20px;
+    }
+
+    .timeline {
+        padding-left: 30px;
+    }
+
+    .timeline-item {
+        padding-left: 15px;
+    }
+
+    .chart-container {
+        padding: 20px;
+    }
+
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+}

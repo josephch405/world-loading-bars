@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Vehicles - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Electric Vehicles</h1>
+            <p class="subtitle">Global electric car market share over time</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="current-stat">
+                <div class="big-number">2.8%</div>
+                <p class="stat-label">Current global EV market share (2024)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 2.8%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">0.4%</div>
+                            <p>Early adoption phase begins</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">1.2%</div>
+                            <p>Major manufacturers announce EV commitments</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">1.8%</div>
+                            <p>Government incentives expand globally</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">2.3%</div>
+                            <p>Battery costs drop significantly</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">2.8%</div>
+                            <p>Rapid acceleration in adoption</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Growth Trend</h2>
+                <div class="chart-container">
+                    <canvas id="evChart"></canvas>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Exponential Growth</h3>
+                        <p>EV market share has grown 7x since 2015, with acceleration in recent years as battery technology improves and costs decrease.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Regional Leaders</h3>
+                        <p>Norway leads with 80%+ EV share, while China represents the largest absolute market with millions of EVs sold annually.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Future Outlook</h3>
+                        <p>Projections suggest EVs could reach 15-20% global market share by 2030 as infrastructure expands and more affordable models launch.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: International Energy Agency (IEA), BloombergNEF | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for EV adoption
+        const ctx = document.getElementById('evChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'EV Market Share (%)',
+                    data: [0.4, 0.6, 0.9, 1.2, 1.5, 1.8, 2.0, 2.3, 2.6, 2.8],
+                    borderColor: '#f97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#f97316',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% market share';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

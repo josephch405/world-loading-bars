@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Access - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Internet Access</h1>
+            <p class="subtitle">Global population with internet connectivity</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="current-stat">
+                <div class="big-number">66%</div>
+                <p class="stat-label">Of the world's population has internet access (2024)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 66%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2005</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">16%</div>
+                            <p>Early internet era, dial-up still common</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">30%</div>
+                            <p>Smartphone revolution begins</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">43%</div>
+                            <p>4G networks expand globally</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">59%</div>
+                            <p>COVID-19 accelerates digital adoption</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">66%</div>
+                            <p>Two-thirds of humanity now online</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Growth Trend</h2>
+                <div class="chart-container">
+                    <canvas id="internetChart"></canvas>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Rapid Expansion</h3>
+                        <p>Internet access has more than quadrupled since 2005, driven by mobile technology and falling costs of smartphones and data plans.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Digital Divide</h3>
+                        <p>While developed nations exceed 90% connectivity, many rural and low-income areas still lack reliable access, representing a key challenge for global equity.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Future Goals</h3>
+                        <p>UN targets universal internet access by 2030. Satellite internet and 5G networks promise to bridge remaining gaps in remote regions.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: International Telecommunication Union (ITU), World Bank | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for internet access
+        const ctx = document.getElementById('internetChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2005', '2007', '2009', '2011', '2013', '2015', '2017', '2019', '2021', '2023', '2024'],
+                datasets: [{
+                    label: 'Internet Access (%)',
+                    data: [16, 21, 26, 32, 38, 43, 49, 54, 63, 65, 66],
+                    borderColor: '#f97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#f97316',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% with internet access';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
