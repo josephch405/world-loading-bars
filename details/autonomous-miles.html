@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Travel Miles - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Autonomous Travel Miles</h1>
+            <p class="subtitle">L4 autonomous driving as percentage of global travel miles</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Growth Trend</h2>
+                <div class="chart-container">
+                    <canvas id="autonomousChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">0.01%</div>
+                <p class="stat-label">Current autonomous travel miles (2024)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 0.01%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.0001%</div>
+                            <p>Waymo launches first commercial robotaxi service in Phoenix</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.001%</div>
+                            <p>Apollo Go expands in China, Cruise begins testing in SF</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.005%</div>
+                            <p>Multiple cities authorize autonomous taxi operations</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">0.01%</div>
+                            <p>Waymo surpasses 20M autonomous miles, expanding to new cities</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Early Stage Technology</h3>
+                        <p>L4 autonomous vehicles (fully self-driving in defined areas) are still in early commercial deployment. While millions of autonomous miles have been driven, they represent a tiny fraction of global travel.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Leading Companies</h3>
+                        <p>Waymo (20M+ miles), Baidu's Apollo Go, Cruise, and others are operating robotaxi services in select cities. Most deployments are geofenced to specific urban areas.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Future Growth</h3>
+                        <p>Projections vary widely, but some analysts predict autonomous miles could reach 1-5% of global travel by 2030-2035 as technology matures and regulatory frameworks develop.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Geographic Concentration</h3>
+                        <p>Most L4 autonomous miles are concentrated in a few cities: San Francisco, Phoenix, Beijing, Shenzhen, and Wuhan, with expansion ongoing.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: Waymo, Baidu Apollo, industry reports | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for autonomous miles
+        const ctx = document.getElementById('autonomousChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Autonomous Miles (%)',
+                    data: [0.0001, 0.0003, 0.001, 0.002, 0.005, 0.008, 0.01],
+                    borderColor: '#f97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#f97316',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% of travel miles';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
