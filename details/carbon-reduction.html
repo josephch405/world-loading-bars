@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Reduction - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Carbon Reduction</h1>
+            <p class="subtitle">Global CO₂ emissions reduction from 1990 baseline</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Emissions Trend (vs 1990 Baseline)</h2>
+                <div class="chart-container">
+                    <canvas id="carbonChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">8%</div>
+                <p class="stat-label">Developed countries average reduction (2024)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 8%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1997</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">Kyoto Protocol</div>
+                            <p>First international treaty requiring emission reductions (5% below 1990 levels by 2012)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">Paris Agreement</div>
+                            <p>195 nations commit to limit global warming to well below 2°C, preferably 1.5°C</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~5% reduction</div>
+                            <p>COVID-19 pandemic causes temporary emissions drop, developed nations show progress</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">8% reduction</div>
+                            <p>Developed countries average 8% below 1990 levels, but global emissions still rising</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Mixed Progress</h3>
+                        <p>While developed nations have reduced emissions by ~8% from 1990 levels, global emissions have increased by 60% due to economic growth in developing countries. The challenge is decoupling growth from emissions.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Regional Leaders</h3>
+                        <p>The EU has cut emissions by ~30% since 1990, UK by ~45%, while maintaining economic growth. Key strategies include renewable energy expansion, carbon pricing, and efficiency improvements.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Technology Drivers</h3>
+                        <p>Renewable energy costs have plummeted 90% for solar and 70% for wind since 2010. Electric vehicles, heat pumps, and green hydrogen are accelerating the transition.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>The Path Forward</h3>
+                        <p>To meet Paris Agreement goals, global emissions must fall 45% by 2030 and reach net-zero by 2050. Current policies put us on track for 2.5-3°C warming.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>Global Carbon Project</h4>
+                        <p><a href="https://www.globalcarbonproject.org/" target="_blank" rel="noopener">Global Carbon Budget Reports</a></p>
+                        <p class="source-note">Annual assessment of global carbon dioxide emissions from fossil fuels, industry, and land-use change.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>International Energy Agency (IEA)</h4>
+                        <p><a href="https://www.iea.org/reports/co2-emissions-in-2023" target="_blank" rel="noopener">IEA - CO₂ Emissions Reports</a></p>
+                        <p class="source-note">Comprehensive data on global energy-related CO₂ emissions by country and sector.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>IPCC Assessment Reports</h4>
+                        <p><a href="https://www.ipcc.ch/assessment-report/ar6/" target="_blank" rel="noopener">IPCC Sixth Assessment Report (AR6)</a></p>
+                        <p class="source-note">Scientific consensus on climate change impacts and emission reduction pathways.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>UNFCCC Emissions Database</h4>
+                        <p><a href="https://unfccc.int/process-and-meetings/transparency-and-reporting/greenhouse-gas-data" target="_blank" rel="noopener">UNFCCC - National Greenhouse Gas Inventory Data</a></p>
+                        <p class="source-note">Official emissions reporting from countries party to the UN Framework Convention on Climate Change.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: Global Carbon Project, IEA, IPCC, UNFCCC | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for carbon reduction
+        const ctx = document.getElementById('carbonChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
+                datasets: [{
+                    label: 'Developed Countries Reduction (%)',
+                    data: [0, -2, -1, 2, 4, 6, 5, 8],
+                    borderColor: '#f97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#f97316',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% below 1990';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

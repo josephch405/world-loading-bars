@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Conservation - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Ocean Conservation</h1>
+            <p class="subtitle">Marine areas under protection globally</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Protected Ocean Area Growth</h2>
+                <div class="chart-container">
+                    <canvas id="oceanChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">8.2%</div>
+                <p class="stat-label">Global ocean area protected (2024)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 8.2%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">0.7%</div>
+                            <p>Minimal ocean protection, mostly coastal areas and small marine reserves</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">2.8%</div>
+                            <p>CBD Aichi Target 11 set goal of 10% marine protection by 2020</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2017</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">5.3%</div>
+                            <p>Large-scale MPAs established: Ross Sea (Antarctica), Cook Islands, Chile</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">8.2%</div>
+                            <p>High Seas Treaty adopted, momentum toward 30% protection by 2030</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>The 30x30 Ocean Goal</h3>
+                        <p>The Kunming-Montreal Framework targets 30% of oceans protected by 2030. Current 8.2% coverage means tripling protected areas in 6 years—requiring 29.4 million km² of new marine protection.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>High Seas Breakthrough</h3>
+                        <p>The 2023 High Seas Treaty enables protection of international waters (64% of oceans). Previously, only national waters could be protected, limiting conservation of migratory species and deep-sea ecosystems.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Large MPAs Dominate</h3>
+                        <p>Massive Marine Protected Areas like Papahānaumokuākea (1.5M km²), Ross Sea (1.5M km²), and UK's Blue Belt program account for much of protected ocean. Size matters for pelagic species and ecosystem resilience.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Effectiveness Varies</h3>
+                        <p>Only 2.6% of oceans have full or high protection (no-take zones). Many MPAs allow fishing and extraction. Effective protection requires enforcement, monitoring, and community engagement—especially challenging in remote areas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>Marine Conservation Institute</h4>
+                        <p><a href="https://mpatlas.org/" target="_blank" rel="noopener">MPAtlas - Marine Protection Atlas</a></p>
+                        <p class="source-note">Comprehensive database tracking Marine Protected Areas globally, including size, protection level, and effectiveness.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>UNEP World Conservation Monitoring Centre</h4>
+                        <p><a href="https://www.protectedplanet.net/en/thematic-areas/marine-protected-areas" target="_blank" rel="noopener">Protected Planet - Marine Protected Areas</a></p>
+                        <p class="source-note">Official UN database of marine protected areas coordinated with World Database on Protected Areas.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>High Seas Treaty (BBNJ)</h4>
+                        <p><a href="https://www.un.org/bbnj/" target="_blank" rel="noopener">UN - Agreement on Biodiversity Beyond National Jurisdiction</a></p>
+                        <p class="source-note">Landmark 2023 treaty enabling protection and sustainable use of marine biodiversity in international waters.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Ocean Panel Reports</h4>
+                        <p><a href="https://oceanpanel.org/" target="_blank" rel="noopener">High Level Panel for a Sustainable Ocean Economy</a></p>
+                        <p class="source-note">14-nation coalition's research on ocean protection, sustainable use, and climate solutions.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: MPAtlas, UNEP-WCMC, UN BBNJ, Ocean Panel | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for ocean conservation
+        const ctx = document.getElementById('oceanChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2000', '2005', '2010', '2015', '2017', '2020', '2022', '2024'],
+                datasets: [{
+                    label: 'Protected Ocean (%)',
+                    data: [0.7, 1.2, 2.8, 3.5, 5.3, 7.5, 7.9, 8.2],
+                    borderColor: '#0ea5e9',
+                    backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#0ea5e9',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% of ocean protected';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

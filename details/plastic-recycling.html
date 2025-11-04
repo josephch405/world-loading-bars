@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastic Waste Recycling - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Plastic Waste Recycling</h1>
+            <p class="subtitle">Percentage of global plastic waste that gets recycled</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Recycling Rate Trend</h2>
+                <div class="chart-container">
+                    <canvas id="plasticChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">9%</div>
+                <p class="stat-label">Global plastic waste recycled (2024)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 9%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~5%</div>
+                            <p>Early recycling efforts, limited infrastructure, China accepts 50% of global plastic waste</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~7%</div>
+                            <p>China's National Sword policy bans waste imports, forcing developed nations to build domestic capacity</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~8%</div>
+                            <p>EU Circular Economy Action Plan, extended producer responsibility laws expand globally</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">9%</div>
+                            <p>Chemical recycling technologies scale up, UN Plastics Treaty negotiations progress</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>The Plastic Crisis</h3>
+                        <p>Of 400 million tons of plastic produced annually, only 9% is recycled, 19% is incinerated, and 72% ends up in landfills or the environment. An estimated 8 million tons enter oceans each year.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Technical Challenges</h3>
+                        <p>Plastic recycling faces contamination issues, degraded material quality after reprocessing, and collection economics. Multi-layer packaging and mixed polymers are especially difficult to recycle mechanically.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Regional Disparities</h3>
+                        <p>Europe recycles ~32% of plastic packaging, while global average remains at 9%. Wealthy nations with deposit-return schemes, curbside collection, and sorting facilities achieve much higher rates.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Emerging Solutions</h3>
+                        <p>Chemical recycling breaks polymers into building blocks for new plastics. Biodegradable alternatives and reduction initiatives (single-use bans) complement mechanical recycling. The UN Plastics Treaty (expected 2024-2025) may set global standards.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>OECD Global Plastics Outlook</h4>
+                        <p><a href="https://www.oecd.org/environment/plastics/global-plastics-outlook.htm" target="_blank" rel="noopener">OECD - Global Plastics Outlook 2022</a></p>
+                        <p class="source-note">Comprehensive analysis of plastic production, waste generation, and recycling rates across countries and sectors.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>UN Environment Programme</h4>
+                        <p><a href="https://www.unep.org/topics/chemicals-and-pollution-action/pollution-and-health/plastics" target="_blank" rel="noopener">UNEP - Plastics Pollution Data</a></p>
+                        <p class="source-note">Data on plastic pollution, marine litter, and progress toward the UN Plastics Treaty.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Ellen MacArthur Foundation</h4>
+                        <p><a href="https://www.ellenmacarthurfoundation.org/topics/plastics" target="_blank" rel="noopener">New Plastics Economy Reports</a></p>
+                        <p class="source-note">Research on circular economy approaches to plastic waste, including business commitments and innovation.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Geyer et al. (2017)</h4>
+                        <p><a href="https://www.science.org/doi/10.1126/sciadv.1700782" target="_blank" rel="noopener">Science Advances - Production, use, and fate of plastics</a></p>
+                        <p class="source-note">Landmark study quantifying historical plastic production and waste generation (1950-2015).</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: OECD, UNEP, Ellen MacArthur Foundation | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for plastic recycling
+        const ctx = document.getElementById('plasticChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2000', '2005', '2010', '2015', '2018', '2020', '2022', '2024'],
+                datasets: [{
+                    label: 'Recycling Rate (%)',
+                    data: [5, 5.5, 6, 6.5, 7, 7.5, 8, 9],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% recycled';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 15,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
