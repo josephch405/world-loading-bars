@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Land Areas - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Protected Land Areas</h1>
+            <p class="subtitle">Global terrestrial area under conservation protection</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Growth Trend</h2>
+                <div class="chart-container">
+                    <canvas id="protectedLandChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">17%</div>
+                <p class="stat-label">Global land area protected (2024)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 17%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">8.5%</div>
+                            <p>Initial baseline for protected areas, mostly national parks and reserves</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">13.2%</div>
+                            <p>CBD Aichi Target 11 set goal of 17% by 2020, accelerating conservation efforts</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">16.5%</div>
+                            <p>Nearly achieved Aichi Target, with 25+ million km² under protection</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">17%</div>
+                            <p>Global target met, focus shifts to 30x30 initiative for 30% by 2030</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Biodiversity Hotspots</h3>
+                        <p>Protected areas safeguard critical habitats for 80% of terrestrial species. Amazon, Congo Basin, and Southeast Asian forests represent priority conservation zones with high biodiversity value.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>The 30x30 Goal</h3>
+                        <p>The Kunming-Montreal Global Biodiversity Framework (2022) aims to protect 30% of land and sea by 2030. This requires nearly doubling current protected area coverage in 6 years.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Indigenous Leadership</h3>
+                        <p>Indigenous peoples manage or have tenure rights over 40% of protected areas. These territories show better conservation outcomes and higher biodiversity levels than government-only managed areas.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Quality Matters</h3>
+                        <p>Not all protected areas are equally effective. "Paper parks" exist on maps but lack enforcement. Effective protection requires funding, management, community engagement, and connectivity between reserves.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>Protected Planet Database</h4>
+                        <p><a href="https://www.protectedplanet.net/" target="_blank" rel="noopener">UNEP-WCMC Protected Planet</a></p>
+                        <p class="source-note">Comprehensive database of terrestrial and marine protected areas maintained by UN Environment Programme World Conservation Monitoring Centre.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Convention on Biological Diversity</h4>
+                        <p><a href="https://www.cbd.int/gbo/" target="_blank" rel="noopener">CBD - Global Biodiversity Outlook</a></p>
+                        <p class="source-note">Reports tracking progress on Aichi Targets (2010-2020) and Kunming-Montreal Framework (2022-2030).</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>IUCN World Database</h4>
+                        <p><a href="https://www.iucn.org/our-work/topic/protected-areas" target="_blank" rel="noopener">IUCN - Protected Areas</a></p>
+                        <p class="source-note">International Union for Conservation of Nature's classification and tracking of protected area effectiveness.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank Data</h4>
+                        <p><a href="https://data.worldbank.org/indicator/ER.LND.PTLD.ZS" target="_blank" rel="noopener">World Bank - Terrestrial Protected Areas</a></p>
+                        <p class="source-note">Statistical data on percentage of terrestrial area protected by country and region.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: UNEP-WCMC, CBD, IUCN, World Bank | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for protected land
+        const ctx = document.getElementById('protectedLandChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
+                datasets: [{
+                    label: 'Protected Land (%)',
+                    data: [8.5, 9.8, 10.6, 11.9, 13.2, 14.8, 16.5, 17.0],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#10b981',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% of land protected';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 20,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
