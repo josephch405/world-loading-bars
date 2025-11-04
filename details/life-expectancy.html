@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Expectancy Progress - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Life Expectancy Progress</h1>
+            <p class="subtitle">Global average life expectancy (progress toward 100 years)</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Life Expectancy Trend</h2>
+                <div class="chart-container">
+                    <canvas id="lifeExpectancyChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">73%</div>
+                <p class="stat-label">Progress to 100 years (current: ~73 years)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 73%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1900</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~32 years</div>
+                            <p>High infant mortality, infectious diseases, limited medical knowledge, poor sanitation</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1950</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~46 years</div>
+                            <p>Antibiotics revolutionize medicine, vaccines reduce childhood deaths, improved hygiene</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~67 years</div>
+                            <p>Advanced medical treatments, better nutrition, reduced smoking rates in developed nations</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~73 years</div>
+                            <p>Continued improvements in healthcare access, chronic disease management, COVID-19 recovery</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Dramatic Gains</h3>
+                        <p>Global life expectancy has more than doubled since 1900, from ~32 to ~73 years. The 20th century saw the most rapid improvements in human history, driven by public health interventions and medical advances.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Regional Disparities</h3>
+                        <p>High-income countries average 80+ years (Japan: 84, Switzerland: 83), while low-income nations average ~64 years. Sub-Saharan Africa faces the largest gap, though narrowing rapidly.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Changing Mortality Patterns</h3>
+                        <p>In 1900, most deaths were from infectious diseases affecting children. Today, chronic diseases (heart disease, cancer, diabetes) in older adults dominate. The epidemiological transition reflects development success.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Future Outlook</h3>
+                        <p>Experts project continued gains from improved treatments for age-related diseases, better healthcare access in developing regions, and lifestyle interventions. Some optimists predict 90+ years globally by 2100.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>World Health Organization</h4>
+                        <p><a href="https://www.who.int/data/gho/data/themes/mortality-and-global-health-estimates/ghe-life-expectancy-and-healthy-life-expectancy" target="_blank" rel="noopener">WHO - Global Health Estimates</a></p>
+                        <p class="source-note">Comprehensive life expectancy data by country, age group, and gender.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank</h4>
+                        <p><a href="https://data.worldbank.org/indicator/SP.DYN.LE00.IN" target="_blank" rel="noopener">World Bank - Life Expectancy at Birth</a></p>
+                        <p class="source-note">Historical data and trends across all countries from 1960 to present.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Our World in Data</h4>
+                        <p><a href="https://ourworldindata.org/life-expectancy" target="_blank" rel="noopener">Our World in Data - Life Expectancy</a></p>
+                        <p class="source-note">Long-term historical perspective with visualizations dating back to 1770.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>United Nations</h4>
+                        <p><a href="https://population.un.org/wpp/" target="_blank" rel="noopener">UN - World Population Prospects</a></p>
+                        <p class="source-note">Global demographic analysis with projections to 2100.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: WHO, World Bank, UN Population Division | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for life expectancy
+        const ctx = document.getElementById('lifeExpectancyChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1900', '1920', '1940', '1960', '1980', '2000', '2010', '2020', '2024'],
+                datasets: [{
+                    label: 'Life Expectancy (years)',
+                    data: [32, 36, 41, 52, 62, 67, 70, 72.5, 73],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + ' years';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + ' yrs';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

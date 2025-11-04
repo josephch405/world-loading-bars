@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secondary Education Completion - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Secondary Education Completion</h1>
+            <p class="subtitle">Adults (25+) who have completed secondary school</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Completion Rate Trend</h2>
+                <div class="chart-container">
+                    <canvas id="secondaryEducationChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">60%</div>
+                <p class="stat-label">Global adults with completed secondary education</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 60%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1980</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~30%</div>
+                            <p>Secondary education limited to urban elites in developing countries, high dropout rates globally</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~45%</div>
+                            <p>Expansion of secondary schools, Education for All movement gains momentum, technology access grows</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~55%</div>
+                            <p>SDG 4 targets quality education, mobile learning platforms reach remote areas, China/India expand access</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~60%</div>
+                            <p>Online learning accelerates post-pandemic, skills-based education gains focus, but equity gaps remain</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Rapid Growth</h3>
+                        <p>Secondary education completion has doubled globally since 1980, from ~30% to ~60%. This expansion reflects urbanization, economic development, and policy prioritization of education as a development driver.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Economic Necessity</h3>
+                        <p>In knowledge economies, secondary education is minimum for decent employment. OECD countries average 85%+ completion, while sub-Saharan Africa averages ~35%, creating widening global inequality in economic opportunity.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Persistent Barriers</h3>
+                        <p>Poverty drives students to work rather than study, early marriage affects girls, quality varies enormously (many complete without achieving competency), and rural areas lack schools and teachers.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Skills Gap Challenges</h3>
+                        <p>Even with rising completion rates, employers report skills mismatches. Future focus shifts to competency-based education, critical thinking, digital literacy, and lifelong learning rather than just credential completion.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>UNESCO Institute for Statistics</h4>
+                        <p><a href="https://uis.unesco.org/en/topic/education" target="_blank" rel="noopener">UNESCO - Education Statistics</a></p>
+                        <p class="source-note">Global data on educational attainment by level, age group, and country.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank</h4>
+                        <p><a href="https://data.worldbank.org/indicator/SE.SEC.CUAT.UP.ZS" target="_blank" rel="noopener">World Bank - Secondary Education Completion</a></p>
+                        <p class="source-note">Historical completion rates and trends from 1970 to present.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>OECD Education at a Glance</h4>
+                        <p><a href="https://www.oecd.org/education/education-at-a-glance/" target="_blank" rel="noopener">OECD - Education Indicators</a></p>
+                        <p class="source-note">Detailed analysis of education systems, outcomes, and international comparisons.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Brookings Institution</h4>
+                        <p><a href="https://www.brookings.edu/topic/education/" target="_blank" rel="noopener">Brookings - Global Education Research</a></p>
+                        <p class="source-note">Policy analysis on educational access, quality, and economic returns.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: UNESCO, World Bank, OECD, Brookings | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for secondary education
+        const ctx = document.getElementById('secondaryEducationChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1980', '1990', '2000', '2005', '2010', '2015', '2020', '2024'],
+                datasets: [{
+                    label: 'Completion Rate (%)',
+                    data: [30, 38, 45, 50, 53, 55, 58, 60],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% completion';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
