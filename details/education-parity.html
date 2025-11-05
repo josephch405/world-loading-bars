@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Parity in Education - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Gender Parity in Education</h1>
+            <p class="subtitle">Girls' enrollment relative to boys in primary education</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Gender Parity Index Trend</h2>
+                <div class="chart-container">
+                    <canvas id="educationParityChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">99%</div>
+                <p class="stat-label">Gender parity in primary education (global average)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 99%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~76%</div>
+                            <p>Large gender gaps in many regions, cultural barriers prevent girls' education, limited school access</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~86%</div>
+                            <p>UNESCO campaigns promote girls' education, primary school expansion in developing countries</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~92%</div>
+                            <p>Millennium Development Goals prioritize gender parity, conditional cash transfers incentivize enrollment</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~99%</div>
+                            <p>Near-universal parity in primary education globally, remaining gaps in conflict zones and poorest regions</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Remarkable Progress</h3>
+                        <p>Gender parity in primary education is one of development's greatest successes. In 1970, only 76 girls were enrolled for every 100 boys globally. Today, the ratio is 99:100, approaching perfect parity.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Secondary & Tertiary Gaps</h3>
+                        <p>While primary education reaches parity, gaps widen at higher levels. Secondary education averages 96% parity, and tertiary varies widely—many developed nations now enroll more women than men in university.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Remaining Challenges</h3>
+                        <p>Sub-Saharan Africa and South Asia still face barriers: poverty forcing girls into labor, early marriage, long distances to schools, lack of female teachers, and inadequate sanitation facilities.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Multiplier Effects</h3>
+                        <p>Educating girls yields enormous returns: higher lifetime earnings, lower child mortality, smaller families, better-educated next generation. UNESCO estimates each year of schooling increases a woman's earnings by 10-20%.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>UNESCO Institute for Statistics</h4>
+                        <p><a href="https://uis.unesco.org/en/topic/gender-equality-education" target="_blank" rel="noopener">UNESCO - Gender Equality in Education</a></p>
+                        <p class="source-note">Comprehensive gender parity index data across education levels and countries.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank EdStats</h4>
+                        <p><a href="https://datatopics.worldbank.org/education/" target="_blank" rel="noopener">World Bank - Education Statistics</a></p>
+                        <p class="source-note">Historical enrollment data by gender from 1970 to present.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>UNICEF</h4>
+                        <p><a href="https://data.unicef.org/topic/gender/gender-disparities-in-education/" target="_blank" rel="noopener">UNICEF - Gender Disparities in Education</a></p>
+                        <p class="source-note">Analysis of barriers to girls' education and intervention effectiveness.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Malala Fund</h4>
+                        <p><a href="https://malala.org/girls-education" target="_blank" rel="noopener">Malala Fund - Girls' Education Data</a></p>
+                        <p class="source-note">Research on remaining gaps and advocacy for universal girls' education.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: UNESCO, World Bank, UNICEF, Malala Fund | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for education parity
+        const ctx = document.getElementById('educationParityChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1970', '1980', '1990', '2000', '2005', '2010', '2015', '2020', '2024'],
+                datasets: [{
+                    label: 'Gender Parity Index (%)',
+                    data: [76, 81, 86, 92, 94, 96, 97, 98, 99],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% parity';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

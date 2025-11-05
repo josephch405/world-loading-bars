@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Female Labor Force Participation - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Female Labor Force Participation</h1>
+            <p class="subtitle">Women's participation in the global workforce</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Participation Rate Trend</h2>
+                <div class="chart-container">
+                    <canvas id="femaleWorkforceChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">47%</div>
+                <p class="stat-label">Women in global labor force (ages 15+)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 47%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~51%</div>
+                            <p>High participation in agricultural economies, lower in urban areas, limited formal sector access</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~50%</div>
+                            <p>Gradual decline as economies industrialize, shift from agriculture to services, cultural barriers persist</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~48%</div>
+                            <p>Growing education rates, but caregiving responsibilities limit workforce entry, especially in developing nations</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~47%</div>
+                            <p>Post-pandemic remote work opens opportunities, but gender wage gap and childcare access remain barriers</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Regional Variation</h3>
+                        <p>Nordic countries reach 70%+ participation through generous parental leave and childcare support. Middle East and North Africa average 21%, limited by cultural norms and legal restrictions.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Economic Impact</h3>
+                        <p>McKinsey estimates closing gender gaps in workforce participation could add $12 trillion to global GDP by 2025. Women's economic empowerment correlates with higher family incomes and better child outcomes.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Persistent Barriers</h3>
+                        <p>Unpaid caregiving (childcare, eldercare) disproportionately falls on women, consuming 3x more time than men globally. Lack of affordable childcare, parental leave, and workplace flexibility prevent full participation.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Changing Landscape</h3>
+                        <p>Remote work and gig economy offer flexibility but also precarity. STEM education initiatives aim to diversify traditionally male-dominated fields. Legal reforms in Saudi Arabia and other nations signal cultural shifts.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>International Labour Organization</h4>
+                        <p><a href="https://www.ilo.org/topics/labour-force-participation" target="_blank" rel="noopener">ILO - Labour Force Participation Statistics</a></p>
+                        <p class="source-note">Comprehensive global data on labor force participation by gender, age, and region.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank</h4>
+                        <p><a href="https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS" target="_blank" rel="noopener">World Bank - Female Labor Force Participation Rate</a></p>
+                        <p class="source-note">Historical trends and country comparisons from 1990 to present.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>McKinsey Global Institute</h4>
+                        <p><a href="https://www.mckinsey.com/featured-insights/employment-and-growth/how-advancing-womens-equality-can-add-12-trillion-to-global-growth" target="_blank" rel="noopener">McKinsey - Women's Economic Opportunity</a></p>
+                        <p class="source-note">Analysis of economic potential from closing gender gaps in workforce participation.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>UN Women</h4>
+                        <p><a href="https://www.unwomen.org/en/what-we-do/economic-empowerment" target="_blank" rel="noopener">UN Women - Economic Empowerment</a></p>
+                        <p class="source-note">Gender equality indicators and progress toward SDG 5 targets.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: ILO, World Bank, McKinsey, UN Women | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for female workforce participation
+        const ctx = document.getElementById('femaleWorkforceChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
+                datasets: [{
+                    label: 'Female Labor Force Participation (%)',
+                    data: [51, 50.5, 50, 49, 48, 47.5, 47, 47],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% participation';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
