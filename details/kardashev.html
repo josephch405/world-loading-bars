@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kardashev Scale Progress - World Progress Bars</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Kardashev Scale Progress</h1>
+            <p class="subtitle">Humanity's journey to becoming a Type I civilization</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Energy Consumption Growth</h2>
+                <div class="chart-container">
+                    <canvas id="kardashevChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">0.73</div>
+                <p class="stat-label">Current Kardashev rating (73% progress to Type I)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 73%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1800</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.58</div>
+                            <p>Pre-industrial era, primarily biomass energy, minimal fossil fuel use</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1900</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.62</div>
+                            <p>Coal powers industrial revolution, first oil wells, early electricity grids</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1970</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.69</div>
+                            <p>Oil age peak, nuclear power emerges, global energy consumption soars</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.71</div>
+                            <p>Natural gas expansion, early renewable energy adoption, computing revolution</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.73</div>
+                            <p>Renewables accelerating, global energy use ~18 TW, approaching planetary scale</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>What is the Kardashev Scale?</h3>
+                        <p>Proposed by Soviet astronomer Nikolai Kardashev in 1964, this scale measures civilizations by energy use: Type I harnesses all planetary energy (~10^16 watts), Type II all stellar energy, Type III all galactic energy. We currently use ~18 terawatts globally.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Path to Type I</h3>
+                        <p>To reach Type I (~10,000 TW), humanity needs to harness Earth's geothermal energy, master fusion power, capture more solar radiation, and eliminate energy waste. Physicist Michio Kaku estimates 100-200 years at current growth rates.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Exponential Growth</h3>
+                        <p>Human energy consumption has grown exponentially since the Industrial Revolution. From 1800 to 2024, we've increased from ~0.5 TW to ~18 TW—a 36x increase in 224 years, moving from 0.58 to 0.73 on the scale.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Challenges Ahead</h3>
+                        <p>Reaching Type I requires solving climate change (sustainable energy), developing fusion or space-based solar, managing waste heat, and coordinating global energy infrastructure. The transition must be clean to avoid ecological collapse.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>Original Paper</h4>
+                        <p><a href="https://articles.adsabs.harvard.edu/pdf/1964SvA.....8..217K" target="_blank" rel="noopener">Kardashev, N. (1964) "Transmission of Information by Extraterrestrial Civilizations"</a></p>
+                        <p class="source-note">The original Soviet Astronomy paper introducing the Kardashev scale classification system.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>International Energy Agency</h4>
+                        <p><a href="https://www.iea.org/reports/world-energy-outlook-2024" target="_blank" rel="noopener">IEA - World Energy Outlook 2024</a></p>
+                        <p class="source-note">Global energy consumption statistics and projections used to calculate current Kardashev rating.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Carl Sagan's Refinement</h4>
+                        <p><a href="https://www.planetary.org/articles/1026-Carl-Sagans-Cosmic-Connection" target="_blank" rel="noopener">Sagan, C. (1973) "The Cosmic Connection"</a></p>
+                        <p class="source-note">Carl Sagan refined the scale to use intermediate values, calculating Earth as Type 0.7 civilization.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Michio Kaku Analysis</h4>
+                        <p><a href="https://mkaku.org/home/articles/the-physics-of-extraterrestrial-civilizations/" target="_blank" rel="noopener">Kaku, M. - "Physics of the Future"</a></p>
+                        <p class="source-note">Theoretical physicist's analysis of timeline and challenges for humanity reaching Type I status.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: Kardashev (1964), IEA, Sagan, Kaku | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for Kardashev scale progress
+        const ctx = document.getElementById('kardashevChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1800', '1850', '1900', '1950', '1970', '1990', '2000', '2010', '2020', '2024'],
+                datasets: [{
+                    label: 'Kardashev Rating',
+                    data: [0.58, 0.60, 0.62, 0.67, 0.69, 0.70, 0.71, 0.72, 0.725, 0.73],
+                    borderColor: '#f97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#f97316',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return 'Type ' + context.parsed.y.toFixed(2);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 0.5,
+                        max: 1.0,
+                        ticks: {
+                            callback: function(value) {
+                                return 'Type ' + value.toFixed(1);
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
