@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kardashev Progress - World Progress Bars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Kardashev Progress</h1>
+            <p class="subtitle">Measuring humanity's technological advancement on the Kardashev scale</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="chart-section">
+                <h2>Energy Consumption Growth</h2>
+                <div class="chart-container">
+                    <canvas id="kardashevChart"></canvas>
+                </div>
+            </section>
+
+            <section class="current-stat">
+                <div class="big-number">0.73</div>
+                <p class="stat-label">Current Kardashev rating (Type I = 1.0)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 73%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1900</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.58</div>
+                            <p>Industrial Revolution energy usage</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1964</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.65</div>
+                            <p>Kardashev proposes the scale</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.69</div>
+                            <p>Post-Cold War energy expansion</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.72</div>
+                            <p>Renewable energy emergence</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.73</div>
+                            <p>Global energy: ~18 terawatts</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Understanding the Kardashev Scale</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Type I Civilization</h3>
+                        <p>Can harness all energy available on its planet (~10¹⁶ watts). Humanity needs to increase energy usage by about 4x to reach Type I status, projected around 2100-2200.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Type II Civilization</h3>
+                        <p>Can harness all energy of its star (~10²⁶ watts). Would require megastructures like Dyson spheres. Thousands to millions of years beyond current technology.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Type III Civilization</h3>
+                        <p>Can control energy on the scale of an entire galaxy (~10³⁶ watts). Theoretical construct far beyond current scientific understanding.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Current Progress</h3>
+                        <p>At 0.73, humanity uses ~18 TW globally. We're advancing at roughly 0.01 per decade. Key bottleneck: transitioning to sustainable energy sources at planetary scale.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Historical Context</h3>
+                        <p>Soviet astronomer Nikolai Kardashev proposed this scale in 1964 while searching for extraterrestrial civilizations, reasoning advanced aliens would emit detectable energy signatures.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Future Milestones</h3>
+                        <p>Reaching Type I requires mastering fusion power, global renewable infrastructure, and potentially space-based solar. Each 0.1 increase represents enormous technological leaps.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>Original Paper</h4>
+                        <p>Kardashev, N. S. (1964). "Transmission of Information by Extraterrestrial Civilizations"</p>
+                        <p class="source-note">The foundational paper introducing the Kardashev scale for measuring civilizational advancement.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>International Energy Agency (IEA)</h4>
+                        <p><a href="https://www.iea.org/data-and-statistics" target="_blank" rel="noopener">Global Energy Statistics</a></p>
+                        <p class="source-note">Comprehensive data on global energy consumption and production trends.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Carl Sagan's Refinement</h4>
+                        <p>Sagan, C. (1973). "The Cosmic Connection"</p>
+                        <p class="source-note">Introduced logarithmic interpolation allowing fractional Kardashev ratings like our current 0.73.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Energy Information Administration</h4>
+                        <p><a href="https://www.eia.gov/international/" target="_blank" rel="noopener">U.S. EIA International Energy Data</a></p>
+                        <p class="source-note">Detailed tracking of global energy consumption patterns and projections.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Data sources: IEA, EIA, Kardashev (1964), Sagan (1973) | Updated 2024</p>
+            <p class="note">Statistics are approximate and for demonstration purposes</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js configuration for Kardashev scale progress
+        const ctx = document.getElementById('kardashevChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1900', '1920', '1940', '1960', '1980', '2000', '2020', '2024'],
+                datasets: [{
+                    label: 'Kardashev Rating',
+                    data: [0.58, 0.60, 0.62, 0.65, 0.68, 0.70, 0.72, 0.73],
+                    borderColor: '#f97316',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#f97316',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 14
+                        },
+                        bodyFont: {
+                            family: "'Courier Prime', monospace",
+                            size: 13
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                return 'Type ' + context.parsed.y.toFixed(2);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 0.5,
+                        max: 1.0,
+                        ticks: {
+                            callback: function(value) {
+                                return 'Type ' + value.toFixed(1);
+                            },
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Courier Prime', monospace"
+                            }
+                        },
+                        grid: {
+                            color: '#feccb5'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
