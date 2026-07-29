@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Fusion Energy Progress - World Loading Bars</title>
+
+    <!-- Social OpenGraph Tags -->
+    <meta name="description" content="Track humanity's journey toward commercial nuclear fusion power, from plasma ignition to grid delivery.">
+    <meta property="og:title" content="Commercial Fusion Energy Progress - World Loading Bars">
+    <meta property="og:description" content="Unlimited clean energy is within reach. Track progress from net energy gain (Q > 1) to commercial fusion power plant delivery.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BY3JTNHV2N');
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Commercial Fusion Energy Progress</h1>
+            <p class="subtitle">Humanity's journey to harnessing stellar energy for electrical grids</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="current-stat">
+                <div class="big-number">26.8%</div>
+                <div class="stat-label">Progress to Commercial Fusion Grid Power</div>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 26.8%; background: linear-gradient(90deg, #0284c7, #38bdf8);"></div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Fusion Gain Factor (Q) Over Time</h2>
+                <div class="chart-container">
+                    <canvas id="fusionChart"></canvas>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Key Fusion Milestones</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1997</div>
+                        <div class="timeline-stat">JET Tokamak Q = 0.67</div>
+                        <div class="timeline-content">
+                            <p>Record 16.1 MW of fusion power achieved at Culham Centre for Fusion Energy in the UK.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-stat">Net Energy Gain (Q > 1)</div>
+                        <div class="timeline-content">
+                            <p>National Ignition Facility (NIF) achieved net fusion energy gain (3.15 MJ output vs 2.05 MJ laser energy input).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-stat">NIF Target Gain Q_t = 4.13</div>
+                        <div class="timeline-content">
+                            <p>National Ignition Facility achieved 8.6 MJ fusion yield from 2.08 MJ laser input, breaking ignition records.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-stat">SPARC & Pilot Plant Licensing</div>
+                        <div class="timeline-content">
+                            <p>CFS SPARC facility achieves 75% construction completion for 2027 net energy gain testing; Helion receives commercial plant licenses for grid delivery.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>The 3 Pillars of Commercial Fusion</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>1. Ignition (Achieved)</h3>
+                        <p>Producing more thermal energy out of the fusion reaction than the laser/magnetic energy input.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>2. Engineering Gain (Q_engineering > 1)</h3>
+                        <p>Generating net electricity accounting for total wall-plug efficiency of power systems.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>3. Grid Integration</h3>
+                        <p>Building scalable pilot plants producing electricity continuously under 5¢/kWh.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Data Sources & References</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>International Atomic Energy Agency (IAEA)</h4>
+                        <a href="https://www.iaea.org/topics/fusion" target="_blank" rel="noopener">IAEA Fusion Energy Portal</a>
+                    </div>
+                    <div class="source-item">
+                        <h4>Lawrence Livermore National Laboratory</h4>
+                        <a href="https://www.llnl.gov" target="_blank" rel="noopener">NIF Ignition Results</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>World Loading Bars • Interactive Global Statistics</p>
+        </footer>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('fusionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1990', '2000', '2010', '2020', '2022', '2025', '2026'],
+                datasets: [{
+                    label: 'Fusion Target Gain Factor (Q)',
+                    data: [0.1, 0.67, 0.72, 0.85, 1.54, 4.13, 4.5],
+                    borderColor: '#0284c7',
+                    backgroundColor: 'rgba(2, 132, 199, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#64748b' },
+                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                    },
+                    x: {
+                        ticks: { color: '#64748b' },
+                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#0f172a', font: { family: 'Plus Jakarta Sans', weight: 'bold' } } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

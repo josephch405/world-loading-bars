@@ -1,4 +1,4 @@
-/* Detail page specific styles */
+/* Detail page specific styles (Light Mode) */
 
 .breadcrumb {
     margin-bottom: 30px;
@@ -7,63 +7,94 @@
 .breadcrumb a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: all 0.25s ease;
 }
 
 .breadcrumb a:hover {
-    color: var(--primary-color);
+    color: var(--primary-blue);
+    border-color: #cbd5e1;
+    transform: translateX(-3px);
 }
 
 .detail-header {
-    margin-bottom: 50px;
+    text-align: left;
+    margin-bottom: 40px;
+    padding: 0;
 }
 
 .detail-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.detail-header .subtitle {
+    margin: 0;
+    text-align: left;
 }
 
 .detail-main {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-/* Current Stat Section */
+/* Current Stat Hero Card */
 .current-stat {
     text-align: center;
-    padding: 40px;
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
+    padding: 45px 30px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
     margin-bottom: 50px;
-}
-
-.big-number {
-    font-size: 5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    line-height: 1;
-    margin-bottom: 10px;
-}
-
-.stat-label {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 30px;
-}
-
-.progress-bar-large {
-    height: 40px;
-    background: #fef2ed;
-    border: 2px solid var(--border-color);
+    box-shadow: var(--card-shadow), var(--glow-shadow);
     position: relative;
     overflow: hidden;
 }
 
+.big-number {
+    font-family: var(--font-mono);
+    font-size: 4.8rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -2px;
+}
+
+.stat-label {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.progress-bar-large {
+    height: 24px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
 .progress-fill-large {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    transition: width 1.5s ease;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-cyan));
+    border-radius: 30px;
+    transition: width 1.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Timeline Section */
@@ -71,63 +102,76 @@
     margin-bottom: 60px;
 }
 
-.timeline-section h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
+.timeline-section h2, 
+.chart-section h2, 
+.insights-section h2, 
+.sources-section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 25px;
     color: var(--text-primary);
+    letter-spacing: -0.5px;
 }
 
 .timeline {
     position: relative;
-    padding-left: 40px;
+    padding-left: 35px;
 }
 
 .timeline::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
+    left: 8px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
     background: var(--border-color);
 }
 
 .timeline-item {
     position: relative;
-    padding: 20px 0 20px 20px;
+    padding: 18px 22px;
     margin-bottom: 20px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+    transition: transform 0.25s ease;
+}
+
+.timeline-item:hover {
+    transform: translateX(4px);
+    border-color: #cbd5e1;
 }
 
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -47px;
-    top: 25px;
-    width: 16px;
-    height: 16px;
+    left: -33px;
+    top: 24px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background: var(--card-bg);
-    border: 3px solid var(--border-color);
+    background: #ffffff;
+    border: 2px solid var(--text-muted);
 }
 
 .timeline-item.highlight::before {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-    width: 20px;
-    height: 20px;
-    left: -49px;
-    top: 23px;
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
 }
 
 .timeline-year {
-    font-size: 1.3rem;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 8px;
+    color: var(--primary-blue);
+    margin-bottom: 6px;
 }
 
 .timeline-stat {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 5px;
@@ -135,7 +179,7 @@
 
 .timeline-content p {
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 /* Chart Section */
@@ -143,17 +187,12 @@
     margin-bottom: 60px;
 }
 
-.chart-section h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: var(--text-primary);
-}
-
 .chart-container {
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
     padding: 30px;
-    max-height: 500px;
+    box-shadow: var(--card-shadow);
 }
 
 /* Insights Section */
@@ -161,32 +200,30 @@
     margin-bottom: 60px;
 }
 
-.insights-section h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: var(--text-primary);
-}
-
 .insights-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
 }
 
 .insight-card {
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    padding: 25px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .insight-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    border-color: #cbd5e1;
+    box-shadow: var(--glow-shadow);
 }
 
 .insight-card h3 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 12px;
 }
@@ -194,30 +231,26 @@
 .insight-card p {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 /* Sources Section */
 .sources-section {
     margin-bottom: 60px;
     padding: 30px;
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-}
-
-.sources-section h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: var(--text-primary);
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
 }
 
 .sources-list {
     display: grid;
-    gap: 25px;
+    gap: 20px;
 }
 
 .source-item {
-    padding-bottom: 20px;
+    padding-bottom: 18px;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -229,59 +262,42 @@
 .source-item h4 {
     font-size: 1.1rem;
     color: var(--text-primary);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .source-item a {
-    color: var(--primary-color);
+    color: var(--primary-blue);
     text-decoration: none;
     font-size: 0.95rem;
-    transition: opacity 0.3s ease;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
 }
 
 .source-item a:hover {
-    opacity: 0.7;
     text-decoration: underline;
+    opacity: 0.85;
 }
 
 .source-note {
-    color: var(--text-secondary);
+    color: var(--text-muted);
     font-size: 0.9rem;
-    margin-top: 8px;
-    line-height: 1.5;
+    margin-top: 6px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .detail-header h1 {
-        font-size: 2rem;
+        font-size: 2.1rem;
     }
 
     .big-number {
-        font-size: 3.5rem;
+        font-size: 3.6rem;
     }
 
     .current-stat {
         padding: 30px 20px;
     }
 
-    .timeline {
-        padding-left: 30px;
-    }
-
-    .timeline-item {
-        padding-left: 15px;
-    }
-
     .chart-container {
-        padding: 20px;
-    }
-
-    .insights-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .sources-section {
-        padding: 20px;
+        padding: 16px;
     }
 }

@@ -40,10 +40,10 @@
             </section>
 
             <section class="current-stat">
-                <div class="big-number">0.01%</div>
-                <p class="stat-label">Current autonomous travel miles (2024)</p>
+                <div class="big-number">0.05%</div>
+                <p class="stat-label">Current autonomous travel miles (2026)</p>
                 <div class="progress-bar-large">
-                    <div class="progress-fill-large" style="width: 0.01%"></div>
+                    <div class="progress-fill-large" style="width: 0.05%"></div>
                 </div>
             </section>
 
@@ -68,14 +68,21 @@
                         <div class="timeline-year">2022</div>
                         <div class="timeline-content">
                             <div class="timeline-stat">~0.005%</div>
-                            <p>Multiple cities authorize autonomous taxi operations</p>
+                            <p>Multiple cities authorize commercial driverless robotaxi operations</p>
                         </div>
                     </div>
-                    <div class="timeline-item highlight">
+                    <div class="timeline-item">
                         <div class="timeline-year">2024</div>
                         <div class="timeline-content">
                             <div class="timeline-stat">0.01%</div>
-                            <p>Waymo surpasses 20M autonomous miles, expanding to new cities</p>
+                            <p>Waymo surpasses 20M autonomous miles; Apollo Go expands rapidly in Wuhan</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">0.05%</div>
+                            <p>Waymo exceeds 220M rider-only miles (500k+ weekly rides); Apollo Go passes 330M km (20M+ rides)</p>
                         </div>
                     </div>
                 </div>
@@ -90,7 +97,7 @@
                     </div>
                     <div class="insight-card">
                         <h3>Leading Companies</h3>
-                        <p>Waymo (20M+ miles), Baidu's Apollo Go, Cruise, and others are operating robotaxi services in select cities. Most deployments are geofenced to specific urban areas.</p>
+                        <p>Waymo (220M+ rider-only miles, 500k+ weekly rides) and Baidu Apollo Go (330M+ km, 20M+ passenger rides) lead commercial L4 autonomous operations.</p>
                     </div>
                     <div class="insight-card">
                         <h3>Future Growth</h3>
@@ -109,12 +116,12 @@
                     <div class="source-item">
                         <h4>Waymo Official Data</h4>
                         <p><a href="https://waymo.com/blog/" target="_blank" rel="noopener">Waymo Blog - Autonomous Driving Progress Reports</a></p>
-                        <p class="source-note">Waymo has driven over 20 million fully autonomous miles as of 2024, primarily in Phoenix, San Francisco, and Los Angeles.</p>
+                        <p class="source-note">Waymo has logged over 220 million fully autonomous rider-only miles as of 2026, delivering 500,000+ paid trips per week across SF, Phoenix, LA, and Austin.</p>
                     </div>
                     <div class="source-item">
                         <h4>Baidu Apollo Go</h4>
                         <p><a href="https://apollo.baidu.com/" target="_blank" rel="noopener">Baidu Apollo Platform</a></p>
-                        <p class="source-note">China's leading autonomous driving platform operating robotaxis in Beijing, Wuhan, Shenzhen, and other cities.</p>
+                        <p class="source-note">China's leading autonomous platform operating robotaxis with over 330M km driven and 20M+ cumulative passenger rides across Wuhan, Beijing, and Shenzhen.</p>
                     </div>
                     <div class="source-item">
                         <h4>Industry Analysis</h4>
@@ -131,7 +138,7 @@
         </main>
 
         <footer>
-            <p>Data sources: Waymo, Baidu Apollo, McKinsey, CA DMV | Updated 2024</p>
+            <p>Data sources: Waymo, Baidu Apollo, McKinsey, CA DMV | Updated 2026</p>
             <p class="note">Statistics are approximate and for demonstration purposes</p>
         </footer>
     </div>
@@ -142,10 +149,10 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                labels: ['2018', '2020', '2022', '2024', '2025', '2026'],
                 datasets: [{
                     label: 'Autonomous Miles (%)',
-                    data: [0.0001, 0.0003, 0.001, 0.002, 0.005, 0.008, 0.01],
+                    data: [0.0001, 0.001, 0.005, 0.01, 0.03, 0.05],
                     borderColor: '#f97316',
                     backgroundColor: 'rgba(249, 115, 22, 0.1)',
                     borderWidth: 3,

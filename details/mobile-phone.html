@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - World Progress Bars</title>
+    <title>Mobile Phone Access - World Progress Bars</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,26 +27,168 @@
         </nav>
 
         <header class="detail-header">
-            <h1>Detailed Page Coming Soon</h1>
-            <p class="subtitle">This stat's full timeline and chart will be added shortly</p>
+            <h1>Mobile Phone Access</h1>
+            <p class="subtitle">Global population owning a mobile phone</p>
         </header>
 
         <main class="detail-main">
+            <section class="chart-section">
+                <h2>Ownership Growth Trend</h2>
+                <div class="chart-container">
+                    <canvas id="mobileChart"></canvas>
+                </div>
+            </section>
+
             <section class="current-stat">
-                <p style="font-size: 1.5rem; color: var(--text-secondary);">
-                    We're still building out detailed pages for all statistics. Check back soon!
-                </p>
-                <br>
-                <a href="../index.html" style="color: var(--primary-color); text-decoration: none; font-size: 1.2rem;">
-                    ← Return to overview
-                </a>
+                <div class="big-number">78%</div>
+                <p class="stat-label">Of the world's population owns a mobile phone (ITU 2024/2025)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 78%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2005</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">34%</div>
+                            <p>Mobile cellular revolution accelerates in developing markets</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">53%</div>
+                            <p>Feature phones become dominant globally; 3G networks expand</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">65%</div>
+                            <p>Affordable smartphones drive universal mobile adoptability</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">73%</div>
+                            <p>4G covers over 80% of world population; mobile banking flourishes</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">78%</div>
+                            <p>Over 6.2 billion unique mobile phone owners worldwide</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Primary Gateway</h3>
+                        <p>For billions of people in developing countries, mobile phones serve as the primary or sole device for accessing the internet, financial services, and healthcare.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Subscription Density</h3>
+                        <p>Global mobile subscriptions reached 112 per 100 inhabitants in 2024, reflecting widespread multi-SIM usage and connected IoT hardware.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Infrastructure Shift</h3>
+                        <p>5G networks now cover over 50% of the global population, enabling high-speed mobile broadband even where fixed fiber broadband is absent.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>International Telecommunication Union (ITU)</h4>
+                        <p><a href="https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx" target="_blank" rel="noopener">ITU Facts and Figures Reports</a></p>
+                        <p class="source-note">Official UN specialized agency tracking global ICT indicator statistics and mobile phone ownership.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank Data</h4>
+                        <p><a href="https://data.worldbank.org/indicator/IT.CEL.SETS.P2" target="_blank" rel="noopener">World Bank - Mobile Cellular Subscriptions</a></p>
+                        <p class="source-note">Global time-series dataset measuring mobile connectivity per 100 people.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>GSMA Intelligence</h4>
+                        <p><a href="https://www.gsma.com/mobileeconomy/" target="_blank" rel="noopener">GSMA Mobile Economy Report</a></p>
+                        <p class="source-note">Industry body measuring unique mobile subscriber penetration rates worldwide.</p>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>Data sources: World Bank, IEA, ITU, UNESCO, WHO | Updated 2024</p>
+            <p>Data sources: ITU, World Bank, GSMA | Updated 2024/2025</p>
             <p class="note">Statistics are approximate and for demonstration purposes</p>
         </footer>
     </div>
+
+    <script>
+        const ctx = document.getElementById('mobileChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2005', '2008', '2011', '2014', '2017', '2020', '2022', '2024'],
+                datasets: [{
+                    label: 'Mobile Ownership (%)',
+                    data: [34, 45, 56, 63, 70, 73, 76, 78],
+                    borderColor: '#06b6d4',
+                    backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#06b6d4',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: { family: "'Courier Prime', monospace", size: 14 },
+                        bodyFont: { family: "'Courier Prime', monospace", size: 13 },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% own a mobile phone';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            font: { family: "'Courier Prime', monospace" }
+                        },
+                        grid: { color: '#feccb5' }
+                    },
+                    x: {
+                        ticks: { font: { family: "'Courier Prime', monospace" } },
+                        grid: { color: '#feccb5' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

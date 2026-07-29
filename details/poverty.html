@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - World Progress Bars</title>
+    <title>Not in Extreme Poverty - World Progress Bars</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,26 +27,165 @@
         </nav>
 
         <header class="detail-header">
-            <h1>Detailed Page Coming Soon</h1>
-            <p class="subtitle">This stat's full timeline and chart will be added shortly</p>
+            <h1>Not in Extreme Poverty</h1>
+            <p class="subtitle">Global population living above the international extreme poverty line ($2.15/day PPP)</p>
         </header>
 
         <main class="detail-main">
+            <section class="chart-section">
+                <h2>Non-Poverty Population Share</h2>
+                <div class="chart-container">
+                    <canvas id="povertyChart"></canvas>
+                </div>
+            </section>
+
             <section class="current-stat">
-                <p style="font-size: 1.5rem; color: var(--text-secondary);">
-                    We're still building out detailed pages for all statistics. Check back soon!
-                </p>
-                <br>
-                <a href="../index.html" style="color: var(--primary-color); text-decoration: none; font-size: 1.2rem;">
-                    ← Return to overview
-                </a>
+                <div class="big-number">91.5%</div>
+                <p class="stat-label">Global population above international extreme poverty line (current: 91.5%)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 91.5%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~62%</div>
+                            <p>Over 38% of global population lived in extreme poverty (~1.9 billion people), predominantly in East Asia and South Asia</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~71%</div>
+                            <p>Rapid economic growth in China and East Asia drives massive reductions in extreme poverty</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~84%</div>
+                            <p>Millennium Development Goal target to halve 1990 extreme poverty rate achieved five years early</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">91.5%</div>
+                            <p>Global extreme poverty falls to ~8.5% at the $2.15 line (~700M people), with poverty increasingly concentrated in fragile states</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Historic Transformation</h3>
+                        <p>The share of humanity living outside extreme poverty rose from ~62% in 1990 to over 91.5% today. This represents one of the most rapid reductions in human deprivation in history.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Regional Shift</h3>
+                        <p>In 1990, East Asia accounted for the majority of the world's extreme poor. Today, Sub-Saharan Africa accounts for roughly two-thirds of the remaining population in extreme poverty.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Higher Poverty Lines</h3>
+                        <p>While extreme poverty ($2.15/day) has fallen below 9%, higher poverty thresholds ($3.65/day and $6.85/day) reveal that nearly 47% of the global population still struggles to meet basic needs.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Post-Pandemic Challenges</h3>
+                        <p>The COVID-19 pandemic and global inflation shocks temporarily stalled progress. Re-accelerating progress requires target investment in agriculture, climate resilience, and social protection safety nets.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>World Bank Poverty & Inequality Platform</h4>
+                        <p><a href="https://pip.worldbank.org/" target="_blank" rel="noopener">World Bank - Poverty and Inequality Platform (PIP)</a></p>
+                        <p class="source-note">Official global poverty estimates and international poverty line data ($2.15, $3.65, $6.85/day).</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Our World in Data</h4>
+                        <p><a href="https://ourworldindata.org/poverty" target="_blank" rel="noopener">Our World in Data - Global Extreme Poverty</a></p>
+                        <p class="source-note">Comprehensive historical datasets and visualizations of global poverty trends from 1820 to present.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>United Nations SDG Indicators</h4>
+                        <p><a href="https://sdg-tracker.org/no-poverty" target="_blank" rel="noopener">SDG Tracker - Goal 1: No Poverty</a></p>
+                        <p class="source-note">Monitoring progress toward SDG 1 targets for ending poverty in all its forms everywhere.</p>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>Data sources: World Bank, IEA, ITU, UNESCO, WHO | Updated 2024</p>
-            <p class="note">Statistics are approximate and for demonstration purposes</p>
+            <p>Data sources: World Bank (PIP), Our World in Data, UN SDG Reports | Updated 2025</p>
+            <p class="note">Statistics are based on international poverty line thresholds ($2.15/day 2017 PPP)</p>
         </footer>
     </div>
+
+    <script>
+        const ctx = document.getElementById('povertyChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
+                datasets: [{
+                    label: 'Population Above Extreme Poverty Line (%)',
+                    data: [62, 66, 71, 78, 84, 89.2, 90.7, 91.5],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#10b981',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: { family: "'Courier Prime', monospace", size: 14 },
+                        bodyFont: { family: "'Courier Prime', monospace", size: 13 },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% not in extreme poverty';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            font: { family: "'Courier Prime', monospace" }
+                        },
+                        grid: { color: '#feccb5' }
+                    },
+                    x: {
+                        ticks: { font: { family: "'Courier Prime', monospace" } },
+                        grid: { color: '#feccb5' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGI Benchmark Progress - World Loading Bars</title>
+
+    <!-- Social OpenGraph Tags -->
+    <meta name="description" content="Track humanity's progress toward Artificial General Intelligence (AGI) across complex reasoning, multimodal capability, and autonomous task benchmarks.">
+    <meta property="og:title" content="AGI Benchmark Progress - World Loading Bars">
+    <meta property="og:description" content="AI models have mastered coding, vision, and language. Track progress toward human-level general intelligence as a live loading bar.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BY3JTNHV2N');
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>AGI Benchmark Progress</h1>
+            <p class="subtitle">Tracking progress across composite human-level reasoning and autonomous task benchmarks</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="current-stat">
+                <div class="big-number">74.5%</div>
+                <div class="stat-label">Composite AGI Benchmark Completion</div>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 74.5%; background: linear-gradient(90deg, #7c3aed, #c084fc);"></div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>AI Performance Growth Across Key Domains</h2>
+                <div class="chart-container">
+                    <canvas id="agiChart"></canvas>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Milestones Achieved</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-stat">Human Super-Parity in Image Recognition</div>
+                        <div class="timeline-content">
+                            <p>ResNet surpassed human accuracy on ImageNet visual benchmarks.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-stat">Language Modeling Breakthrough</div>
+                        <div class="timeline-content">
+                            <p>Large language models demonstrated zero-shot learning across text generation and translation.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-stat">Expert Human Reasoning</div>
+                        <div class="timeline-content">
+                            <p>Models passed uniform bar exams, medical licensing tests, and advanced coding benchmarks in top percentiles.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-stat">74.5% Composite Benchmark Score</div>
+                        <div class="timeline-content">
+                            <p>Frontier reasoning LLMs reach >95% on SWE-bench Verified, ~65% on SWE-bench Pro, and 16+ hour autonomous execution horizons on METR task suites.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Intelligence Metrics</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>SWE-bench & Coding</h3>
+                        <p>Frontier agents resolve >95% of SWE-bench Verified issues and ~65% of un-contaminated SWE-bench Pro repos autonomously.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Scientific Reasoning</h3>
+                        <p>Near-saturated performance on GPQA graduate science benchmarks and >80% on ARC-AGI fluid reasoning.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>METR Task Horizon</h3>
+                        <p>METR evaluations show 50% reliability task execution horizons doubling every 3-4 months, surpassing 16 continuous hours.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Data Sources & References</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>METR & Benchmark Frameworks</h4>
+                        <a href="https://metr.org" target="_blank" rel="noopener">Model Evaluation & Threat Research</a>
+                        <p class="source-note">Tracks autonomous capabilities and long-horizon tasks across AI labs.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>SWE-bench</h4>
+                        <a href="https://www.swebench.com" target="_blank" rel="noopener">SWE-bench Software Benchmark</a>
+                        <p class="source-note">Evaluates software engineering agents on real open-source GitHub issues.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>World Loading Bars • Interactive Global Statistics</p>
+        </footer>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('agiChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2018', '2020', '2022', '2024', '2026'],
+                datasets: [{
+                    label: 'Composite AGI Benchmark Score (%)',
+                    data: [12, 22, 38, 51, 64, 74.5],
+                    borderColor: '#7c3aed',
+                    backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { color: '#64748b' },
+                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                    },
+                    x: {
+                        ticks: { color: '#64748b' },
+                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#0f172a', font: { family: 'Plus Jakarta Sans', weight: 'bold' } } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

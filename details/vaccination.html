@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - World Progress Bars</title>
+    <title>Basic Child Vaccination Rate - World Progress Bars</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,26 +27,163 @@
         </nav>
 
         <header class="detail-header">
-            <h1>Detailed Page Coming Soon</h1>
-            <p class="subtitle">This stat's full timeline and chart will be added shortly</p>
+            <h1>Basic Child Vaccination Rate</h1>
+            <p class="subtitle">Global infants receiving three doses of DTP vaccine (DTP3 coverage indicator)</p>
         </header>
 
         <main class="detail-main">
+            <section class="chart-section">
+                <h2>Child Immunization Trend (DTP3)</h2>
+                <div class="chart-container">
+                    <canvas id="vaccinationChart"></canvas>
+                </div>
+            </section>
+
             <section class="current-stat">
-                <p style="font-size: 1.5rem; color: var(--text-secondary);">
-                    We're still building out detailed pages for all statistics. Check back soon!
-                </p>
-                <br>
-                <a href="../index.html" style="color: var(--primary-color); text-decoration: none; font-size: 1.2rem;">
-                    ← Return to overview
-                </a>
+                <div class="big-number">85%</div>
+                <p class="stat-label">Global DTP3 immunization coverage among infants (2025: 85%)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 85%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1980</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~20%</div>
+                            <p>WHO launches the Expanded Programme on Immunization (EPI); basic routine childhood vaccination remains under 20% in developing nations</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~72%</div>
+                            <p>Gavi, the Vaccine Alliance is established, helping fund and distribute life-saving vaccines to lower-income countries</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">86%</div>
+                            <p>Peak pre-pandemic global immunization coverage, with 86% of infants receiving three DTP doses globally</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">85%</div>
+                            <p>Global coverage recovers to 85% after pandemic backsliding, protecting over 108 million infants annually (WHO/UNICEF WUENIC data)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>DTP3 as Health Benchmark</h3>
+                        <p>Diphtheria-Tetanus-Pertussis (DTP3) coverage is the global gold standard indicator for evaluating the reach and efficiency of routine health systems.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Pandemic Recovery</h3>
+                        <p>Childhood vaccination suffered the largest backslide in 30 years during the COVID-19 pandemic (dropping to 81% in 2021). Coverage has rebounded back to 85% globally.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Zero-Dose Children Challenge</h3>
+                        <p>Despite 85% coverage, approximately 14.3 million children worldwide are "zero-dose" (received no vaccines at all), concentrated in remote and conflict-affected areas.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>New Vaccine Introductions</h3>
+                        <p>Beyond DTP, global rollouts of HPV, pneumococcal, rotavirus, and new malaria vaccines (RTS,S and R21) are rapidly improving child survival worldwide.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>WHO / UNICEF Immunization Coverage (WUENIC)</h4>
+                        <p><a href="https://www.who.int/teams/immunization-vaccines-and-biologicals/immunization-analysis-and-insights/global-monitoring/immunization-coverage/wuenic-coverage-estimates" target="_blank" rel="noopener">WHO - WUENIC Estimates of National Immunization Coverage</a></p>
+                        <p class="source-note">Official annual estimates of global, regional, and national immunization rates.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Gavi, the Vaccine Alliance</h4>
+                        <p><a href="https://www.gavi.org/programmes-impact/our-impact/immunisation-stats" target="_blank" rel="noopener">Gavi - Immunisation Progress & Impact</a></p>
+                        <p class="source-note">Data on vaccine access, equity, and disease prevention in lower-income nations.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank Open Data</h4>
+                        <p><a href="https://data.worldbank.org/indicator/SH.IMM.IDPT" target="_blank" rel="noopener">World Bank - Immunization, DPT (% of children ages 12-23 months)</a></p>
+                        <p class="source-note">Historical time series data for child immunization rates worldwide.</p>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>Data sources: World Bank, IEA, ITU, UNESCO, WHO | Updated 2024</p>
-            <p class="note">Statistics are approximate and for demonstration purposes</p>
+            <p>Data sources: WHO/UNICEF WUENIC, Gavi, World Bank | Updated 2026</p>
+            <p class="note">Indicator reflects DTP3 coverage in children under 1 year of age</p>
         </footer>
     </div>
+
+    <script>
+        const ctx = document.getElementById('vaccinationChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1980', '1990', '2000', '2010', '2015', '2019', '2021', '2024', '2025'],
+                datasets: [{
+                    label: 'DTP3 Coverage (%)',
+                    data: [20, 75, 72, 84, 85, 86, 81, 84, 85],
+                    borderColor: '#e11d48',
+                    backgroundColor: 'rgba(225, 29, 72, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#e11d48',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: { family: "'Courier Prime', monospace", size: 14 },
+                        bodyFont: { family: "'Courier Prime', monospace", size: 13 },
+                        callbacks: {
+                            label: function(context) { return context.parsed.y + '% DTP3 coverage'; }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            font: { family: "'Courier Prime', monospace" }
+                        },
+                        grid: { color: '#feccb5' }
+                    },
+                    x: {
+                        ticks: { font: { family: "'Courier Prime', monospace" } },
+                        grid: { color: '#feccb5' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

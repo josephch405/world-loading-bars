@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars Colonization Milestones - World Loading Bars</title>
+
+    <!-- Social OpenGraph Tags -->
+    <meta name="description" content="Track humanity's progress toward establishing a self-sustaining permanent human settlement on Mars.">
+    <meta property="og:title" content="Mars Colonization Milestones - World Loading Bars">
+    <meta property="og:description" content="From uncrewed landings to full orbital transit capacity and in-situ resource utilization.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BY3JTNHV2N');
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Mars Colonization Progress</h1>
+            <p class="subtitle">Humanity's journey to becoming a multi-planetary species</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="current-stat">
+                <div class="big-number">18.5%</div>
+                <div class="stat-label">Progress to Self-Sustaining Mars City</div>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 18.5%; background: linear-gradient(90deg, #ea580c, #f97316);"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Key Spaceflight & Surface Milestones</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1976</div>
+                        <div class="timeline-stat">Viking 1 First Successful Landing</div>
+                        <div class="timeline-content">
+                            <p>First operational craft landed on Mars surface, providing initial atmospheric data.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-stat">MOXIE Oxygen Extraction</div>
+                        <div class="timeline-content">
+                            <p>Perseverance rover extracted breathable O₂ directly from Martian CO₂ atmosphere.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-stat">Starship Flight 13 & Mechazilla Catch</div>
+                        <div class="timeline-content">
+                            <p>SpaceX completes 13th Starship flight test, demonstrating booster catches, satellite deployment, and in-space Raptor reignitions prior to full orbital refueling trials.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>4 Primary Pillars</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>1. Orbital Refueling</h3>
+                        <p>Transferring cryogenic propellant in LEO for Mars transfer burn.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>2. Uncrewed Cargo Fleets</h3>
+                        <p>Pre-deploying solar arrays, water miners, and fuel synthesis reactors.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>3. In-Situ Fuel Production</h3>
+                        <p>Sabatier reaction combining Martian CO₂ & subsurface water ice to produce CH₄ and O₂ propellant.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Data Sources & References</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>NASA Mars Exploration Program</h4>
+                        <a href="https://mars.nasa.gov" target="_blank" rel="noopener">NASA Mars Mission Data</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>World Loading Bars • Interactive Global Statistics</p>
+        </footer>
+    </div>
+</body>
+</html>

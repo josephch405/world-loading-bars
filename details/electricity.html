@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - World Progress Bars</title>
+    <title>Electricity Access - World Progress Bars</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,26 +27,168 @@
         </nav>
 
         <header class="detail-header">
-            <h1>Detailed Page Coming Soon</h1>
-            <p class="subtitle">This stat's full timeline and chart will be added shortly</p>
+            <h1>Electricity Access</h1>
+            <p class="subtitle">Global population with access to electricity</p>
         </header>
 
         <main class="detail-main">
+            <section class="chart-section">
+                <h2>Global Access Rate Growth</h2>
+                <div class="chart-container">
+                    <canvas id="electricityChart"></canvas>
+                </div>
+            </section>
+
             <section class="current-stat">
-                <p style="font-size: 1.5rem; color: var(--text-secondary);">
-                    We're still building out detailed pages for all statistics. Check back soon!
-                </p>
-                <br>
-                <a href="../index.html" style="color: var(--primary-color); text-decoration: none; font-size: 1.2rem;">
-                    ← Return to overview
-                </a>
+                <div class="big-number">92%</div>
+                <p class="stat-label">Of the world's population has electricity access (World Bank / IEA 2024)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 92%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">71%</div>
+                            <p>Over 1.5 billion people lacked basic electrical power worldwide</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">78%</div>
+                            <p>Grid infrastructure expands rapidly across East and South Asia</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">83%</div>
+                            <p>National electrification initiatives bring power to hundreds of millions</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">90%</div>
+                            <p>Off-grid solar microgrids accelerate access in rural Sub-Saharan Africa</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">92%</div>
+                            <p>92% achieved globally; ~655 million remain without access</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Sub-Saharan Concentration</h3>
+                        <p>Over 80% of the 655 million people currently lacking electricity reside in Sub-Saharan Africa, where rapid population growth challenges grid development.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Distributed Solar</h3>
+                        <p>Pay-as-you-go solar systems and community microgrids are replacing expensive centralized grid extensions for remote communities.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>SDG 7 Horizon</h3>
+                        <p>UN Sustainable Development Goal 7 targets universal access by 2030, requiring a tripling of current annual electrification rates.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>World Bank ESMAP</h4>
+                        <p><a href="https://trackingsdg7.esmap.org/" target="_blank" rel="noopener">Tracking SDG 7: The Energy Progress Report</a></p>
+                        <p class="source-note">Joint custodian report tracking global progress toward universal energy access.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>International Energy Agency (IEA)</h4>
+                        <p><a href="https://www.iea.org/topics/energy-access" target="_blank" rel="noopener">IEA Energy Access Database</a></p>
+                        <p class="source-note">Comprehensive metrics on global electricity access and clean cooking solutions.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>UN Energy</h4>
+                        <p><a href="https://sdgs.un.org/goals/goal7" target="_blank" rel="noopener">SDG 7 Indicator 7.1.1</a></p>
+                        <p class="source-note">Proportion of population with access to electricity standard reporting.</p>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>Data sources: World Bank, IEA, ITU, UNESCO, WHO | Updated 2024</p>
+            <p>Data sources: World Bank, IEA, UN Energy | Updated 2024</p>
             <p class="note">Statistics are approximate and for demonstration purposes</p>
         </footer>
     </div>
+
+    <script>
+        const ctx = document.getElementById('electricityChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1990', '1995', '2000', '2005', '2010', '2015', '2020', '2024'],
+                datasets: [{
+                    label: 'Electricity Access (%)',
+                    data: [71, 74, 78, 80, 83, 87, 90, 92],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: { family: "'Courier Prime', monospace", size: 14 },
+                        bodyFont: { family: "'Courier Prime', monospace", size: 13 },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% with electricity access';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            font: { family: "'Courier Prime', monospace" }
+                        },
+                        grid: { color: '#feccb5' }
+                    },
+                    x: {
+                        ticks: { font: { family: "'Courier Prime', monospace" } },
+                        grid: { color: '#feccb5' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

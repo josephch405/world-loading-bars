@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Progress Bars - Global Statistics Visualized</title>
+    <title>World Loading Bars - Global Humanity Progress</title>
+
+    <!-- Primary & OpenGraph Social Meta Tags -->
+    <meta name="description" content="Humanity's progress across AGI, Kardashev Scale, Fusion Energy, EVs, and Climate — visualised as real-time interactive loading bars.">
+    <meta property="og:title" content="World Loading Bars - Visualizing Global Humanity Progress">
+    <meta property="og:description" content="Percentages are more fun as loading bars. Track how far humanity has come across AGI, space exploration, clean energy, and longevity.">
+    <meta property="og:url" content="https://worldloadingbars.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="World Loading Bars - Visualizing Global Progress">
+    <meta name="twitter:description" content="Humanity is at 0.73% on the Kardashev Scale, 74.5% on AGI Benchmarks, and 26.8% on Fusion Energy. Check out live loading bars!">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -13,74 +23,224 @@
         gtag('js', new Date());
         gtag('config', 'G-BY3JTNHV2N');
     </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>World Progress Bars</h1>
-            <p class="subtitle">Because percentages are more fun as loading bars</p>
+            <div class="header-badge">
+                <span class="live-dot"></span>
+                <span>Live Humanity Dashboard</span>
+            </div>
+            <h1>World Loading Bars</h1>
+            <p class="subtitle">Humanity's progress across AGI, space exploration, clean energy, and health — visualised as live loading bars.</p>
         </header>
 
-        <main>
-            <section class="category-section">
-                <h2 class="category-title">Technology & Infrastructure</h2>
+        <!-- Featured Spotlight Hero Card -->
+        <div class="featured-hero-container">
+            <div class="hero-header-row">
+                <span class="hero-title-badge">🎯 SPOTLIGHT METRIC</span>
+            </div>
+            <a id="heroCard" href="details/kardashev.html" class="hero-card" data-color="purple">
+                <!-- Dynamically populated by script.js -->
+            </a>
+        </div>
+
+        <!-- Controls Bar: Category Filter Pills + Live Search -->
+        <div class="controls-bar">
+            <div class="filter-pills">
+                <button class="filter-btn active" data-filter="all">All Metrics</button>
+                <button class="filter-btn" data-filter="frontier">Frontier & Future</button>
+                <button class="filter-btn" data-filter="tech">Tech & Infrastructure</button>
+                <button class="filter-btn" data-filter="energy">Energy & Climate</button>
+                <button class="filter-btn" data-filter="humanity">Humanity & Health</button>
+            </div>
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+            </div>
+        </div>
+
+        <main id="mainContent">
+            <!-- Frontier & Future Tech -->
+            <section class="category-section" data-category-group="frontier">
+                <div class="category-header">
+                    <span class="category-icon">🚀</span>
+                    <h2 class="category-title">Frontier & Future Tech</h2>
+                </div>
                 <div class="stats-grid">
-                    <a href="details/electric-vehicles.html" class="stat-card" data-percent="2.8">
+                    <!-- AGI Progress -->
+                    <a href="details/agi-benchmarks.html" class="stat-card" data-category="frontier" data-color="purple" data-percent="74.5" data-search="agi artificial general intelligence ai machine learning benchmark reasoning llm">
+                        <div class="card-top">
+                            <span class="tag-badge purple">AI & AGI</span>
+                            <button class="share-btn" data-title="AGI Benchmark Progress" data-percent="74.5%" data-url="details/agi-benchmarks.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>AGI Benchmark Progress</h3>
+                            <p class="description">Composite score across human-level reasoning and autonomous task benchmarks</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="74.5">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Rapid exponential growth</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Kardashev Scale -->
+                    <a href="details/kardashev.html" class="stat-card" data-category="frontier" data-color="purple" data-percent="0.73" data-search="kardashev scale progress type 1 civilization energy planetary dyson star energy">
+                        <div class="card-top">
+                            <span class="tag-badge purple">CIVILIZATION</span>
+                            <button class="share-btn" data-title="Kardashev Scale Progress" data-percent="0.73%" data-url="details/kardashev.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Kardashev Scale Progress</h3>
+                            <p class="description">Humanity's energy harness toward Type I planetary civilization status</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="0.73">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Advancing steadily</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Commercial Fusion -->
+                    <a href="details/fusion-energy.html" class="stat-card" data-category="frontier" data-color="cyan" data-percent="26.8" data-search="commercial fusion energy nuclear power Q gain plasma sparc iter tokamak">
+                        <div class="card-top">
+                            <span class="tag-badge cyan">FUSION</span>
+                            <button class="share-btn" data-title="Commercial Fusion Power" data-percent="26.8%" data-url="details/fusion-energy.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Commercial Fusion Power</h3>
+                            <p class="description">Progress from net ignition to commercial electrical grid delivery</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="26.8">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Ignition achieved</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Mars Colonization -->
+                    <a href="details/mars-colonization.html" class="stat-card" data-category="frontier" data-color="orange" data-percent="18.5" data-search="mars colonization multiplanetary starship oxygen space exploration space x nasa">
+                        <div class="card-top">
+                            <span class="tag-badge orange">SPACE</span>
+                            <button class="share-btn" data-title="Mars Colonization" data-percent="18.5%" data-url="details/mars-colonization.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Mars City Milestones</h3>
+                            <p class="description">Progress toward a self-sustaining human settlement on Mars</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="18.5">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Orbital heavy fleet testing</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Tech & Infrastructure -->
+            <section class="category-section" data-category-group="tech">
+                <div class="category-header">
+                    <span class="category-icon">⚡</span>
+                    <h2 class="category-title">Technology & Infrastructure</h2>
+                </div>
+                <div class="stats-grid">
+                    <a href="details/electric-vehicles.html" class="stat-card" data-category="tech" data-color="cyan" data-percent="25.0" data-search="electric vehicles ev car market share clean transit">
+                        <div class="card-top">
+                            <span class="tag-badge cyan">TECH</span>
+                            <button class="share-btn" data-title="Electric Vehicles" data-percent="25.0%" data-url="details/electric-vehicles.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
                             <h3>Electric Vehicles</h3>
                             <p class="description">Global electric car market share</p>
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" data-target="2.8">
+                            <div class="progress-bar" data-target="25.0">
                                 <span class="progress-fill"></span>
                             </div>
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
                             <span class="trend">↗ Growing rapidly</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
 
-                    <a href="details/autonomous-miles.html" class="stat-card" data-percent="0.01">
+                    <a href="details/autonomous-miles.html" class="stat-card" data-category="tech" data-color="cyan" data-percent="0.05" data-search="autonomous travel miles l4 self driving waymo apollo robotaxi">
+                        <div class="card-top">
+                            <span class="tag-badge cyan">TECH</span>
+                            <button class="share-btn" data-title="Autonomous Travel Miles" data-percent="0.05%" data-url="details/autonomous-miles.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
                             <h3>Autonomous Travel Miles</h3>
                             <p class="description">L4 autonomous driving miles (Waymo, Apollo, etc.)</p>
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" data-target="0.01">
+                            <div class="progress-bar" data-target="0.05">
                                 <span class="progress-fill"></span>
                             </div>
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
                             <span class="trend">↗ Early stage</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
 
-                    <a href="details/internet-access.html" class="stat-card" data-percent="66">
+                    <a href="details/internet-access.html" class="stat-card" data-category="tech" data-color="cyan" data-percent="68" data-search="internet access connectivity web global population online">
+                        <div class="card-top">
+                            <span class="tag-badge cyan">INFRASTRUCTURE</span>
+                            <button class="share-btn" data-title="Internet Access" data-percent="68%" data-url="details/internet-access.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
                             <h3>Internet Access</h3>
                             <p class="description">Global population with internet connectivity</p>
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" data-target="66">
+                            <div class="progress-bar" data-target="68">
                                 <span class="progress-fill"></span>
                             </div>
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
                             <span class="trend">↗ Expanding access</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
 
-                    <a href="details/mobile-phone.html" class="stat-card" data-percent="78">
+                    <a href="details/mobile-phone.html" class="stat-card" data-category="tech" data-color="cyan" data-percent="78" data-search="mobile phone access mobile subscriptions smartphone cellularitu">
+                        <div class="card-top">
+                            <span class="tag-badge cyan">INFRASTRUCTURE</span>
+                            <button class="share-btn" data-title="Mobile Phone Access" data-percent="78%" data-url="details/mobile-phone.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
                             <h3>Mobile Phone Access</h3>
-                            <p class="description">Global mobile phone penetration rate</p>
+                            <p class="description">Global mobile phone ownership rate (over 6.2B owners)</p>
                         </div>
                         <div class="progress-container">
                             <div class="progress-bar" data-target="78">
@@ -89,184 +249,19 @@
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">↗ Near saturation</span>
+                            <span class="trend">↗ High global saturation</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
 
-                    <a href="details/electricity.html" class="stat-card" data-percent="85">
+                    <a href="details/electricity.html" class="stat-card" data-category="tech" data-color="cyan" data-percent="92" data-search="electricity access power grid energy access world bank iea sdg7">
+                        <div class="card-top">
+                            <span class="tag-badge cyan">INFRASTRUCTURE</span>
+                            <button class="share-btn" data-title="Electricity Access" data-percent="92%" data-url="details/electricity.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
                             <h3>Electricity Access</h3>
-                            <p class="description">Global population with electricity</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="85">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Growing</span>
-                        </div>
-                    </a>
-
-                    <a href="details/kardashev.html" class="stat-card" data-percent="73">
-                        <div class="stat-header">
-                            <h3>Kardashev Scale Progress</h3>
-                            <p class="description">Humanity's progress to Type I civilization</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="73">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Advancing</span>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-            <section class="category-section">
-                <h2 class="category-title">Energy & Environment</h2>
-                <div class="stats-grid">
-                    <a href="details/renewable-energy.html" class="stat-card" data-percent="30">
-                        <div class="stat-header">
-                            <h3>Renewable Energy</h3>
-                            <p class="description">Global electricity from renewable sources</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="30">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Increasing steadily</span>
-                        </div>
-                    </a>
-
-                    <a href="details/carbon-reduction.html" class="stat-card" data-percent="8">
-                        <div class="stat-header">
-                            <h3>Carbon Reduction</h3>
-                            <p class="description">Global CO₂ emissions reduction from 1990 baseline</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="8">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Slow progress</span>
-                        </div>
-                    </a>
-
-                    <a href="details/protected-land.html" class="stat-card" data-percent="17">
-                        <div class="stat-header">
-                            <h3>Protected Land Areas</h3>
-                            <p class="description">Global terrestrial area under conservation</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="17">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Expanding</span>
-                        </div>
-                    </a>
-
-                    <a href="details/plastic-recycling.html" class="stat-card" data-percent="9">
-                        <div class="stat-header">
-                            <h3>Plastic Waste Recycling</h3>
-                            <p class="description">Global plastic waste that gets recycled</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="9">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Gradually improving</span>
-                        </div>
-                    </a>
-
-                    <a href="details/ocean-conservation.html" class="stat-card" data-percent="8.2">
-                        <div class="stat-header">
-                            <h3>Ocean Conservation</h3>
-                            <p class="description">Marine areas under protection globally</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="8.2">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Growing network</span>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-            <section class="category-section">
-                <h2 class="category-title">Human Development</h2>
-                <div class="stats-grid">
-                    <a href="details/poverty.html" class="stat-card" data-percent="91.2">
-                        <div class="stat-header">
-                            <h3>Not in Extreme Poverty</h3>
-                            <p class="description">Living above $2.15/day (2017 PPP)</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="91.2">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Improving</span>
-                        </div>
-                    </a>
-
-                    <a href="details/literacy.html" class="stat-card" data-percent="86">
-                        <div class="stat-header">
-                            <h3>Basic Literacy</h3>
-                            <p class="description">Adults who can read and write</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="86">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Steady progress</span>
-                        </div>
-                    </a>
-
-                    <a href="details/clean-water.html" class="stat-card" data-percent="73">
-                        <div class="stat-header">
-                            <h3>Clean Water Access</h3>
-                            <p class="description">Access to safely managed drinking water</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" data-target="73">
-                                <span class="progress-fill"></span>
-                            </div>
-                            <span class="percentage">0%</span>
-                        </div>
-                        <div class="stat-footer">
-                            <span class="trend">↗ Improving</span>
-                        </div>
-                    </a>
-
-                    <a href="details/vaccination.html" class="stat-card" data-percent="92">
-                        <div class="stat-header">
-                            <h3>Basic Vaccination</h3>
-                            <p class="description">Children vaccinated for common diseases</p>
+                            <p class="description">Global population with access to electricity</p>
                         </div>
                         <div class="progress-container">
                             <div class="progress-bar" data-target="92">
@@ -275,67 +270,297 @@
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">↗ High coverage</span>
+                            <span class="trend">↗ Reaching universal grid</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
                 </div>
             </section>
 
-            <section class="category-section">
-                <h2 class="category-title">Demographics</h2>
+            <!-- Energy & Environment -->
+            <section class="category-section" data-category-group="energy">
+                <div class="category-header">
+                    <span class="category-icon">🌱</span>
+                    <h2 class="category-title">Energy & Environment</h2>
+                </div>
                 <div class="stats-grid">
-                    <a href="details/urban-population.html" class="stat-card" data-percent="57">
+                    <a href="details/renewable-energy.html" class="stat-card" data-category="energy" data-color="emerald" data-percent="34" data-search="renewable energy solar wind hydro electricity clean power ember iea">
+                        <div class="card-top">
+                            <span class="tag-badge emerald">ENERGY</span>
+                            <button class="share-btn" data-title="Renewable Energy" data-percent="34%" data-url="details/renewable-energy.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
-                            <h3>Urban Population</h3>
-                            <p class="description">Percentage living in urban areas</p>
+                            <h3>Renewable Energy</h3>
+                            <p class="description">Global electricity generated from renewable sources (surpassed coal)</p>
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" data-target="57">
+                            <div class="progress-bar" data-target="34">
                                 <span class="progress-fill"></span>
                             </div>
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">↗ Urbanizing</span>
+                            <span class="trend">↗ Rapid solar expansion</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
 
-                    <a href="details/life-expectancy.html" class="stat-card" data-percent="73">
+                    <a href="details/carbon-reduction.html" class="stat-card" data-category="energy" data-color="emerald" data-percent="18.5" data-search="carbon reduction co2 emissions climate net zero baseline unfccc">
+                        <div class="card-top">
+                            <span class="tag-badge emerald">CLIMATE</span>
+                            <button class="share-btn" data-title="Carbon Reduction Target" data-percent="18.5%" data-url="details/carbon-reduction.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
-                            <h3>Life Expectancy Progress</h3>
-                            <p class="description">Global average life expectancy (to 100 years)</p>
+                            <h3>Carbon Reduction Target</h3>
+                            <p class="description">Developed nations CO₂ emissions reduction from 1990 baseline</p>
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" data-target="73">
+                            <div class="progress-bar" data-target="18.5">
                                 <span class="progress-fill"></span>
                             </div>
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">↗ Steadily increasing</span>
+                            <span class="trend">↗ Accelerating transition</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
 
-                    <a href="details/female-workforce.html" class="stat-card" data-percent="47">
+                    <a href="details/protected-land.html" class="stat-card" data-category="energy" data-color="emerald" data-percent="17.6" data-search="protected land terrestrial conservation unep wcmc protected planet">
+                        <div class="card-top">
+                            <span class="tag-badge emerald">BIODIVERSITY</span>
+                            <button class="share-btn" data-title="Protected Land Areas" data-percent="17.6%" data-url="details/protected-land.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
-                            <h3>Female Labor Force</h3>
-                            <p class="description">Women's participation in workforce</p>
+                            <h3>Protected Land Areas</h3>
+                            <p class="description">Global terrestrial land under official conservation protection</p>
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" data-target="47">
+                            <div class="progress-bar" data-target="17.6">
                                 <span class="progress-fill"></span>
                             </div>
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">↗ Gradual progress</span>
+                            <span class="trend">↗ Progress toward 30x30 target</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
 
-                    <a href="details/education-parity.html" class="stat-card" data-percent="99">
+                    <a href="details/plastic-recycling.html" class="stat-card" data-category="energy" data-color="emerald" data-percent="9" data-search="plastic waste recycling oecd unep circular economy pollution">
+                        <div class="card-top">
+                            <span class="tag-badge emerald">RECYCLING</span>
+                            <button class="share-btn" data-title="Plastic Waste Recycling" data-percent="9%" data-url="details/plastic-recycling.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Plastic Waste Recycling</h3>
+                            <p class="description">Global plastic waste successfully recycled into new products</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="9">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ UN Treaty negotiations</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <a href="details/ocean-conservation.html" class="stat-card" data-category="energy" data-color="emerald" data-percent="10.0" data-search="ocean conservation marine protected areas unep wcmc protected planet target">
+                        <div class="card-top">
+                            <span class="tag-badge emerald">OCEANS</span>
+                            <button class="share-btn" data-title="Ocean Conservation" data-percent="10.0%" data-url="details/ocean-conservation.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Ocean Conservation</h3>
+                            <p class="description">Global marine waters designated as protected marine areas</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="10.0">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Reached 10% global milestone</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Humanity & Health -->
+            <section class="category-section" data-category-group="humanity">
+                <div class="category-header">
+                    <span class="category-icon">❤️</span>
+                    <h2 class="category-title">Humanity & Health</h2>
+                </div>
+                <div class="stats-grid">
+                    <!-- Not in Extreme Poverty -->
+                    <a href="details/poverty.html" class="stat-card" data-category="humanity" data-color="emerald" data-percent="91.5" data-search="poverty extreme poverty world bank income living standards economic development">
+                        <div class="card-top">
+                            <span class="tag-badge emerald">POVERTY</span>
+                            <button class="share-btn" data-title="Not in Extreme Poverty" data-percent="91.5%" data-url="details/poverty.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Not in Extreme Poverty</h3>
+                            <p class="description">Global population living above the extreme poverty line ($2.15/day PPP)</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="91.5">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Steady long-term rise</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Basic Adult Literacy -->
+                    <a href="details/literacy.html" class="stat-card" data-category="humanity" data-color="blue" data-percent="88" data-search="adult literacy education unesco reading writing skills global literacy">
+                        <div class="card-top">
+                            <span class="tag-badge blue">EDUCATION</span>
+                            <button class="share-btn" data-title="Basic Adult Literacy" data-percent="88%" data-url="details/literacy.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Basic Adult Literacy</h3>
+                            <p class="description">Global adult population (15+) with basic literacy skills</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="88">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Reaching youth near-universal</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Clean Drinking Water Access -->
+                    <a href="details/clean-water.html" class="stat-card" data-category="humanity" data-color="cyan" data-percent="91.4" data-search="clean water drinking water sanitation who unicef jmp safe water access">
+                        <div class="card-top">
+                            <span class="tag-badge cyan">HEALTH</span>
+                            <button class="share-btn" data-title="Clean Drinking Water Access" data-percent="91.4%" data-url="details/clean-water.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Clean Drinking Water Access</h3>
+                            <p class="description">Global population with at least basic drinking water access (74% safely managed)</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="91.4">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Expanding global access</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Basic Child Vaccination Rate -->
+                    <a href="details/vaccination.html" class="stat-card" data-category="humanity" data-color="rose" data-percent="85" data-search="vaccination immunization dtp3 child health who unicef gavi childhood vaccines">
+                        <div class="card-top">
+                            <span class="tag-badge rose">HEALTH</span>
+                            <button class="share-btn" data-title="Basic Child Vaccination Rate" data-percent="85%" data-url="details/vaccination.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Basic Child Vaccination Rate</h3>
+                            <p class="description">Global infants receiving basic DTP3 routine immunizations</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="85">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Post-pandemic recovery</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Urban Population Share -->
+                    <a href="details/urban-population.html" class="stat-card" data-category="humanity" data-color="orange" data-percent="57.7" data-search="urban population urbanization cities demographic world bank un population">
+                        <div class="card-top">
+                            <span class="tag-badge orange">DEMOGRAPHICS</span>
+                            <button class="share-btn" data-title="Urban Population Share" data-percent="57.7%" data-url="details/urban-population.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Urban Population Share</h3>
+                            <p class="description">Percentage of global population residing in urban areas</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="57.7">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Steady urban migration</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Global Life Expectancy -->
+                    <a href="details/life-expectancy.html" class="stat-card" data-category="humanity" data-color="rose" data-percent="73.3" data-search="life expectancy health longevity mortality world bank un wpp who">
+                        <div class="card-top">
+                            <span class="tag-badge rose">HEALTH</span>
+                            <button class="share-btn" data-title="Global Life Expectancy" data-percent="73.3%" data-url="details/life-expectancy.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Global Life Expectancy</h3>
+                            <p class="description">Global average life expectancy at birth (73.3 years progress to 100)</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="73.3">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Rebounding post-pandemic</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Female Labor Force Participation -->
+                    <a href="details/female-workforce.html" class="stat-card" data-category="humanity" data-color="purple" data-percent="49.1" data-search="female labor force workforce participation women economic ilo world bank">
+                        <div class="card-top">
+                            <span class="tag-badge purple">WORKFORCE</span>
+                            <button class="share-btn" data-title="Female Labor Force Participation" data-percent="49.1%" data-url="details/female-workforce.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Female Labor Force Participation</h3>
+                            <p class="description">Women's economic participation rate in global labor force (15+)</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="49.1">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ Rebounding to 49.1%</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Gender Parity in Primary Education -->
+                    <a href="details/education-parity.html" class="stat-card" data-category="humanity" data-color="purple" data-percent="99" data-search="gender parity primary education girls schooling unesco world bank equality">
+                        <div class="card-top">
+                            <span class="tag-badge purple">EDUCATION</span>
+                            <button class="share-btn" data-title="Gender Parity in Education" data-percent="99%" data-url="details/education-parity.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
                             <h3>Gender Parity in Education</h3>
-                            <p class="description">Girls' enrollment relative to boys (primary)</p>
+                            <p class="description">Primary school enrollment ratio of girls relative to boys (99:100 ratio)</p>
                         </div>
                         <div class="progress-container">
                             <div class="progress-bar" data-target="99">
@@ -344,23 +569,30 @@
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">↗ Near parity</span>
+                            <span class="trend">↗ Near-universal primary parity</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
 
-                    <a href="details/secondary-education.html" class="stat-card" data-percent="60">
+                    <!-- Secondary Education Completion -->
+                    <a href="details/secondary-education.html" class="stat-card" data-category="humanity" data-color="blue" data-percent="61" data-search="secondary education completion high school graduation unesco world bank attainment">
+                        <div class="card-top">
+                            <span class="tag-badge blue">EDUCATION</span>
+                            <button class="share-btn" data-title="Secondary Education Completion" data-percent="61%" data-url="details/secondary-education.html" title="Share metric">🔗 Share</button>
+                        </div>
                         <div class="stat-header">
-                            <h3>Secondary Education</h3>
-                            <p class="description">Adults with secondary school completion</p>
+                            <h3>Secondary Education Completion</h3>
+                            <p class="description">Global upper secondary education completion rate</p>
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" data-target="60">
+                            <div class="progress-bar" data-target="61">
                                 <span class="progress-fill"></span>
                             </div>
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">↗ Improving globally</span>
+                            <span class="trend">↗ Steadily expanding</span>
+                            <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>
                 </div>
@@ -368,10 +600,37 @@
         </main>
 
         <footer>
-            <p>Data sources: World Bank, IEA, ITU, UNESCO, WHO | Updated 2024</p>
-            <p class="note">Statistics are approximate and for demonstration purposes</p>
+            <p>Data Sources: World Bank, IEA, ITU, UNESCO, WHO, Our World in Data</p>
+            <p class="note">World Loading Bars • Interactive Global Statistics</p>
         </footer>
     </div>
+
+    <!-- Share / Embed Modal -->
+    <div id="shareModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitle">Share Metric</h3>
+                <button id="modalClose" class="close-btn">✕</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalStatQuote" class="stat-quote-box"></p>
+
+                <div class="action-buttons">
+                    <button id="copyQuoteBtn" class="btn primary-btn">📋 Copy Link & Quote</button>
+                    <a id="tweetBtn" href="#" target="_blank" rel="noopener" class="btn twitter-btn">🐦 Share on X (Twitter)</a>
+                    <a id="redditBtn" href="#" target="_blank" rel="noopener" class="btn reddit-btn">👽 Share on Reddit</a>
+                </div>
+
+                <div class="embed-section">
+                    <label for="embedSnippet">Embed Widget Snippet HTML:</label>
+                    <input type="text" id="embedSnippet" readonly class="embed-input">
+                    <button id="copyEmbedBtn" class="btn secondary-btn">Copy Embed Code</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastNotification" class="toast">Copied to clipboard!</div>
 
     <script src="script.js"></script>
 </body>

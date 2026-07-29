@@ -40,10 +40,10 @@
             </section>
 
             <section class="current-stat">
-                <div class="big-number">66%</div>
-                <p class="stat-label">Of the world's population has internet access (2024)</p>
+                <div class="big-number">68%</div>
+                <p class="stat-label">Of the world's population has internet access (ITU 2024 Facts & Figures)</p>
                 <div class="progress-bar-large">
-                    <div class="progress-fill-large" style="width: 66%"></div>
+                    <div class="progress-fill-large" style="width: 68%"></div>
                 </div>
             </section>
 
@@ -81,8 +81,8 @@
                     <div class="timeline-item highlight">
                         <div class="timeline-year">2024</div>
                         <div class="timeline-content">
-                            <div class="timeline-stat">66%</div>
-                            <p>Two-thirds of humanity now online</p>
+                            <div class="timeline-stat">68%</div>
+                            <p>5.5 billion people online; 68% of humanity connected</p>
                         </div>
                     </div>
                 </div>
@@ -93,15 +93,15 @@
                 <div class="insights-grid">
                     <div class="insight-card">
                         <h3>Rapid Expansion</h3>
-                        <p>Internet access has more than quadrupled since 2005, driven by mobile technology and falling costs of smartphones and data plans.</p>
+                        <p>Internet access has quadrupled since 2005, driven by mobile technology and falling costs of smartphones and mobile data plans.</p>
                     </div>
                     <div class="insight-card">
                         <h3>Digital Divide</h3>
-                        <p>While developed nations exceed 90% connectivity, many rural and low-income areas still lack reliable access, representing a key challenge for global equity.</p>
+                        <p>While high-income nations exceed 93% connectivity, low-income nations remain around 23-27%, representing a crucial gap for global equity.</p>
                     </div>
                     <div class="insight-card">
                         <h3>Future Goals</h3>
-                        <p>UN targets universal internet access by 2030. Satellite internet and 5G networks promise to bridge remaining gaps in remote regions.</p>
+                        <p>UN targets universal internet access by 2030. Satellite internet mega-constellations and 5G expansion promise to bridge remote coverage gaps.</p>
                     </div>
                 </div>
             </section>
@@ -111,18 +111,13 @@
                 <div class="sources-list">
                     <div class="source-item">
                         <h4>International Telecommunication Union (ITU)</h4>
-                        <p><a href="https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx" target="_blank" rel="noopener">ITU Statistics - ICT Facts and Figures</a></p>
-                        <p class="source-note">Official UN agency for information and communication technologies, tracking global internet usage and connectivity.</p>
+                        <p><a href="https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx" target="_blank" rel="noopener">ITU Facts and Figures 2024 Report</a></p>
+                        <p class="source-note">Official UN agency for ICT tracking global internet usage and connectivity statistics.</p>
                     </div>
                     <div class="source-item">
                         <h4>World Bank Digital Development</h4>
                         <p><a href="https://data.worldbank.org/indicator/IT.NET.USER.ZS" target="_blank" rel="noopener">World Bank - Individuals Using the Internet (% of population)</a></p>
-                        <p class="source-note">Comprehensive dataset tracking internet penetration rates by country from 1990 to present.</p>
-                    </div>
-                    <div class="source-item">
-                        <h4>Internet World Stats</h4>
-                        <p><a href="https://www.internetworldstats.com/stats.htm" target="_blank" rel="noopener">Internet World Stats - Usage and Population Statistics</a></p>
-                        <p class="source-note">Regional and global internet usage statistics, growth rates, and demographic data.</p>
+                        <p class="source-note">Comprehensive dataset tracking internet penetration rates by country.</p>
                     </div>
                     <div class="source-item">
                         <h4>UN Sustainable Development Goals</h4>
@@ -134,13 +129,12 @@
         </main>
 
         <footer>
-            <p>Data sources: ITU, World Bank, Internet World Stats, UN SDG | Updated 2024</p>
+            <p>Data sources: ITU Facts and Figures 2024, World Bank, UN SDG | Updated 2024</p>
             <p class="note">Statistics are approximate and for demonstration purposes</p>
         </footer>
     </div>
 
     <script>
-        // Chart.js configuration for internet access
         const ctx = document.getElementById('internetChart');
         new Chart(ctx, {
             type: 'line',
@@ -148,7 +142,7 @@
                 labels: ['2005', '2007', '2009', '2011', '2013', '2015', '2017', '2019', '2021', '2023', '2024'],
                 datasets: [{
                     label: 'Internet Access (%)',
-                    data: [16, 21, 26, 32, 38, 43, 49, 54, 63, 65, 66],
+                    data: [16, 21, 26, 32, 38, 43, 49, 54, 63, 65, 68],
                     borderColor: '#f97316',
                     backgroundColor: 'rgba(249, 115, 22, 0.1)',
                     borderWidth: 3,
@@ -165,20 +159,12 @@
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
                     tooltip: {
                         backgroundColor: 'rgba(31, 41, 55, 0.9)',
                         padding: 12,
-                        titleFont: {
-                            family: "'Courier Prime', monospace",
-                            size: 14
-                        },
-                        bodyFont: {
-                            family: "'Courier Prime', monospace",
-                            size: 13
-                        },
+                        titleFont: { family: "'Courier Prime', monospace", size: 14 },
+                        bodyFont: { family: "'Courier Prime', monospace", size: 13 },
                         callbacks: {
                             label: function(context) {
                                 return context.parsed.y + '% with internet access';
@@ -191,26 +177,14 @@
                         beginAtZero: true,
                         max: 100,
                         ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            },
-                            font: {
-                                family: "'Courier Prime', monospace"
-                            }
+                            callback: function(value) { return value + '%'; },
+                            font: { family: "'Courier Prime', monospace" }
                         },
-                        grid: {
-                            color: '#feccb5'
-                        }
+                        grid: { color: '#feccb5' }
                     },
                     x: {
-                        ticks: {
-                            font: {
-                                family: "'Courier Prime', monospace"
-                            }
-                        },
-                        grid: {
-                            color: '#feccb5'
-                        }
+                        ticks: { font: { family: "'Courier Prime', monospace" } },
+                        grid: { color: '#feccb5' }
                     }
                 }
             }

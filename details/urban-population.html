@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - World Progress Bars</title>
+    <title>Urban Population Share - World Progress Bars</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,26 +27,163 @@
         </nav>
 
         <header class="detail-header">
-            <h1>Detailed Page Coming Soon</h1>
-            <p class="subtitle">This stat's full timeline and chart will be added shortly</p>
+            <h1>Urban Population Share</h1>
+            <p class="subtitle">Percentage of global population residing in urban areas</p>
         </header>
 
         <main class="detail-main">
+            <section class="chart-section">
+                <h2>Urbanization Rate Trend</h2>
+                <div class="chart-container">
+                    <canvas id="urbanChart"></canvas>
+                </div>
+            </section>
+
             <section class="current-stat">
-                <p style="font-size: 1.5rem; color: var(--text-secondary);">
-                    We're still building out detailed pages for all statistics. Check back soon!
-                </p>
-                <br>
-                <a href="../index.html" style="color: var(--primary-color); text-decoration: none; font-size: 1.2rem;">
-                    ← Return to overview
-                </a>
+                <div class="big-number">57.7%</div>
+                <p class="stat-label">Global population living in urban centers (current: 57.7%)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 57.7%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1960</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~34%</div>
+                            <p>Global population was primarily rural; only ~1 billion people lived in cities worldwide</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~43%</div>
+                            <p>Industrial expansion and economic growth trigger massive rural-to-urban migration across developing regions</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2007</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">50%</div>
+                            <p>Demographic milestone: for the first time in human history, more than half of the world's population lives in cities</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">57.7%</div>
+                            <p>Over 4.6 billion urban residents worldwide; UN projects global urbanization reaching 68% by 2050</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Economic Engine of Growth</h3>
+                        <p>Cities generate over 80% of global GDP. Urban density accelerates innovation, specialization, trade, and access to education and modern health facilities.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Megacity Expansion</h3>
+                        <p>In 1950, only New York and Tokyo were megacities (10M+ inhabitants). Today, there are 33+ megacities, with the largest growth occurring in Asia and Africa.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Environmental Footprint</h3>
+                        <p>While cities consume ~78% of global energy and produce over 60% of greenhouse emissions, urban density can also enable efficient public transport and shared energy infrastructure.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Infrastructure Demands</h3>
+                        <p>Rapid urban migration creates critical demands for affordable housing, clean water networks, sanitation, electricity, transit systems, and climate disaster resilience.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>UN Population Division - World Urbanization Prospects</h4>
+                        <p><a href="https://population.un.org/wup/" target="_blank" rel="noopener">UN Population Division - World Urbanization Prospects (WUP)</a></p>
+                        <p class="source-note">Official United Nations projections and estimates for urban and rural populations worldwide.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank Open Data</h4>
+                        <p><a href="https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS" target="_blank" rel="noopener">World Bank - Urban population (% of total population)</a></p>
+                        <p class="source-note">Comprehensive historical time series on urban population percentages across all nations.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Our World in Data</h4>
+                        <p><a href="https://ourworldindata.org/urbanization" target="_blank" rel="noopener">Our World in Data - Urbanization</a></p>
+                        <p class="source-note">Long-term global trends and country-by-country breakdown of urban growth.</p>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>Data sources: World Bank, IEA, ITU, UNESCO, WHO | Updated 2024</p>
-            <p class="note">Statistics are approximate and for demonstration purposes</p>
+            <p>Data sources: UN Population Division (WUP), World Bank, Our World in Data | Updated 2025</p>
+            <p class="note">Urban definition based on national statistical authority classifications</p>
         </footer>
     </div>
+
+    <script>
+        const ctx = document.getElementById('urbanChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1960', '1970', '1980', '1990', '2000', '2007', '2015', '2020', '2024'],
+                datasets: [{
+                    label: 'Urban Population Share (%)',
+                    data: [34, 36.5, 39, 43, 46.7, 50, 53.9, 56.2, 57.7],
+                    borderColor: '#ea580c',
+                    backgroundColor: 'rgba(234, 88, 12, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#ea580c',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: { family: "'Courier Prime', monospace", size: 14 },
+                        bodyFont: { family: "'Courier Prime', monospace", size: 13 },
+                        callbacks: {
+                            label: function(context) { return context.parsed.y + '% urban population'; }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            font: { family: "'Courier Prime', monospace" }
+                        },
+                        grid: { color: '#feccb5' }
+                    },
+                    x: {
+                        ticks: { font: { family: "'Courier Prime', monospace" } },
+                        grid: { color: '#feccb5' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

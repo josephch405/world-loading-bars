@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - World Progress Bars</title>
+    <title>Clean Drinking Water Access - World Progress Bars</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,26 +27,163 @@
         </nav>
 
         <header class="detail-header">
-            <h1>Detailed Page Coming Soon</h1>
-            <p class="subtitle">This stat's full timeline and chart will be added shortly</p>
+            <h1>Clean Drinking Water Access</h1>
+            <p class="subtitle">Global population with access to at least basic drinking water services</p>
         </header>
 
         <main class="detail-main">
+            <section class="chart-section">
+                <h2>Drinking Water Access Trend</h2>
+                <div class="chart-container">
+                    <canvas id="waterChart"></canvas>
+                </div>
+            </section>
+
             <section class="current-stat">
-                <p style="font-size: 1.5rem; color: var(--text-secondary);">
-                    We're still building out detailed pages for all statistics. Check back soon!
-                </p>
-                <br>
-                <a href="../index.html" style="color: var(--primary-color); text-decoration: none; font-size: 1.2rem;">
-                    ← Return to overview
-                </a>
+                <div class="big-number">91.4%</div>
+                <p class="stat-label">Population with at least basic drinking water (74.0% safely managed)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 91.4%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~81%</div>
+                            <p>Over 1.2 billion people lacked basic drinking water access; UN Millennium Development Goals prioritize water infrastructure</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~87%</div>
+                            <p>MDG target for drinking water met five years ahead of schedule; UN General Assembly recognizes water as a fundamental human right</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~89%</div>
+                            <p>SDG Goal 6 established, introducing the higher standard of "safely managed" drinking water (on premises, available when needed, contamination-free)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">91.4%</div>
+                            <p>91.4% of humanity has at least basic drinking water access; 74.0% enjoys safely managed piped water on premises (WHO/UNICEF JMP Report)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Basic vs. Safely Managed</h3>
+                        <p>While 91.4% of humanity has access to an improved water source within a 30-minute round trip (basic access), 74.0% has "safely managed" drinking water directly piped to premises free of contamination.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Urban vs. Rural Disparities</h3>
+                        <p>Urban water coverage exceeds 97% for basic access, whereas rural areas—particularly in Sub-Saharan Africa and Oceania—lag behind at under 82% basic coverage.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Health & Economic Impact</h3>
+                        <p>Universal access to clean water reduces waterborne diseases (cholera, typhoid, dysentery) and saves millions of hours daily—predominantly spent by women and girls fetching water.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Climate & Water Scarcity</h3>
+                        <p>Climate change, droughts, and groundwater depletion pose growing threats to water security, requiring investment in desalination, water recycling, and infrastructure repair.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>WHO / UNICEF Joint Monitoring Programme (JMP)</h4>
+                        <p><a href="https://washdata.org/" target="_blank" rel="noopener">WHO/UNICEF JMP - WASH Data Portal</a></p>
+                        <p class="source-note">Official SDG 6 dataset monitoring global drinking water, sanitation, and hygiene progress.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>World Bank Open Data</h4>
+                        <p><a href="https://data.worldbank.org/indicator/SH.H2O.BASW.ZS" target="_blank" rel="noopener">World Bank - People using at least basic drinking water services (% of population)</a></p>
+                        <p class="source-note">Global time-series indicators for basic and safely managed drinking water access.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Our World in Data</h4>
+                        <p><a href="https://ourworldindata.org/water-access" target="_blank" rel="noopener">Our World in Data - Clean Water Access</a></p>
+                        <p class="source-note">Visualizations and analysis on water quality, access levels, and sanitation trends.</p>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>Data sources: World Bank, IEA, ITU, UNESCO, WHO | Updated 2024</p>
-            <p class="note">Statistics are approximate and for demonstration purposes</p>
+            <p>Data sources: WHO/UNICEF JMP, World Bank, Our World in Data | Updated 2025</p>
+            <p class="note">Basic access defined as improved water source within 30 min roundtrip</p>
         </footer>
     </div>
+
+    <script>
+        const ctx = document.getElementById('waterChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2000', '2005', '2010', '2015', '2018', '2020', '2022', '2024'],
+                datasets: [{
+                    label: 'At Least Basic Water Access (%)',
+                    data: [81, 84, 87, 89, 90, 90.5, 91, 91.4],
+                    borderColor: '#0284c7',
+                    backgroundColor: 'rgba(2, 132, 199, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#0284c7',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: { family: "'Courier Prime', monospace", size: 14 },
+                        bodyFont: { family: "'Courier Prime', monospace", size: 13 },
+                        callbacks: {
+                            label: function(context) { return context.parsed.y + '% basic water access'; }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            font: { family: "'Courier Prime', monospace" }
+                        },
+                        grid: { color: '#feccb5' }
+                    },
+                    x: {
+                        ticks: { font: { family: "'Courier Prime', monospace" } },
+                        grid: { color: '#feccb5' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

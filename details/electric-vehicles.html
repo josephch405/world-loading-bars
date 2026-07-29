@@ -40,10 +40,10 @@
             </section>
 
             <section class="current-stat">
-                <div class="big-number">2.8%</div>
-                <p class="stat-label">Current global EV market share (2024)</p>
+                <div class="big-number">25.0%</div>
+                <p class="stat-label">Current global EV market share of new sales (2025/2026)</p>
                 <div class="progress-bar-large">
-                    <div class="progress-fill-large" style="width: 2.8%"></div>
+                    <div class="progress-fill-large" style="width: 25.0%"></div>
                 </div>
             </section>
 
@@ -60,29 +60,36 @@
                     <div class="timeline-item">
                         <div class="timeline-year">2018</div>
                         <div class="timeline-content">
-                            <div class="timeline-stat">1.2%</div>
-                            <p>Major manufacturers announce EV commitments</p>
+                            <div class="timeline-stat">2.2%</div>
+                            <p>Major volume EV platforms hit mass production</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">2020</div>
                         <div class="timeline-content">
-                            <div class="timeline-stat">1.8%</div>
-                            <p>Government incentives expand globally</p>
+                            <div class="timeline-stat">4.2%</div>
+                            <p>Policy incentives and emission mandates accelerate global sales</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">2022</div>
                         <div class="timeline-content">
-                            <div class="timeline-stat">2.3%</div>
-                            <p>Battery costs drop significantly</p>
+                            <div class="timeline-stat">14.0%</div>
+                            <p>China and Europe experience massive adoption spikes</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">20.8%</div>
+                            <p>Global sales surpass 17 million units annually</p>
                         </div>
                     </div>
                     <div class="timeline-item highlight">
-                        <div class="timeline-year">2024</div>
+                        <div class="timeline-year">2026</div>
                         <div class="timeline-content">
-                            <div class="timeline-stat">2.8%</div>
-                            <p>Rapid acceleration in adoption</p>
+                            <div class="timeline-stat">25.0%</div>
+                            <p>>20M annual sales, 1 in 4 new cars sold globally is electric (IEA Outlook)</p>
                         </div>
                     </div>
                 </div>
@@ -93,15 +100,15 @@
                 <div class="insights-grid">
                     <div class="insight-card">
                         <h3>Exponential Growth</h3>
-                        <p>EV market share has grown 7x since 2015, with acceleration in recent years as battery technology improves and costs decrease.</p>
+                        <p>Global electric car sales share has grown from ~4% in 2020 to 25% of all new car sales, exceeding 20 million units sold annually.</p>
                     </div>
                     <div class="insight-card">
                         <h3>Regional Leaders</h3>
-                        <p>Norway leads with 80%+ EV share, while China represents the largest absolute market with millions of EVs sold annually.</p>
+                        <p>China leads with ~55% of new sales being electric/PHEV, Europe averages ~28%, and Norway leads globally with over 90% EV market share.</p>
                     </div>
                     <div class="insight-card">
                         <h3>Future Outlook</h3>
-                        <p>Projections suggest EVs could reach 15-20% global market share by 2030 as infrastructure expands and more affordable models launch.</p>
+                        <p>IEA Global EV Outlook projections show global EV market share reaching ~30% (~23 million units) in 2026 and over 40% by 2030.</p>
                     </div>
                 </div>
             </section>
@@ -134,7 +141,7 @@
         </main>
 
         <footer>
-            <p>Data sources: IEA, BloombergNEF, EV-Volumes, OFV | Updated 2024</p>
+            <p>Data sources: IEA Global EV Outlook (2024-2026), BloombergNEF, EV-Volumes, OFV | Updated 2026</p>
             <p class="note">Statistics are approximate and for demonstration purposes</p>
         </footer>
     </div>
@@ -145,10 +152,10 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                labels: ['2015', '2018', '2020', '2022', '2023', '2024', '2025', '2026'],
                 datasets: [{
-                    label: 'EV Market Share (%)',
-                    data: [0.4, 0.6, 0.9, 1.2, 1.5, 1.8, 2.0, 2.3, 2.6, 2.8],
+                    label: 'EV Sales Market Share (%)',
+                    data: [0.8, 2.2, 4.2, 14.0, 18.0, 20.8, 25.0, 28.5],
                     borderColor: '#f97316',
                     backgroundColor: 'rgba(249, 115, 22, 0.1)',
                     borderWidth: 3,

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - World Progress Bars</title>
+    <title>Renewable Energy Share - World Progress Bars</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="detail-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,26 +27,175 @@
         </nav>
 
         <header class="detail-header">
-            <h1>Detailed Page Coming Soon</h1>
-            <p class="subtitle">This stat's full timeline and chart will be added shortly</p>
+            <h1>Renewable Energy</h1>
+            <p class="subtitle">Global electricity generated from renewable sources</p>
         </header>
 
         <main class="detail-main">
+            <section class="chart-section">
+                <h2>Renewable Share of Global Electricity</h2>
+                <div class="chart-container">
+                    <canvas id="renewableChart"></canvas>
+                </div>
+            </section>
+
             <section class="current-stat">
-                <p style="font-size: 1.5rem; color: var(--text-secondary);">
-                    We're still building out detailed pages for all statistics. Check back soon!
-                </p>
-                <br>
-                <a href="../index.html" style="color: var(--primary-color); text-decoration: none; font-size: 1.2rem;">
-                    ← Return to overview
-                </a>
+                <div class="big-number">34%</div>
+                <p class="stat-label">Of global electricity comes from renewables (Ember / IEA 2025)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 34%"></div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Historical Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">19%</div>
+                            <p>Legacy hydropower accounts for nearly all renewable power</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">20%</div>
+                            <p>Solar PV and wind deployment costs begin steep exponential reduction</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">23%</div>
+                            <p>Paris Agreement signed; solar and wind reach grid parity in key markets</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">28%</div>
+                            <p>Solar becomes cheapest electricity source in economic history</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">32%</div>
+                            <p>Solar and wind alone surpass 15% of global power generation</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">34%</div>
+                            <p>Renewables surpass coal to become world's leading electricity source</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Solar Surge</h3>
+                        <p>Solar PV has grown at over 25% annually, becoming the fastest-growing power source in human history and driving most new capacity additions.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Overtaking Coal</h3>
+                        <p>In 2025, total global electricity generation from renewables officially surpassed coal for the first time in modern industrial history.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Grid Storage Essential</h3>
+                        <p>Battery energy storage deployments expanded tenfold between 2020 and 2025 to balance variable solar and wind generation on electrical grids.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>Ember Climate</h4>
+                        <p><a href="https://ember-climate.org/insights/research/global-electricity-review-2024/" target="_blank" rel="noopener">Ember Global Electricity Review</a></p>
+                        <p class="source-note">Leading global energy think tank publishing comprehensive annual power sector datasets.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>International Energy Agency (IEA)</h4>
+                        <p><a href="https://www.iea.org/reports/renewables-2024" target="_blank" rel="noopener">IEA Renewables Market Report</a></p>
+                        <p class="source-note">Official forecasting and tracking of renewable capacity additions worldwide.</p>
+                    </div>
+                    <div class="source-item">
+                        <h4>IRENA</h4>
+                        <p><a href="https://www.irena.org/Data" target="_blank" rel="noopener">International Renewable Energy Agency Statistics</a></p>
+                        <p class="source-note">Intergovernmental organization data on global renewable capacity and generation statistics.</p>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <p>Data sources: World Bank, IEA, ITU, UNESCO, WHO | Updated 2024</p>
+            <p>Data sources: Ember Climate, IEA, IRENA | Updated 2025</p>
             <p class="note">Statistics are approximate and for demonstration purposes</p>
         </footer>
     </div>
+
+    <script>
+        const ctx = document.getElementById('renewableChart');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2000', '2005', '2010', '2015', '2018', '2020', '2022', '2024', '2025'],
+                datasets: [{
+                    label: 'Renewable Electricity Share (%)',
+                    data: [19, 19.5, 20, 23, 25.5, 28, 29.5, 32, 34],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#10b981',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        titleFont: { family: "'Courier Prime', monospace", size: 14 },
+                        bodyFont: { family: "'Courier Prime', monospace", size: 13 },
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% renewable electricity share';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 50,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            font: { family: "'Courier Prime', monospace" }
+                        },
+                        grid: { color: '#feccb5' }
+                    },
+                    x: {
+                        ticks: { font: { family: "'Courier Prime', monospace" } },
+                        grid: { color: '#feccb5' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
