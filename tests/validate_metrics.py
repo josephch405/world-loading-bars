@@ -3,7 +3,9 @@ import re
 import sys
 import glob
 
-workspace_dir = "/Users/jochuang/projects/world-loading-bars"
+# Dynamically resolve workspace root directory relative to tests/ location
+script_dir = os.path.dirname(os.path.abspath(__file__))
+workspace_dir = os.path.abspath(os.path.join(script_dir, ".."))
 index_path = os.path.join(workspace_dir, "index.html")
 
 def validate():
