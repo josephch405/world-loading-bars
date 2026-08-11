@@ -108,20 +108,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = btn.dataset.title;
             const percent = btn.dataset.percent;
             const relUrl = btn.dataset.url;
-            const fullUrl = window.location.origin + '/' + relUrl;
+            const baseUrl = window.location.origin + '/' + relUrl;
+            
+            const shareUrlTwitter = `${baseUrl}?utm_source=twitter&utm_medium=social_share`;
+            const shareUrlReddit = `${baseUrl}?utm_source=reddit&utm_medium=social_share`;
+            const shareUrlCopy = `${baseUrl}?utm_source=share_button&utm_medium=referral`;
 
-            currentShareData = { title, percent, url: fullUrl };
+            currentShareData = { title, percent, url: shareUrlCopy };
 
             modalTitle.textContent = `Share: ${title}`;
-            const quoteText = `Humanity is currently at ${percent} on "${title}". Check out World Loading Bars: ${fullUrl}`;
-            modalStatQuote.textContent = quoteText;
+            const quoteTextText = `Humanity is currently at ${percent} on "${title}". Check out World Loading Bars: ${shareUrlCopy}`;
+            modalStatQuote.textContent = quoteTextText;
 
-            // Generate Tweet & Reddit URLs
-            tweetBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(quoteText)}`;
-            redditBtn.href = `https://reddit.com/submit?title=${encodeURIComponent(`Humanity is at ${percent} on ${title}`)}&url=${encodeURIComponent(fullUrl)}`;
+            // Generate Tweet & Reddit URLs with UTM campaign tracking
+            const tweetQuote = `Humanity is currently at ${percent} on "${title}". Check out World Loading Bars: ${shareUrlTwitter}`;
+            tweetBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetQuote)}`;
+            redditBtn.href = `https://reddit.com/submit?title=${encodeURIComponent(`Humanity is at ${percent} on ${title}`)}&url=${encodeURIComponent(shareUrlReddit)}`;
 
             // Embed Snippet Code
-            embedSnippet.value = `<iframe src="${fullUrl}" width="100%" height="280" frameborder="0"></iframe>`;
+            embedSnippet.value = `<iframe src="${baseUrl}?utm_source=embed_widget&utm_medium=embed" width="100%" height="280" frameborder="0"></iframe>`;
 
             shareModal.classList.add('active');
 
@@ -145,6 +150,25 @@ document.addEventListener('DOMContentLoaded', () => {
         copyQuoteBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(modalStatQuote.textContent);
             showToast("Copied stat link & quote!");
+            if (typeof gtag === 'function') {
+                gtag('event', 'share', { method: 'copy_link', item_id: currentShareData.title });
+            }
+        });
+    }
+
+    if (tweetBtn) {
+        tweetBtn.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'share', { method: 'twitter', item_id: currentShareData.title });
+            }
+        });
+    }
+
+    if (redditBtn) {
+        redditBtn.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'share', { method: 'reddit', item_id: currentShareData.title });
+            }
         });
     }
 
