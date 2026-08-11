@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kardashev Scale Progress - World Progress Bars</title>
+    <title>Kardashev Scale Progress - World Loading Bars</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
@@ -28,25 +28,68 @@
 
         <header class="detail-header">
             <h1>Kardashev Scale Progress</h1>
-            <p class="subtitle">Humanity's journey to becoming a Type I civilization</p>
+            <p class="subtitle">Humanity's journey to becoming a Type I planetary civilization</p>
         </header>
 
         <main class="detail-main">
+            <!-- Current Stat Hero -->
+            <section class="current-stat">
+                <div class="big-number">0.73</div>
+                <p class="stat-label">Current Kardashev Rating (73% of scale to Type I planetary harness)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 73%; background: linear-gradient(90deg, #7c3aed, #c084fc);"></div>
+                </div>
+            </section>
+
+            <!-- Interactive Simulator Widget -->
+            <section class="insights-section">
+                <h2>🔮 Interactive Type I Civilization Simulator</h2>
+                <div class="insight-card simulator-card">
+                    <h3>Adjust Annual Energy Growth Rate: <span id="growthRateLabel">2.5%</span> / year</h3>
+                    <input type="range" id="growthSlider" min="1.0" max="8.0" step="0.5" value="2.5" class="simulator-slider">
+                    
+                    <div class="simulator-results">
+                        <div class="sim-result-box">
+                            <span class="sim-label">Projected Year to Reach Type I</span>
+                            <span id="projectedYear" class="sim-value">2234 AD</span>
+                        </div>
+                        <div class="sim-result-box">
+                            <span class="sim-label">Time Remaining</span>
+                            <span id="yearsRemaining" class="sim-value">208 years</span>
+                        </div>
+                    </div>
+                    <p class="sim-note">Note: Type I requires harnessing 10¹⁶ Watts (100,000 Terawatts) of continuous planetary power.</p>
+                </div>
+            </section>
+
+            <!-- Mind-Blowing Facts -->
+            <section class="insights-section">
+                <h2>🤯 Mind-Blowing Cosmic Scale Facts</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>1 Second of Sun = 500,000 Years</h3>
+                        <p>The sun outputs more energy in a single second than humanity has consumed in its entire civilized history.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Planetary Solar Energy</h3>
+                        <p>174,000 Terawatts of solar radiation hit Earth continuously. We currently capture less than 0.02% of it for human use.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Michio Kaku Projections</h3>
+                        <p>Physicist Michio Kaku estimates humanity will reach Type I in 100–200 years, Type II (stellar) in 800 years, and Type III (galactic) in 10,000 years.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Historical Chart Section -->
             <section class="chart-section">
-                <h2>Energy Consumption Growth</h2>
+                <h2>Energy Consumption Growth (Terawatts)</h2>
                 <div class="chart-container">
                     <canvas id="kardashevChart"></canvas>
                 </div>
             </section>
 
-            <section class="current-stat">
-                <div class="big-number">0.73</div>
-                <p class="stat-label">Current Kardashev rating (73% progress to Type I)</p>
-                <div class="progress-bar-large">
-                    <div class="progress-fill-large" style="width: 73%"></div>
-                </div>
-            </section>
-
+            <!-- Timeline Section -->
             <section class="timeline-section">
                 <h2>Historical Timeline</h2>
                 <div class="timeline">
@@ -54,28 +97,20 @@
                         <div class="timeline-year">1800</div>
                         <div class="timeline-content">
                             <div class="timeline-stat">~0.58</div>
-                            <p>Pre-industrial era, primarily biomass energy, minimal fossil fuel use</p>
+                            <p>Pre-industrial era, primarily biomass energy, minimal fossil fuel use (~0.5 TW)</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">1900</div>
-                        <div class="timeline-content">
-                            <div class="timeline-stat">~0.62</div>
-                            <p>Coal powers industrial revolution, first oil wells, early electricity grids</p>
+                        <div class="timeline-stat">~0.62</div>
+                        <p>Coal powers industrial revolution, first oil wells, early electricity grids (~1.5 TW)</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">1970</div>
                         <div class="timeline-content">
                             <div class="timeline-stat">~0.69</div>
-                            <p>Oil age peak, nuclear power emerges, global energy consumption soars</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2000</div>
-                        <div class="timeline-content">
-                            <div class="timeline-stat">~0.71</div>
-                            <p>Natural gas expansion, early renewable energy adoption, computing revolution</p>
+                            <p>Rapid post-war industrial expansion, nuclear power adoption (~7.5 TW)</p>
                         </div>
                     </div>
                     <div class="timeline-item highlight">
@@ -88,138 +123,97 @@
                 </div>
             </section>
 
+            <!-- Related Progress Bars -->
             <section class="insights-section">
-                <h2>Key Insights</h2>
+                <h2>Explore Related Progress Bars</h2>
                 <div class="insights-grid">
-                    <div class="insight-card">
-                        <h3>What is the Kardashev Scale?</h3>
-                        <p>Proposed by Soviet astronomer Nikolai Kardashev in 1964, this scale measures civilizations by energy use: Type I harnesses all planetary energy (~10^16 watts), Type II all stellar energy, Type III all galactic energy. We currently use ~20.2 terawatts globally (177,000 TWh/yr).</p>
-                    </div>
-                    <div class="insight-card">
-                        <h3>Path to Type I</h3>
-                        <p>To reach Type I (~10,000 TW), humanity needs to harness Earth's geothermal energy, master fusion power, capture more solar radiation, and eliminate energy waste. Physicist Michio Kaku estimates 100-200 years at current growth rates.</p>
-                    </div>
-                    <div class="insight-card">
-                        <h3>Exponential Growth</h3>
-                        <p>Human energy consumption has grown exponentially since the Industrial Revolution. From 1800 to 2026, we've increased from ~0.5 TW to ~20.2 TW—moving from 0.58 to 0.73 on Sagan's continuous scale.</p>
-                    </div>
-                    <div class="insight-card">
-                        <h3>Challenges Ahead</h3>
-                        <p>Reaching Type I requires solving climate change (sustainable energy), developing fusion or space-based solar, managing waste heat, and coordinating global energy infrastructure. The transition must be clean to avoid ecological collapse.</p>
-                    </div>
+                    <a href="agi-benchmarks.html" class="insight-card related-card">
+                        <h3>🤖 AGI Benchmark Progress (74.5%) →</h3>
+                        <p>Track humanity's progress toward human-level AI reasoning across complex benchmark suites.</p>
+                    </a>
+                    <a href="fusion-energy.html" class="insight-card related-card">
+                        <h3>⚛️ Commercial Fusion Power (26.8%) →</h3>
+                        <p>Progress from net ignition to commercial electrical grid delivery.</p>
+                    </a>
+                    <a href="renewable-energy.html" class="insight-card related-card">
+                        <h3>🌱 Renewable Energy Share (34.0%) →</h3>
+                        <p>Global electricity generated from clean solar, wind, and hydro power.</p>
+                    </a>
                 </div>
             </section>
 
+            <!-- Sources Section -->
             <section class="sources-section">
                 <h2>Sources & Citations</h2>
                 <div class="sources-list">
                     <div class="source-item">
                         <h4>Original Paper</h4>
                         <p><a href="https://articles.adsabs.harvard.edu/pdf/1964SvA.....8..217K" target="_blank" rel="noopener">Kardashev, N. (1964) "Transmission of Information by Extraterrestrial Civilizations"</a></p>
-                        <p class="source-note">The original Soviet Astronomy paper introducing the Kardashev scale classification system.</p>
                     </div>
                     <div class="source-item">
                         <h4>International Energy Agency</h4>
                         <p><a href="https://www.iea.org/reports/world-energy-outlook-2024" target="_blank" rel="noopener">IEA - World Energy Outlook 2024</a></p>
-                        <p class="source-note">Global energy consumption statistics and projections used to calculate current Kardashev rating.</p>
-                    </div>
-                    <div class="source-item">
-                        <h4>Carl Sagan's Refinement</h4>
-                        <p><a href="https://www.planetary.org/articles/1026-Carl-Sagans-Cosmic-Connection" target="_blank" rel="noopener">Sagan, C. (1973) "The Cosmic Connection"</a></p>
-                        <p class="source-note">Carl Sagan refined the scale to use intermediate values, calculating Earth as Type 0.7 civilization.</p>
-                    </div>
-                    <div class="source-item">
-                        <h4>Michio Kaku Analysis</h4>
-                        <p><a href="https://mkaku.org/home/articles/the-physics-of-extraterrestrial-civilizations/" target="_blank" rel="noopener">Kaku, M. - "Physics of the Future"</a></p>
-                        <p class="source-note">Theoretical physicist's analysis of timeline and challenges for humanity reaching Type I status.</p>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>Data sources: Kardashev (1964), IEA, Sagan, Kaku | Updated 2026</p>
-            <p class="note">Statistics are approximate and for demonstration purposes</p>
+            <p>World Loading Bars • Interactive Global Statistics</p>
         </footer>
     </div>
 
     <script>
-        // Chart.js configuration for Kardashev scale progress
-        const ctx = document.getElementById('kardashevChart');
+        // Chart.js configuration
+        const ctx = document.getElementById('kardashevChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['1800', '1850', '1900', '1950', '1970', '1990', '2000', '2010', '2020', '2026'],
+                labels: ['1800', '1900', '1950', '1970', '1990', '2010', '2026'],
                 datasets: [{
-                    label: 'Kardashev Rating',
-                    data: [0.58, 0.60, 0.62, 0.67, 0.69, 0.70, 0.71, 0.72, 0.725, 0.73],
-                    borderColor: '#f97316',
-                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    label: 'Global Primary Energy Consumption (Terawatts)',
+                    data: [0.5, 1.5, 3.2, 7.5, 12.1, 16.8, 20.2],
+                    borderColor: '#7c3aed',
+                    backgroundColor: 'rgba(124, 58, 237, 0.1)',
                     borderWidth: 3,
                     fill: true,
-                    tension: 0.4,
-                    pointRadius: 4,
-                    pointBackgroundColor: '#f97316',
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2,
-                    pointHoverRadius: 6
+                    tension: 0.3
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
-                        padding: 12,
-                        titleFont: {
-                            family: "'Courier Prime', monospace",
-                            size: 14
-                        },
-                        bodyFont: {
-                            family: "'Courier Prime', monospace",
-                            size: 13
-                        },
-                        callbacks: {
-                            label: function(context) {
-                                return 'Type ' + context.parsed.y.toFixed(2);
-                            }
-                        }
-                    }
-                },
+                maintainAspectRatio: false,
                 scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 0.5,
-                        max: 1.0,
-                        ticks: {
-                            callback: function(value) {
-                                return 'Type ' + value.toFixed(1);
-                            },
-                            font: {
-                                family: "'Courier Prime', monospace"
-                            }
-                        },
-                        grid: {
-                            color: '#feccb5'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            font: {
-                                family: "'Courier Prime', monospace"
-                            }
-                        },
-                        grid: {
-                            color: '#feccb5'
-                        }
-                    }
+                    y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+                    x: { grid: { color: '#e2e8f0' } }
                 }
             }
         });
+
+        // Interactive Simulator Logic
+        const growthSlider = document.getElementById('growthSlider');
+        const growthRateLabel = document.getElementById('growthRateLabel');
+        const projectedYear = document.getElementById('projectedYear');
+        const yearsRemaining = document.getElementById('yearsRemaining');
+
+        const P_current = 20.2; // TW
+        const P_type1 = 100000;  // TW
+
+        function updateSimulator() {
+            const r = parseFloat(growthSlider.value) / 100.0;
+            growthRateLabel.textContent = growthSlider.value + '%';
+
+            // P_type1 = P_current * (1 + r)^n => n = ln(P_type1 / P_current) / ln(1 + r)
+            const n = Math.log(P_type1 / P_current) / Math.log(1 + r);
+            const targetYear = Math.round(2026 + n);
+            const yearsLeft = Math.round(n);
+
+            projectedYear.textContent = targetYear + ' AD';
+            yearsRemaining.textContent = yearsLeft + ' years';
+        }
+
+        growthSlider.addEventListener('input', updateSimulator);
+        updateSimulator();
     </script>
 </body>
 </html>

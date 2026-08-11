@@ -97,6 +97,86 @@
     transition: width 1.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+/* Simulator Card & Slider */
+.simulator-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 2px solid rgba(124, 58, 237, 0.2);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+}
+
+.simulator-card h3 {
+    margin-bottom: 16px;
+}
+
+.simulator-slider {
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: #e2e8f0;
+    outline: none;
+    margin-bottom: 24px;
+    accent-color: var(--accent-purple);
+    cursor: pointer;
+}
+
+.simulator-results {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.sim-result-box {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    padding: 16px 20px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.sim-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.sim-value {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-purple);
+}
+
+.sim-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Related Cards Navigation */
+.related-card {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    display: block;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-blue);
+    box-shadow: var(--glow-shadow);
+}
+
+.related-card h3 {
+    color: var(--primary-blue);
+    transition: color 0.2s ease;
+}
+
+.related-card:hover h3 {
+    color: var(--accent-purple);
+}
+
 /* Timeline Section */
 .timeline-section {
     margin-bottom: 60px;
@@ -193,6 +273,7 @@
     border-radius: 20px;
     padding: 30px;
     box-shadow: var(--card-shadow);
+    min-height: 380px;
 }
 
 /* Insights Section */
@@ -285,19 +366,9 @@
 }
 
 @media (max-width: 768px) {
-    .detail-header h1 {
-        font-size: 2.1rem;
-    }
-
-    .big-number {
-        font-size: 3.6rem;
-    }
-
-    .current-stat {
-        padding: 30px 20px;
-    }
-
-    .chart-container {
-        padding: 16px;
-    }
+    .detail-header h1 { font-size: 2.1rem; }
+    .big-number { font-size: 3.6rem; }
+    .current-stat { padding: 30px 20px; }
+    .chart-container { padding: 16px; }
+    .simulator-results { flex-direction: column; }
 }
