@@ -273,7 +273,14 @@
     border-radius: 20px;
     padding: 30px;
     box-shadow: var(--card-shadow);
-    min-height: 380px;
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+.chart-container canvas {
+    max-height: 340px;
+    width: 100% !important;
 }
 
 /* Insights Section */

@@ -41,6 +41,14 @@
                 </div>
             </section>
 
+            <!-- Main Interactive Chart Section -->
+            <section class="chart-section">
+                <h2>Energy Consumption Growth (Terawatts)</h2>
+                <div class="chart-container">
+                    <canvas id="kardashevChart" style="width: 100%; height: 350px;"></canvas>
+                </div>
+            </section>
+
             <!-- Interactive Simulator Widget -->
             <section class="insights-section">
                 <h2>🔮 Interactive Type I Civilization Simulator</h2>
@@ -81,14 +89,6 @@
                 </div>
             </section>
 
-            <!-- Historical Chart Section -->
-            <section class="chart-section">
-                <h2>Energy Consumption Growth (Terawatts)</h2>
-                <div class="chart-container">
-                    <canvas id="kardashevChart"></canvas>
-                </div>
-            </section>
-
             <!-- Timeline Section -->
             <section class="timeline-section">
                 <h2>Historical Timeline</h2>
@@ -102,8 +102,9 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">1900</div>
-                        <div class="timeline-stat">~0.62</div>
-                        <p>Coal powers industrial revolution, first oil wells, early electricity grids (~1.5 TW)</p>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">~0.62</div>
+                            <p>Coal powers industrial revolution, first oil wells, early electricity grids (~1.5 TW)</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -174,18 +175,35 @@
                     label: 'Global Primary Energy Consumption (Terawatts)',
                     data: [0.5, 1.5, 3.2, 7.5, 12.1, 16.8, 20.2],
                     borderColor: '#7c3aed',
-                    backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                    backgroundColor: 'rgba(124, 58, 237, 0.12)',
                     borderWidth: 3,
                     fill: true,
-                    tension: 0.3
+                    tension: 0.3,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#7c3aed'
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#0f172a',
+                            font: { family: 'Plus Jakarta Sans', weight: 'bold', size: 14 }
+                        }
+                    }
+                },
                 scales: {
-                    y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
-                    x: { grid: { color: '#e2e8f0' } }
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: '#e2e8f0' },
+                        ticks: { color: '#475569', font: { family: 'JetBrains Mono' } }
+                    },
+                    x: { 
+                        grid: { color: '#e2e8f0' },
+                        ticks: { color: '#475569', font: { family: 'JetBrains Mono' } }
+                    }
                 }
             }
         });
@@ -203,7 +221,6 @@
             const r = parseFloat(growthSlider.value) / 100.0;
             growthRateLabel.textContent = growthSlider.value + '%';
 
-            // P_type1 = P_current * (1 + r)^n => n = ln(P_type1 / P_current) / ln(1 + r)
             const n = Math.log(P_type1 / P_current) / Math.log(1 + r);
             const targetYear = Math.round(2026 + n);
             const yearsLeft = Math.round(n);
