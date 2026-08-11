@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = card.querySelector('h3').textContent;
         const description = card.querySelector('.description').textContent;
         const percent = card.dataset.percent;
+        const displayVal = card.dataset.display || percent;
+        const unit = card.dataset.unit !== undefined ? card.dataset.unit : '%';
+        const prefix = card.dataset.prefix || '';
         const color = card.dataset.color || 'blue';
         const tag = card.querySelector('.tag-badge')?.textContent || 'METRIC';
         const linkHref = card.getAttribute('href');
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>${description}</p>
                 </div>
                 <div class="hero-progress-group">
-                    <div class="hero-percentage">${percent}%</div>
+                    <div class="hero-percentage">${prefix}${displayVal}${unit}</div>
                     <div class="hero-progress-bar">
                         <div class="hero-progress-fill" style="width: ${percent}%"></div>
                     </div>
@@ -224,7 +227,12 @@ function animateStatCard(card) {
 
     const progressFill = card.querySelector('.progress-fill');
     const percentageText = card.querySelector('.percentage');
+    
+    // Decouple Visual Fill % from Display Value
     const targetPercent = parseFloat(card.dataset.percent);
+    const displayEnd = card.dataset.display !== undefined ? parseFloat(card.dataset.display) : targetPercent;
+    const unit = card.dataset.unit !== undefined ? card.dataset.unit : '%';
+    const prefix = card.dataset.prefix || '';
 
     if (progressFill) {
         setTimeout(() => {
@@ -233,11 +241,11 @@ function animateStatCard(card) {
     }
 
     if (percentageText) {
-        animateNumber(percentageText, 0, targetPercent, 1800);
+        animateNumber(percentageText, 0, displayEnd, 1800, unit, prefix);
     }
 }
 
-function animateNumber(element, start, end, duration) {
+function animateNumber(element, start, end, duration, unit = '%', prefix = '') {
     const startTime = performance.now();
     const range = end - start;
 
@@ -257,12 +265,13 @@ function animateNumber(element, start, end, duration) {
             displayValue = current.toFixed(0);
         }
 
-        element.textContent = displayValue + '%';
+        element.textContent = prefix + displayValue + unit;
 
         if (progress < 1) {
             requestAnimationFrame(update);
         } else {
-            element.textContent = (end % 1 === 0 ? end.toFixed(0) : end < 1 ? end.toFixed(2) : end.toFixed(1)) + '%';
+            const finalVal = (end % 1 === 0 ? end.toFixed(0) : end < 1 ? end.toFixed(2) : end.toFixed(1));
+            element.textContent = prefix + finalVal + unit;
         }
     }
 
