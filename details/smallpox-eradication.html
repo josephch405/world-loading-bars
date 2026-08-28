@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smallpox Eradication (100%) - World Loading Bars</title>
+
+    <!-- SEO Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is smallpox completely eradicated worldwide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, smallpox is 100% eradicated worldwide. In 1980, the World Health Organization (WHO) officially certified the global eradication of smallpox, making it the first human infectious disease to be completely wiped out through vaccination."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BY3JTNHV2N');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=1.1">
+    <link rel="stylesheet" href="detail-style.css?v=1.1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Smallpox Eradication</h1>
+            <p class="subtitle">Humanity's first complete victory over an infectious human disease</p>
+        </header>
+
+        <main class="detail-main">
+            <!-- Quick Answer SEO Box -->
+            <section class="current-stat">
+                <div class="big-number">100%</div>
+                <p class="stat-label">Global Eradication Achieved (Certified by WHO in 1980)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 100%; background: linear-gradient(90deg, #059669, #10b981);"></div>
+                </div>
+            </section>
+
+            <!-- Chart Section -->
+            <section class="chart-section">
+                <h2>Global Smallpox Cases (1950–1980)</h2>
+                <div class="chart-container">
+                    <canvas id="smallpoxChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Timeline Section -->
+            <section class="timeline-section">
+                <h2>Eradication Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1796</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">First Vaccine Created</div>
+                            <p>Edward Jenner developed the cowpox vaccine, creating the world's first successful vaccine.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1967</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">WHO Intensified Campaign</div>
+                            <p>Global intensified eradication initiative launched using bifurcated needles and ring vaccination.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1977</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">Last Naturally Occurring Case</div>
+                            <p>Ali Maow Maalin in Somalia was the last person infected with naturally occurring Variola minor.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">1980</div>
+                        <div class="timeline-content">
+                            <div class="timeline-stat">100% Global Eradication Declared</div>
+                            <p>33rd World Health Assembly officially declared the world free of smallpox.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Insights Section -->
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Lives Saved</h3>
+                        <p>Smallpox killed an estimated 300–500 million people in the 20th century alone. Its eradication saves roughly 5 million lives every single year.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Economic ROI</h3>
+                        <p>The entire global eradication effort cost ~$300 million USD, saving the world over $1 billion annually in treatment and containment costs forever.</p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Ring Vaccination Method</h3>
+                        <p>Instead of mass universal vaccination, epidemiologists isolated infected individuals and vaccinated everyone in their immediate contact perimeter.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sources Section -->
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>World Health Organization (WHO)</h4>
+                        <p><a href="https://www.who.int/health-topics/smallpox" target="_blank" rel="noopener">WHO Smallpox Eradication Portal</a></p>
+                    </div>
+                    <div class="source-item">
+                        <h4>Our World in Data</h4>
+                        <p><a href="https://ourworldindata.org/eradication-of-diseases" target="_blank" rel="noopener">Our World in Data - Disease Eradication</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>World Loading Bars • Interactive Global Statistics</p>
+        </footer>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('smallpoxChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1950', '1955', '1960', '1965', '1970', '1975', '1978', '1980'],
+                datasets: [{
+                    label: 'Reported Global Smallpox Cases (Millions)',
+                    data: [50.0, 35.0, 20.0, 10.0, 2.5, 0.5, 0.001, 0.0],
+                    borderColor: '#059669',
+                    backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#059669'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+                    x: { grid: { color: '#e2e8f0' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

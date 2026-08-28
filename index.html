@@ -15,6 +15,19 @@
     <meta name="twitter:title" content="World Loading Bars - Visualizing Global Progress">
     <meta name="twitter:description" content="Humanity is at Rating 0.73 (73%) on the Kardashev Scale, 74.5% on AGI Benchmarks, and 26.8% on Fusion Energy. Check out live loading bars!">
 
+    <!-- SEO Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "World Loading Bars",
+      "url": "https://worldloadingbars.com",
+      "description": "Humanity's progress across AGI, Kardashev Scale, Fusion Energy, EVs, and Climate visualised as real-time interactive loading bars.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
     <script>
@@ -50,22 +63,102 @@
             </a>
         </div>
 
-        <!-- Controls Bar: Category Filter Pills + Live Search -->
+        <!-- Controls Bar: Category Filter Pills + Quiz Mode + Live Search -->
         <div class="controls-bar">
             <div class="filter-pills">
                 <button class="filter-btn active" data-filter="all">All Metrics</button>
-                <button class="filter-btn" data-filter="frontier">Frontier & Future</button>
-                <button class="filter-btn" data-filter="tech">Tech & Infrastructure</button>
-                <button class="filter-btn" data-filter="energy">Energy & Climate</button>
-                <button class="filter-btn" data-filter="humanity">Humanity & Health</button>
+                <button class="filter-btn" data-filter="realtime">⏳ Real-Time</button>
+                <button class="filter-btn" data-filter="frontier">🚀 Frontier</button>
+                <button class="filter-btn" data-filter="tech">⚡ Tech</button>
+                <button class="filter-btn" data-filter="energy">🌱 Climate</button>
+                <button class="filter-btn" data-filter="humanity">👥 Humanity</button>
+                <button class="filter-btn" data-filter="completed">🏆 Completed</button>
             </div>
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+            <div class="controls-right">
+                <button id="quizModeBtn" class="quiz-toggle-btn" title="Guess before revealing!">🎮 Quiz Mode</button>
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+                </div>
             </div>
         </div>
 
         <main id="mainContent">
+            <!-- Real-Time Temporal Progress -->
+            <section class="category-section" data-category-group="realtime">
+                <div class="category-header">
+                    <span class="category-icon">⏳</span>
+                    <h2 class="category-title">Real-Time & Temporal Progress</h2>
+                </div>
+                <div class="stats-grid">
+                    <!-- Year 2026 Live Ticking -->
+                    <div id="yearProgressCard" class="stat-card realtime-card" data-category="realtime" data-color="blue" data-percent="65.8" data-search="year 2026 progress time elapsed countdown calendar live ticking">
+                        <div class="card-top">
+                            <span class="tag-badge blue"><span class="live-dot-sm"></span> LIVE 2026</span>
+                            <button class="share-btn" data-title="Year 2026 Progress" data-percent="65.8%" data-url="index.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Year 2026 Loaded</h3>
+                            <p class="description">Real-time percentage of 2026 elapsed (ticks live every second)</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <span id="yearProgressFill" class="progress-fill" style="width: 65.8%;"></span>
+                            </div>
+                            <span id="yearProgressText" class="percentage font-mono">65.8421%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">⚡ Live astronomical time</span>
+                            <span class="view-link">Real-Time</span>
+                        </div>
+                    </div>
+
+                    <!-- 21st Century Progress -->
+                    <div class="stat-card" data-category="realtime" data-color="purple" data-percent="26.65" data-search="21st century progress year 2000 to 2100 era millennium">
+                        <div class="card-top">
+                            <span class="tag-badge purple">CENTURY</span>
+                            <button class="share-btn" data-title="21st Century Progress" data-percent="26.65%" data-url="index.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>21st Century (2000–2100)</h3>
+                            <p class="description">How far humanity has traveled through the 21st century</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="26.65">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ 26.65 of 100 years</span>
+                            <span class="view-link">Milestone</span>
+                        </div>
+                    </div>
+
+                    <!-- UN 2030 Global Goals (SDGs) Countdown -->
+                    <div class="stat-card" data-category="realtime" data-color="green" data-percent="77.6" data-search="un sustainable development goals sdg 2030 agenda countdown timeline">
+                        <div class="card-top">
+                            <span class="tag-badge green">SDG 2030</span>
+                            <button class="share-btn" data-title="UN 2030 Agenda Timeline" data-percent="77.6%" data-url="index.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>2030 Global Goals Timeline</h3>
+                            <p class="description">Time elapsed toward the UN 2030 Sustainable Development target deadline (2015–2030)</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="77.6">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">⏳ 3.4 years remaining</span>
+                            <span class="view-link">Deadline</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Frontier & Future Tech -->
             <section class="category-section" data-category-group="frontier">
                 <div class="category-header">
@@ -592,6 +685,103 @@
                         </div>
                         <div class="stat-footer">
                             <span class="trend">↗ Steadily expanding</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Humanity Achievements (100% Completed) -->
+            <section class="category-section" data-category-group="completed">
+                <div class="category-header">
+                    <span class="category-icon">🏆</span>
+                    <h2 class="category-title">Humanity Achievements (Completed Quests)</h2>
+                </div>
+                <div class="stats-grid">
+                    <!-- Smallpox Eradication -->
+                    <a href="details/smallpox-eradication.html" class="stat-card" data-category="completed" data-color="green" data-percent="100" data-search="smallpox eradication disease virus vaccine who complete 100 victory">
+                        <div class="card-top">
+                            <span class="tag-badge green">ERADICATED</span>
+                            <button class="share-btn" data-title="Smallpox Eradication" data-percent="100%" data-url="details/smallpox-eradication.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Smallpox Eradication</h3>
+                            <p class="description">First infectious human disease completely wiped out worldwide (WHO 1980)</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="100">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">✨ 100% Fully Eradicated</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Human Genome Project -->
+                    <a href="details/human-genome.html" class="stat-card" data-category="completed" data-color="purple" data-percent="100" data-search="human genome project dna genetic sequencing code telomere 100 complete">
+                        <div class="card-top">
+                            <span class="tag-badge purple">GENOMICS</span>
+                            <button class="share-btn" data-title="Human Genome Decoded" data-percent="100%" data-url="details/human-genome.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Human Genome Decoded</h3>
+                            <p class="description">100% complete gapless sequence of all 3.055 billion base pairs (T2T 2022)</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="100">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">✨ 100% Gapless Sequence</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Solar System Planets Visited -->
+                    <a href="details/planets-visited.html" class="stat-card" data-category="completed" data-color="blue" data-percent="100" data-search="solar system planets visited robotic space exploration nasa voyager voyager 2 probes">
+                        <div class="card-top">
+                            <span class="tag-badge blue">EXPLORATION</span>
+                            <button class="share-btn" data-title="Solar System Planets Visited" data-percent="100%" data-url="details/planets-visited.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Solar System Planets Visited</h3>
+                            <p class="description">All 8 major planets reached and photographed by robotic spacecraft</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="100">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">✨ 8 of 8 Planets Reached</span>
+                            <span class="view-link">Deep Dive →</span>
+                        </div>
+                    </a>
+
+                    <!-- Ozone Layer CFC Phaseout -->
+                    <a href="details/ozone-healing.html" class="stat-card" data-category="completed" data-color="green" data-percent="99" data-search="ozone layer cfc phaseout montreal protocol recovery environment atmosphere">
+                        <div class="card-top">
+                            <span class="tag-badge green">ENVIRONMENT</span>
+                            <button class="share-btn" data-title="Ozone Layer CFC Phaseout" data-percent="99%" data-url="details/ozone-healing.html" title="Share metric">🔗 Share</button>
+                        </div>
+                        <div class="stat-header">
+                            <h3>Ozone Layer CFC Phaseout</h3>
+                            <p class="description">Ozone-depleting chemicals phased out globally under Montreal Protocol</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" data-target="99">
+                                <span class="progress-fill"></span>
+                            </div>
+                            <span class="percentage">0%</span>
+                        </div>
+                        <div class="stat-footer">
+                            <span class="trend">↗ On track to full recovery</span>
                             <span class="view-link">Deep Dive →</span>
                         </div>
                     </a>

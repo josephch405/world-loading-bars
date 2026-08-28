@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Genome Decoded (100%) - World Loading Bars</title>
+
+    <!-- SEO Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is the human genome 100% sequenced and decoded?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. While the original Human Genome Project completed its working draft in 2003, the Telomere-to-Telomere (T2T) Consortium published the first gapless, 100% complete sequence of the human genome in 2022, resolving all 3.055 billion base pairs."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BY3JTNHV2N');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=1.1">
+    <link rel="stylesheet" href="detail-style.css?v=1.1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Human Genome Project Decoded</h1>
+            <p class="subtitle">Complete mapping of the 3.055 billion base pairs of human genetic code</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="current-stat">
+                <div class="big-number">100%</div>
+                <p class="stat-label">Gapless Human Genome Sequencing Achieved (T2T Consortium)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 100%; background: linear-gradient(90deg, #7c3aed, #c084fc);"></div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Cost per Human Genome Sequenced ($USD, Log Scale)</h2>
+                <div class="chart-container">
+                    <canvas id="genomeChart"></canvas>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Genomics Milestones</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990</div>
+                        <div class="timeline-stat">Project Launch</div>
+                        <div class="timeline-content">
+                            <p>International Human Genome Project officially launched, aiming to map all human DNA over 15 years.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2003</div>
+                        <div class="timeline-stat">92% Working Draft Completed</div>
+                        <div class="timeline-content">
+                            <p>HGP declared completion of the euchromatic genome (~92% coverage), leaving complex heterochromatic gaps.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-stat">100% Gapless Sequence (T2T-CHM13)</div>
+                        <div class="timeline-content">
+                            <p>The Telomere-to-Telomere (T2T) Consortium published the first truly complete, gapless 3.055-billion-base-pair human genome.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>NIH National Human Genome Research Institute</h4>
+                        <p><a href="https://www.genome.gov/human-genome-project" target="_blank" rel="noopener">NHGRI Human Genome Project</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>World Loading Bars • Interactive Global Statistics</p>
+        </footer>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('genomeChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2001', '2005', '2008', '2012', '2016', '2020', '2026'],
+                datasets: [{
+                    label: 'Cost per Genome ($USD)',
+                    data: [100000000, 10000000, 1000000, 10000, 1000, 300, 100],
+                    borderColor: '#7c3aed',
+                    backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        type: 'logarithmic',
+                        grid: { color: '#e2e8f0' }
+                    },
+                    x: { grid: { color: '#e2e8f0' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

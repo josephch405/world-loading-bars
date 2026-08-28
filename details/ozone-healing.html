@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozone Layer CFC Phaseout (99%) - World Loading Bars</title>
+
+    <!-- SEO Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is the ozone layer recovering?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, under the 1987 Montreal Protocol, 99% of all ozone-depleting substances (like CFCs) have been successfully phased out globally. The Antarctic ozone hole is on track to fully recover by around 2066."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY3JTNHV2N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BY3JTNHV2N');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=1.1">
+    <link rel="stylesheet" href="detail-style.css?v=1.1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../index.html">← Back to all stats</a>
+        </nav>
+
+        <header class="detail-header">
+            <h1>Ozone Layer CFC Phaseout</h1>
+            <p class="subtitle">Global phaseout of ozone-depleting chemicals under the Montreal Protocol</p>
+        </header>
+
+        <main class="detail-main">
+            <section class="current-stat">
+                <div class="big-number">99.0%</div>
+                <p class="stat-label">Ozone-Depleting Substances Phased Out Globally (UNEP / WMO 2026)</p>
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 99%; background: linear-gradient(90deg, #059669, #10b981);"></div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Global CFC Consumption (Thousand ODP Tonnes)</h2>
+                <div class="chart-container">
+                    <canvas id="ozoneChart"></canvas>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Montreal Protocol Milestones</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1985</div>
+                        <div class="timeline-stat">Antarctic Ozone Hole Discovered</div>
+                        <div class="timeline-content"><p>British Antarctic Survey scientists discovered severe seasonal thinning of stratospheric ozone.</p></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1987</div>
+                        <div class="timeline-stat">Montreal Protocol Signed</div>
+                        <div class="timeline-content"><p>Universally ratified international environmental treaty to freeze and phase out CFC production.</p></div>
+                    </div>
+                    <div class="timeline-item highlight">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-stat">99% Phased Out & Active Recovery</div>
+                        <div class="timeline-content"><p>UN Scientific Assessment Panel confirms ozone layer on track to heal to 1980 levels by ~2066 over Antarctica.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sources-section">
+                <h2>Sources & Citations</h2>
+                <div class="sources-list">
+                    <div class="source-item">
+                        <h4>UN Environment Programme (UNEP)</h4>
+                        <p><a href="https://www.unep.org/ozonaction/who-we-are/about-montreal-protocol" target="_blank" rel="noopener">UNEP Montreal Protocol Assessment</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>World Loading Bars • Interactive Global Statistics</p>
+        </footer>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('ozoneChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1986', '1990', '1995', '2000', '2005', '2010', '2020', '2026'],
+                datasets: [{
+                    label: 'Global CFC Consumption (Thousand ODP Tonnes)',
+                    data: [1100, 800, 300, 100, 40, 10, 2, 0.5],
+                    borderColor: '#059669',
+                    backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+                    x: { grid: { color: '#e2e8f0' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

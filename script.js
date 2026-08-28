@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const searchInput = document.getElementById('searchInput');
     const categorySections = document.querySelectorAll('.category-section');
+    const quizModeBtn = document.getElementById('quizModeBtn');
     
     // Modal Elements
     const shareModal = document.getElementById('shareModal');
@@ -20,13 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroCard = document.getElementById('heroCard');
 
     let currentShareData = { title: '', percent: '', url: '' };
+    let quizModeActive = false;
 
     // 1. Feature Hero Highlight
     function setRandomHeroCard() {
         if (!statCards.length || !heroCard) return;
 
-        const randomIndex = Math.floor(Math.random() * statCards.length);
-        const card = statCards[randomIndex];
+        const candidateCards = statCards.filter(c => c.dataset.category !== 'realtime');
+        const randomIndex = Math.floor(Math.random() * candidateCards.length);
+        const card = candidateCards[randomIndex];
 
         const title = card.querySelector('h3').textContent;
         const description = card.querySelector('.description').textContent;
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const prefix = card.dataset.prefix || '';
         const color = card.dataset.color || 'blue';
         const tag = card.querySelector('.tag-badge')?.textContent || 'METRIC';
-        const linkHref = card.getAttribute('href');
+        const linkHref = card.getAttribute('href') || '#';
 
         heroCard.setAttribute('href', linkHref);
         heroCard.dataset.color = color;
@@ -67,7 +70,110 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Hero Spotlight
     setRandomHeroCard();
 
-    // 2. Intersection Observer for Scroll-triggered Animations
+    // 2. Real-Time Temporal Ticking Engine
+    function startRealtimeTicking() {
+        const yearProgressFill = document.getElementById('yearProgressFill');
+        const yearProgressText = document.getElementById('yearProgressText');
+
+        if (!yearProgressText) return;
+
+        function tick() {
+            const now = new Date();
+            const year = now.getUTCFullYear();
+            const startOfYear = new Date(Date.UTC(year, 0, 1, 0, 0, 0, 0)).getTime();
+            const endOfYear = new Date(Date.UTC(year + 1, 0, 1, 0, 0, 0, 0)).getTime();
+            const currentMs = now.getTime();
+
+            const fraction = (currentMs - startOfYear) / (endOfYear - startOfYear);
+            const percent = fraction * 100;
+
+            yearProgressText.textContent = percent.toFixed(4) + '%';
+            if (yearProgressFill) {
+                yearProgressFill.style.width = percent.toFixed(2) + '%';
+            }
+        }
+
+        tick();
+        setInterval(tick, 200);
+    }
+    startRealtimeTicking();
+
+    // 3. Quiz Mode ("Guess vs Reality") Engine
+    function setupQuizMode() {
+        statCards.forEach(card => {
+            if (card.dataset.category === 'realtime') return;
+
+            const quizBox = document.createElement('div');
+            quizBox.className = 'quiz-box';
+            quizBox.innerHTML = `
+                <div class="quiz-slider-row">
+                    <input type="range" min="0" max="100" value="50" class="quiz-slider">
+                    <span class="quiz-val-display">50%</span>
+                </div>
+                <div class="quiz-btn-row">
+                    <button class="check-guess-btn">Check Guess</button>
+                    <span class="guess-feedback"></span>
+                </div>
+            `;
+
+            const slider = quizBox.querySelector('.quiz-slider');
+            const valDisplay = quizBox.querySelector('.quiz-val-display');
+            const checkBtn = quizBox.querySelector('.check-guess-btn');
+            const feedback = quizBox.querySelector('.guess-feedback');
+
+            slider.addEventListener('input', (e) => {
+                e.stopPropagation();
+                valDisplay.textContent = slider.value + '%';
+            });
+
+            slider.addEventListener('click', (e) => e.stopPropagation());
+
+            checkBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const guess = parseFloat(slider.value);
+                const actual = parseFloat(card.dataset.percent);
+                const diff = Math.abs(guess - actual).toFixed(1);
+
+                card.classList.add('revealed');
+                animateStatCard(card);
+
+                if (diff <= 5) {
+                    feedback.textContent = `🎯 Spot on! (±${diff}%)`;
+                    feedback.className = 'guess-feedback accurate';
+                } else if (guess < actual) {
+                    feedback.textContent = `📉 Underestimated by ${diff}%`;
+                    feedback.className = 'guess-feedback off';
+                } else {
+                    feedback.textContent = `📈 Overestimated by ${diff}%`;
+                    feedback.className = 'guess-feedback off';
+                }
+
+                if (typeof gtag === 'function') {
+                    gtag('event', 'quiz_guess', { item_name: card.querySelector('h3').textContent, diff: diff });
+                }
+            });
+
+            card.querySelector('.progress-container').after(quizBox);
+        });
+
+        if (quizModeBtn) {
+            quizModeBtn.addEventListener('click', () => {
+                quizModeActive = !quizModeActive;
+                document.body.classList.toggle('quiz-mode-on', quizModeActive);
+                quizModeBtn.classList.toggle('active', quizModeActive);
+                quizModeBtn.textContent = quizModeActive ? '🎯 Exit Quiz Mode' : '🎮 Quiz Mode';
+                
+                if (quizModeActive) {
+                    showToast('Quiz Mode On: Guess the % before checking!');
+                }
+            });
+        }
+    }
+    setupQuizMode();
+
+    // 4. Intersection Observer for Scroll-triggered Animations
     const observerOptions = {
         threshold: 0.15,
         rootMargin: '0px 0px -40px 0px'
@@ -76,7 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateStatCard(entry.target);
+                if (!quizModeActive) {
+                    animateStatCard(entry.target);
+                }
                 observer.unobserve(entry.target);
             }
         });
@@ -86,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
         
         card.addEventListener('click', (e) => {
-            if (e.target.classList.contains('share-btn')) return;
+            if (e.target.classList.contains('share-btn') || e.target.closest('.quiz-box')) return;
 
             const title = card.querySelector('h3')?.textContent || 'Card';
             if (typeof gtag === 'function') {
@@ -99,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Share Modal Triggers
+    // 5. Share Modal Triggers
     document.querySelectorAll('.share-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -177,6 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
         copyEmbedBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(embedSnippet.value);
             showToast("Copied embed snippet HTML!");
+            if (typeof gtag === 'function') {
+                gtag('event', 'share', { method: 'embed_copy', item_id: currentShareData.title });
+            }
         });
     }
 
@@ -187,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
-    // 4. Filter Pills Handler
+    // 6. Filter Pills Handler
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -198,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Search Input Handler
+    // 7. Search Input Handler
     if (searchInput) {
         let searchTimeout;
         searchInput.addEventListener('input', (e) => {
@@ -228,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (categoryMatch && searchMatch) {
                     card.style.display = 'flex';
                     visibleCount++;
-                    if (!card.classList.contains('animated')) {
+                    if (!card.classList.contains('animated') && !quizModeActive) {
                         animateStatCard(card);
                     }
                 } else {
@@ -246,13 +357,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function animateStatCard(card) {
-    if (card.classList.contains('animated')) return;
+    if (card.classList.contains('animated') && !document.body.classList.contains('quiz-mode-on')) return;
     card.classList.add('animated');
 
     const progressFill = card.querySelector('.progress-fill');
     const percentageText = card.querySelector('.percentage');
     
-    // Decouple Visual Fill % from Display Value
     const targetPercent = parseFloat(card.dataset.percent);
     const displayEnd = card.dataset.display !== undefined ? parseFloat(card.dataset.display) : targetPercent;
     const unit = card.dataset.unit !== undefined ? card.dataset.unit : '%';
