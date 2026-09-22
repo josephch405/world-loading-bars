@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="hero-progress-group">
                     <div class="hero-percentage">${prefix}${displayVal}${unit}</div>
-                    <div class="hero-progress-bar">
+                    <div class="hero-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}" aria-label="${title}">
                         <div class="hero-progress-fill" style="width: ${percent}%"></div>
                     </div>
                 </div>
@@ -90,6 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
             yearProgressText.textContent = percent.toFixed(4) + '%';
             if (yearProgressFill) {
                 yearProgressFill.style.width = percent.toFixed(2) + '%';
+            }
+            const yearProgressBar = document.getElementById('yearProgressBar');
+            if (yearProgressBar) {
+                yearProgressBar.setAttribute('aria-valuenow', percent.toFixed(2));
             }
         }
 
