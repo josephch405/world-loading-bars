@@ -32,6 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -42,11 +43,11 @@
             <p class="subtitle">Global electricity generated from renewable sources</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <section class="chart-section">
                 <h2>Renewable Share of Global Electricity</h2>
                 <div class="chart-container">
-                    <canvas id="renewableChart"></canvas>
+                    <canvas id="renewableChart" role="img" aria-label="Line chart: Renewable Share of Global Electricity over time"></canvas>
                 </div>
             </section>
 

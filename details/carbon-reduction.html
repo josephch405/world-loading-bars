@@ -32,6 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -42,11 +43,11 @@
             <p class="subtitle">Developed countries GHG emissions reduction from 1990 baseline</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <section class="chart-section">
                 <h2>Emissions Reduction Trend (vs 1990 Baseline)</h2>
                 <div class="chart-container">
-                    <canvas id="carbonChart"></canvas>
+                    <canvas id="carbonChart" role="img" aria-label="Line chart: Emissions Reduction Trend (vs 1990 Baseline) over time"></canvas>
                 </div>
             </section>
 

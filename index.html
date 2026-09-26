@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <header>
             <div class="header-badge">
@@ -79,7 +80,8 @@
                 <button id="quizModeBtn" class="quiz-toggle-btn" title="Guess before revealing!">🎮 Quiz Mode</button>
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+                    <label class="sr-only" for="searchInput">Search metrics</label>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search..." aria-label="Search metrics">
                 </div>
             </div>
         </div>
@@ -797,11 +799,11 @@
     </div>
 
     <!-- Share / Embed Modal -->
-    <div id="shareModal" class="modal-overlay">
+    <div id="shareModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-card">
             <div class="modal-header">
                 <h3 id="modalTitle">Share Metric</h3>
-                <button id="modalClose" class="close-btn">✕</button>
+                <button id="modalClose" class="close-btn" aria-label="Close share dialog">✕</button>
             </div>
             <div class="modal-body">
                 <p id="modalStatQuote" class="stat-quote-box"></p>
@@ -821,7 +823,7 @@
         </div>
     </div>
 
-    <div id="toastNotification" class="toast">Copied to clipboard!</div>
+    <div id="toastNotification" class="toast" role="status" aria-live="polite">Copied to clipboard!</div>
 
     <script src="script.js?v=1.1"></script>
 </body>

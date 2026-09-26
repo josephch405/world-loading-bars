@@ -32,6 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -42,11 +43,11 @@
             <p class="subtitle">Percentage of global population residing in urban areas</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <section class="chart-section">
                 <h2>Urbanization Rate Trend</h2>
                 <div class="chart-container">
-                    <canvas id="urbanChart"></canvas>
+                    <canvas id="urbanChart" role="img" aria-label="Line chart: Urbanization Rate Trend over time"></canvas>
                 </div>
             </section>
 

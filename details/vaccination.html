@@ -32,6 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -42,11 +43,11 @@
             <p class="subtitle">Global infants receiving three doses of DTP vaccine (DTP3 coverage indicator)</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <section class="chart-section">
                 <h2>Child Immunization Trend (DTP3)</h2>
                 <div class="chart-container">
-                    <canvas id="vaccinationChart"></canvas>
+                    <canvas id="vaccinationChart" role="img" aria-label="Line chart: Child Immunization Trend (DTP3) over time"></canvas>
                 </div>
             </section>
 

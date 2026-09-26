@@ -32,6 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -42,7 +43,7 @@
             <p class="subtitle">Humanity's journey to becoming a Type I planetary civilization</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <!-- Current Stat Hero -->
             <section class="current-stat">
                 <div class="big-number">0.73</div>
@@ -55,7 +56,7 @@
             <section class="chart-section">
                 <h2>Energy Consumption Growth (Terawatts)</h2>
                 <div class="chart-container">
-                    <canvas id="kardashevChart" style="width: 100%; height: 350px;"></canvas>
+                    <canvas id="kardashevChart" style="width: 100%; height: 350px;" role="img" aria-label="Line chart: Energy Consumption Growth (Terawatts) over time"></canvas>
                 </div>
             </section>
 

@@ -48,6 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -58,7 +59,7 @@
             <p class="subtitle">Complete mapping of the 3.055 billion base pairs of human genetic code</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <section class="current-stat">
                 <div class="big-number">100%</div>
                 <p class="stat-label">Gapless Human Genome Sequencing Achieved (T2T Consortium)</p>
@@ -69,7 +70,7 @@
             <section class="chart-section">
                 <h2>Cost per Human Genome Sequenced ($USD, Log Scale)</h2>
                 <div class="chart-container">
-                    <canvas id="genomeChart"></canvas>
+                    <canvas id="genomeChart" role="img" aria-label="Line chart: Cost per Human Genome Sequenced ($USD, Log Scale) over time"></canvas>
                 </div>
             </section>
 

@@ -48,6 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -58,7 +59,7 @@
             <p class="subtitle">Humanity's first complete victory over an infectious human disease</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <!-- Quick Answer SEO Box -->
             <section class="current-stat">
                 <div class="big-number">100%</div>
@@ -71,7 +72,7 @@
             <section class="chart-section">
                 <h2>Global Smallpox Cases (1950–1980)</h2>
                 <div class="chart-container">
-                    <canvas id="smallpoxChart"></canvas>
+                    <canvas id="smallpoxChart" role="img" aria-label="Line chart: Global Smallpox Cases (1950–1980) over time"></canvas>
                 </div>
             </section>
 

@@ -33,6 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -43,7 +44,7 @@
             <p class="subtitle">Humanity's journey to harnessing stellar energy for electrical grids</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <section class="current-stat">
                 <div class="big-number">26.8%</div>
                 <div class="stat-label">Progress to Commercial Fusion Grid Power</div>
@@ -54,7 +55,7 @@
             <section class="chart-section">
                 <h2>Fusion Gain Factor (Q) Over Time</h2>
                 <div class="chart-container">
-                    <canvas id="fusionChart"></canvas>
+                    <canvas id="fusionChart" role="img" aria-label="Line chart: Fusion Gain Factor (Q) Over Time over time"></canvas>
                 </div>
             </section>
 

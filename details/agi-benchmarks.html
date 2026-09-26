@@ -33,6 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -43,7 +44,7 @@
             <p class="subtitle">Tracking progress across composite human-level reasoning and autonomous task benchmarks</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <section class="current-stat">
                 <div class="big-number">74.5%</div>
                 <div class="stat-label">Composite AGI Benchmark Completion</div>
@@ -54,7 +55,7 @@
             <section class="chart-section">
                 <h2>AI Performance Growth Across Key Domains</h2>
                 <div class="chart-container">
-                    <canvas id="agiChart"></canvas>
+                    <canvas id="agiChart" role="img" aria-label="Line chart: AI Performance Growth Across Key Domains over time"></canvas>
                 </div>
             </section>
 

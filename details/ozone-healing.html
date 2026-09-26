@@ -48,6 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     <div class="container">
         <nav class="breadcrumb">
             <a href="../index.html">← Back to all stats</a>
@@ -58,7 +59,7 @@
             <p class="subtitle">Global phaseout of ozone-depleting chemicals under the Montreal Protocol</p>
         </header>
 
-        <main class="detail-main">
+        <main class="detail-main" id="mainContent">
             <section class="current-stat">
                 <div class="big-number">99.0%</div>
                 <p class="stat-label">Ozone-Depleting Substances Phased Out Globally (UNEP / WMO 2026)</p>
@@ -69,7 +70,7 @@
             <section class="chart-section">
                 <h2>Global CFC Consumption (Thousand ODP Tonnes)</h2>
                 <div class="chart-container">
-                    <canvas id="ozoneChart"></canvas>
+                    <canvas id="ozoneChart" role="img" aria-label="Line chart: Global CFC Consumption (Thousand ODP Tonnes) over time"></canvas>
                 </div>
             </section>
 

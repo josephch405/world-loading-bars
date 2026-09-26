@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const categorySections = document.querySelectorAll('.category-section');
     const quizModeBtn = document.getElementById('quizModeBtn');
+    if (quizModeBtn) quizModeBtn.setAttribute('aria-pressed', 'false');
     
     // Modal Elements
+    let lastShareOpener = null;
     const shareModal = document.getElementById('shareModal');
     const modalClose = document.getElementById('modalClose');
     const modalTitle = document.getElementById('modalTitle');
@@ -109,14 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const quizBox = document.createElement('div');
             quizBox.className = 'quiz-box';
+            const cardTitle = card.querySelector('h3')?.textContent || 'this metric';
             quizBox.innerHTML = `
                 <div class="quiz-slider-row">
-                    <input type="range" min="0" max="100" value="50" class="quiz-slider">
+                    <input type="range" min="0" max="100" value="50" class="quiz-slider" aria-label="Your guess for ${cardTitle}">
                     <span class="quiz-val-display">50%</span>
                 </div>
                 <div class="quiz-btn-row">
                     <button class="check-guess-btn">Check Guess</button>
-                    <span class="guess-feedback"></span>
+                    <span class="guess-feedback" aria-live="polite"></span>
                 </div>
             `;
 
@@ -141,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const diff = Math.abs(guess - actual).toFixed(1);
 
                 card.classList.add('revealed');
+                card.querySelector('.percentage')?.removeAttribute('aria-hidden');
                 animateStatCard(card);
 
                 if (diff <= 5) {
@@ -167,7 +171,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 quizModeActive = !quizModeActive;
                 document.body.classList.toggle('quiz-mode-on', quizModeActive);
                 quizModeBtn.classList.toggle('active', quizModeActive);
+                quizModeBtn.setAttribute('aria-pressed', quizModeActive);
                 quizModeBtn.textContent = quizModeActive ? '🎯 Exit Quiz Mode' : '🎮 Quiz Mode';
+                // The quiz CSS blurs unrevealed percentages; hide them from screen readers as well
+                statCards.forEach(card => {
+                    if (card.dataset.category === 'realtime') return;
+                    const pct = card.querySelector('.percentage');
+                    if (pct) {
+                        if (quizModeActive && !card.classList.contains('revealed')) {
+                            pct.setAttribute('aria-hidden', 'true');
+                        } else {
+                            pct.removeAttribute('aria-hidden');
+                        }
+                    }
+                });
                 
                 if (quizModeActive) {
                     showToast('Quiz Mode On: Guess the % before checking!');
@@ -241,6 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
             embedSnippet.value = `<iframe src="${baseUrl}?utm_source=embed_widget&utm_medium=embed" width="100%" height="280" frameborder="0"></iframe>`;
 
             shareModal.classList.add('active');
+            lastShareOpener = document.activeElement;
+            modalClose.focus();
 
             if (typeof gtag === 'function') {
                 gtag('event', 'share_modal_open', { item_name: title });
@@ -248,14 +267,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    function closeShareModal() {
+        if (!shareModal.classList.contains('active')) return;
+        shareModal.classList.remove('active');
+        if (lastShareOpener && document.contains(lastShareOpener)) lastShareOpener.focus();
+    }
     if (modalClose) {
-        modalClose.addEventListener('click', () => shareModal.classList.remove('active'));
+        modalClose.addEventListener('click', closeShareModal);
     }
     if (shareModal) {
         shareModal.addEventListener('click', (e) => {
-            if (e.target === shareModal) shareModal.classList.remove('active');
+            if (e.target === shareModal) closeShareModal();
         });
     }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeShareModal();
+    });
 
     // Copy Quote Button
     if (copyQuoteBtn) {
