@@ -28,6 +28,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1.2">
     <link rel="stylesheet" href="detail-style.css?v=1.1">
@@ -49,6 +50,13 @@
                 <div class="big-number">18.5%</div>
                 <div class="stat-label">Progress to Self-Sustaining Mars City</div>
                 <div class="progress-bar-large" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="18.5" aria-label="Progress"><div class="progress-fill-large" style="width: 18.5%; background: linear-gradient(90deg, #ea580c, #f97316);"></div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Key Mars Milestones Reached</h2>
+                <div class="chart-container">
+                    <canvas id="marsChart" role="img" aria-label="Line chart: Cumulative key Mars milestones reached over time"></canvas>
                 </div>
             </section>
 
@@ -80,7 +88,7 @@
             </section>
 
             <section class="insights-section">
-                <h2>4 Primary Pillars</h2>
+                <h2>3 Primary Pillars</h2>
                 <div class="insights-grid">
                     <div class="insight-card">
                         <h3>1. Orbital Refueling</h3>
@@ -112,5 +120,61 @@
             <p>World Loading Bars • Interactive Global Statistics</p>
         </footer>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+        // Cumulative count of the key milestones in the timeline below.
+        // This deliberately does not chart the 18.5% headline figure,
+        // which has no time series behind it on this page.
+        const marsMilestones = [
+            'Viking 1 — first successful Mars landing',
+            'MOXIE oxygen extraction (Perseverance)',
+            'Starship Flight 13 & Mechazilla catch'
+        ];
+        const ctx = document.getElementById('marsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1976', '2021', '2026'],
+                datasets: [{
+                    label: 'Key Mars milestones reached (cumulative)',
+                    data: [1, 2, 3],
+                    borderColor: '#ea580c',
+                    backgroundColor: 'rgba(234, 88, 12, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    stepped: 'before',
+                    pointRadius: 5,
+                    pointBackgroundColor: '#ea580c',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) { return marsMilestones[context.dataIndex]; }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 3,
+                        ticks: { stepSize: 1, color: '#64748b' },
+                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                    },
+                    x: {
+                        ticks: { color: '#64748b' },
+                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

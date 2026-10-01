@@ -43,6 +43,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1.2">
     <link rel="stylesheet" href="detail-style.css?v=1.1">
@@ -64,6 +65,13 @@
                 <div class="big-number">100%</div>
                 <p class="stat-label">8 of 8 Major Planets Visited by Human Spacecraft (plus Pluto & Ceres)</p>
                 <div class="progress-bar-large" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" aria-label="Progress"><div class="progress-fill-large" style="width: 100%; background: linear-gradient(90deg, #0284c7, #38bdf8);"></div>
+                </div>
+            </section>
+
+            <section class="chart-section">
+                <h2>Planets Visited Over Time</h2>
+                <div class="chart-container">
+                    <canvas id="planetsChart" role="img" aria-label="Line chart: Cumulative major planets visited over time"></canvas>
                 </div>
             </section>
 
@@ -128,5 +136,69 @@
             <p>World Loading Bars • Interactive Global Statistics</p>
         </footer>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script>
+        // Cumulative count of the 8 major planets reached, taken from the timeline
+        // below. Earth is counted first as the home planet; every later point is
+        // that year's first successful flyby/orbit listed in the timeline,
+        // reaching 8 of 8 in 1989.
+        const planetFirstVisits = [
+            'Earth — home planet',
+            'Venus — Mariner 2 (1962)',
+            'Mars — Mariner 4 (1965)',
+            'Jupiter — Pioneer 10 (1973)',
+            'Mercury — Mariner 10 (1974)',
+            'Saturn — Pioneer 11 (1979)',
+            'Uranus — Voyager 2 (1986)',
+            'Neptune — Voyager 2 (1989)'
+        ];
+        const ctx = document.getElementById('planetsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Earth', '1962', '1965', '1973', '1974', '1979', '1986', '1989'],
+                datasets: [{
+                    label: 'Major planets visited (cumulative, of 8)',
+                    data: [1, 2, 3, 4, 5, 6, 7, 8],
+                    borderColor: '#0284c7',
+                    backgroundColor: 'rgba(2, 132, 199, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    stepped: 'before',
+                    pointRadius: 5,
+                    pointBackgroundColor: '#0284c7',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + ' of 8 — ' + planetFirstVisits[context.dataIndex];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 8,
+                        ticks: { stepSize: 1, color: '#64748b' },
+                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                    },
+                    x: {
+                        ticks: { color: '#64748b' },
+                        grid: { color: 'rgba(226, 232, 240, 0.6)' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
