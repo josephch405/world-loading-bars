@@ -1,26 +1,16 @@
 {
  "generated": "2026-10-06",
- "note": "World-level values; answer is a percentage (0-100).",
+ "note": "World-level values; answer is a percentage (0-100). Daily order is derived from this list's ids, so removing or adding entries reshuffles future days.",
  "questions": [
   {
    "id": "it-net-user-zs",
-   "question": "Out of every 100 people in the world, how many use the internet?",
+   "question": "Out of every 100 people, how many use the internet?",
    "answer": 73.6,
    "year": 2025,
    "topic": "tech",
    "source": "World Bank",
    "source_detail": "Individuals using the Internet (% of population)",
    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS"
-  },
-  {
-   "id": "it-net-bbnd-p2",
-   "question": "For every 100 people in the world, how many fixed broadband subscriptions are there?",
-   "answer": 20.1,
-   "year": 2025,
-   "topic": "tech",
-   "source": "World Bank",
-   "source_detail": "Fixed broadband subscriptions (per 100 people)",
-   "url": "https://data.worldbank.org/indicator/IT.NET.BBND.P2"
   },
   {
    "id": "fx-own-totl-zs",
@@ -93,36 +83,6 @@
    "url": "https://ourworldindata.org/grapher/share-electricity-solar"
   },
   {
-   "id": "share-electricity-wind",
-   "question": "Out of every 100 units of electricity generated, how many come from wind?",
-   "answer": 8.5,
-   "year": 2025,
-   "topic": "energy",
-   "source": "Our World in Data",
-   "source_detail": "Wind",
-   "url": "https://ourworldindata.org/grapher/share-electricity-wind"
-  },
-  {
-   "id": "share-electricity-hydro",
-   "question": "Out of every 100 units of electricity generated, how many come from hydropower?",
-   "answer": 14.0,
-   "year": 2025,
-   "topic": "energy",
-   "source": "Our World in Data",
-   "source_detail": "Hydropower",
-   "url": "https://ourworldindata.org/grapher/share-electricity-hydro"
-  },
-  {
-   "id": "share-electricity-fossil-fuels",
-   "question": "Out of every 100 units of electricity generated, how many come from fossil fuels?",
-   "answer": 57.4,
-   "year": 2025,
-   "topic": "energy",
-   "source": "Our World in Data",
-   "source_detail": "Fossil fuels",
-   "url": "https://ourworldindata.org/grapher/share-electricity-fossil-fuels"
-  },
-  {
    "id": "electric-car-sales-share",
    "question": "Out of every 100 new cars sold, how many are electric?",
    "answer": 25.0,
@@ -133,18 +93,8 @@
    "url": "https://ourworldindata.org/grapher/electric-car-sales-share"
   },
   {
-   "id": "sh-h2o-basw-zs",
-   "question": "Out of every 100 people, how many have at least basic drinking water?",
-   "answer": 91.5,
-   "year": 2024,
-   "topic": "health",
-   "source": "World Bank",
-   "source_detail": "People using at least basic drinking water services (% of population)",
-   "url": "https://data.worldbank.org/indicator/SH.H2O.BASW.ZS"
-  },
-  {
    "id": "sh-h2o-smdw-zs",
-   "question": "Out of every 100 people, how many have safe drinking water at home, available whenever they need it?",
+   "question": "Out of every 100 people, how many have safe drinking water at home whenever they need it?",
    "answer": 73.7,
    "year": 2024,
    "topic": "health",
@@ -161,16 +111,6 @@
    "source": "World Bank",
    "source_detail": "People using at least basic sanitation services (% of population)",
    "url": "https://data.worldbank.org/indicator/SH.STA.BASS.ZS"
-  },
-  {
-   "id": "sh-sta-smss-zs",
-   "question": "Out of every 100 people, how many have a toilet whose waste is safely treated or disposed of?",
-   "answer": 58.5,
-   "year": 2024,
-   "topic": "health",
-   "source": "World Bank",
-   "source_detail": "People using safely managed sanitation services (% of population)",
-   "url": "https://data.worldbank.org/indicator/SH.STA.SMSS.ZS"
   },
   {
    "id": "sh-sta-hygn-zs",
@@ -194,7 +134,7 @@
   },
   {
    "id": "sh-imm-idpt",
-   "question": "Out of every 100 one-year-olds, how many got the basic DTP3 vaccine?",
+   "question": "Out of every 100 one-year-olds, how many have had all three doses of the DTP vaccine?",
    "answer": 84.8,
    "year": 2024,
    "topic": "health",
@@ -234,7 +174,7 @@
   },
   {
    "id": "sh-sta-diab-zs",
-   "question": "Out of every 100 adults (20–79), how many have diabetes?",
+   "question": "Out of every 100 adults aged 20–79, how many have diabetes?",
    "answer": 10.8,
    "year": 2024,
    "topic": "health",
@@ -281,16 +221,6 @@
    "source": "World Bank",
    "source_detail": "Literacy rate, adult total (% of people ages 15 and above)",
    "url": "https://data.worldbank.org/indicator/SE.ADT.LITR.ZS"
-  },
-  {
-   "id": "se-adt-1524-lt-zs",
-   "question": "Out of every 100 people aged 15–24, how many can read and write?",
-   "answer": 93.1,
-   "year": 2024,
-   "topic": "education",
-   "source": "World Bank",
-   "source_detail": "Literacy rate, youth total (% of people ages 15-24)",
-   "url": "https://data.worldbank.org/indicator/SE.ADT.1524.LT.ZS"
   },
   {
    "id": "se-prm-cmpt-zs",
@@ -404,23 +334,13 @@
   },
   {
    "id": "sl-tlf-cact-fe-zs",
-   "question": "Out of every 100 women (15+), how many are working or looking for work?",
+   "question": "Out of every 100 women aged 15 or older, how many are working or looking for work?",
    "answer": 48.9,
    "year": 2025,
    "topic": "work",
    "source": "World Bank",
    "source_detail": "Labor force participation rate, female (% of female population ages 15+) (modeled ILO estimate)",
    "url": "https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS"
-  },
-  {
-   "id": "sl-tlf-cact-ma-zs",
-   "question": "Out of every 100 men (15+), how many are working or looking for work?",
-   "answer": 73.1,
-   "year": 2025,
-   "topic": "work",
-   "source": "World Bank",
-   "source_detail": "Labor force participation rate, male (% of male population ages 15+) (modeled ILO estimate)",
-   "url": "https://data.worldbank.org/indicator/SL.TLF.CACT.MA.ZS"
   },
   {
    "id": "sl-agr-empl-zs",
@@ -433,16 +353,6 @@
    "url": "https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS"
   },
   {
-   "id": "sl-srv-empl-zs",
-   "question": "Out of every 100 workers, how many work in services?",
-   "answer": 50.6,
-   "year": 2025,
-   "topic": "work",
-   "source": "World Bank",
-   "source_detail": "Employment in services (% of total employment) (modeled ILO estimate)",
-   "url": "https://data.worldbank.org/indicator/SL.SRV.EMPL.ZS"
-  },
-  {
    "id": "sl-emp-self-zs",
    "question": "Out of every 100 workers, how many are self-employed?",
    "answer": 46.4,
@@ -453,18 +363,8 @@
    "url": "https://data.worldbank.org/indicator/SL.EMP.SELF.ZS"
   },
   {
-   "id": "sl-uem-totl-zs",
-   "question": "Out of every 100 people in the labour force, how many are unemployed?",
-   "answer": 4.8,
-   "year": 2025,
-   "topic": "work",
-   "source": "World Bank",
-   "source_detail": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
-   "url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS"
-  },
-  {
    "id": "sl-uem-1524-zs",
-   "question": "Out of every 100 young people (15–24) in the labour force, how many are unemployed?",
+   "question": "Out of every 100 people aged 15–24 who want a job, how many are unemployed?",
    "answer": 13.4,
    "year": 2025,
    "topic": "work",
