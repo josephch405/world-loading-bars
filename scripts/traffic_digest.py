@@ -9,8 +9,8 @@ Usage:
     python3 scripts/traffic_digest.py [--days 7] [--min-cluster 4]
 
 Auth (first method that works wins):
-  1. POSTHOG_API_KEY env var (a PostHog personal API key -- never commit one
-     to this repo).
+  1. POSTHOG_API_KEY (or API_POSTHOG_KEY) env var -- a PostHog personal API
+     key; never commit one to this repo.
   2. The workspace's `custom.posthog` connector via the skill-creator
      `dynamic_credentials` helper (only present on the owner's machine; the
      helper injects a short-lived surrogate, so no raw key ever touches this
@@ -73,7 +73,7 @@ def build_request(host: str, project: str, hogql: str) -> urllib.request.Request
     body = json.dumps({"query": {"kind": "HogQLQuery", "query": hogql}}).encode()
     req = urllib.request.Request(url, data=body, method="POST")
     req.add_header("Content-Type", "application/json")
-    api_key = os.environ.get("POSTHOG_API_KEY")
+    api_key = os.environ.get("POSTHOG_API_KEY") or os.environ.get("API_POSTHOG_KEY")
     if api_key:
         req.add_header("Authorization", f"Bearer {api_key}")
         return req
@@ -82,7 +82,7 @@ def build_request(host: str, project: str, hogql: str) -> urllib.request.Request
     try:
         from dynamic_credentials import add_surrogate_to_request  # noqa: E402
     except ImportError:
-        die("no POSTHOG_API_KEY set and no workspace connector available")
+        die("no POSTHOG_API_KEY/API_POSTHOG_KEY set and no workspace connector available")
     add_surrogate_to_request(
         req, "custom.posthog", entry_name="access_token",
         allowed_hosts=[host.replace("https://", "").replace("http://", "")],
