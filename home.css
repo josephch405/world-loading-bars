@@ -84,12 +84,6 @@ h1 {
     max-width: 14ch;
 }
 
-.dek {
-    margin-top: 18px;
-    max-width: 56ch;
-    font-size: 1.1rem;
-    color: var(--ink-soft);
-}
 
 .tally {
     margin-top: 32px;
@@ -196,8 +190,6 @@ h1 {
     letter-spacing: -0.01em;
 }
 
-.category-note { font-size: 0.9rem; color: var(--muted); font-style: italic; font-family: var(--serif); }
-
 .stat-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(200px, 300px) 4.6rem 3.4rem;
@@ -292,15 +284,7 @@ footer {
     font-size: 0.85rem;
     color: var(--muted);
 }
-footer p + p { margin-top: 6px; }
 
-kbd {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    padding: 0 5px;
-    border: 1px solid var(--rule);
-    background: var(--paper-raised);
-}
 
 /* ---------------------------------------------------------------- share modal + toast */
 
@@ -393,7 +377,7 @@ kbd {
     .search-input { flex: 1; width: auto; }
 
     .stat-card {
-        grid-template-columns: minmax(0, 1fr) auto auto;
+        grid-template-columns: minmax(0, 1fr) 4.2rem auto;
         gap: 8px 16px;
         padding: 14px 0;
         margin: 0;
@@ -402,5 +386,4 @@ kbd {
     .progress-bar { grid-column: 1; }
     .percentage { grid-column: 2; }
     .share-btn { grid-column: 3; opacity: 1; }
-    .category-header { flex-direction: column; gap: 2px; }
 }
