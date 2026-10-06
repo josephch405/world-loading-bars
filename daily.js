@@ -1,5 +1,5 @@
 // Daily round: three questions per UTC day, the same for everyone.
-// Answers come only from data/daily-questions.json. Uses track() from script.js.
+// Answers come only from data/daily-questions.json. Uses track() from script.js when it loaded.
 
 (function () {
     const DATA_URL = 'data/daily-questions.json?v=1';
@@ -10,6 +10,10 @@
     const STATS_KEY = 'wlb.dailyStats';
     const DAY_MS = 86400000;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function send(event, props) {
+        if (typeof window.track === 'function') window.track(event, props);
+    }
 
     // ------------------------------------------------------------ schedule
 
@@ -144,7 +148,7 @@
             else items[state.guesses.length].activate(false);
 
             root.hidden = false;
-            track('daily_view', { day: dayNumber, answered: state.guesses.length });
+            send('daily_view', { day: dayNumber, answered: state.guesses.length });
 
             function buildItem(q, index) {
                 const el = document.createElement('li');
@@ -228,7 +232,7 @@
                     state.guesses[index] = value;
                     save(STATE_KEY, state);
                     const error = roundErr(value, q.answer);
-                    track('daily_guess', {
+                    send('daily_guess', {
                         day: dayNumber, index, question_id: q.id,
                         guess: value, answer: q.answer, error, points: points(error),
                     });
@@ -328,11 +332,11 @@
                         copyBtn.textContent = ok ? 'Copied' : 'Select and copy';
                         setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
                     });
-                    track('daily_share_copy', { day: dayNumber, score: total });
+                    send('daily_share_copy', { day: dayNumber, score: total });
                 };
 
                 if (justNow) {
-                    track('daily_complete', { day: dayNumber, score: total, streak });
+                    send('daily_complete', { day: dayNumber, score: total, streak });
                 }
             }
         }
