@@ -143,8 +143,7 @@ header {
 }
 
 header h1 {
-    font-size: clamp(2.1rem, 7vw, 3.5rem);
-    line-height: 1.15;
+    font-size: 3.5rem;
     font-weight: 800;
     letter-spacing: -1px;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, var(--primary-blue) 100%);
@@ -240,7 +239,6 @@ header h1 {
 
 .hero-text h2 {
     font-size: 1.8rem;
-    line-height: 1.25;
     font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 4px;
@@ -689,24 +687,13 @@ body.quiz-mode-on .stat-card.revealed .percentage {
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: linear-gradient(
-        -45deg,
-        rgba(255, 255, 255, 0.22) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.22) 50%,
-        rgba(255, 255, 255, 0.22) 75%,
-        transparent 75%,
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.45),
         transparent
     );
-    background-size: 18px 18px;
-    animation: stripes 1s linear infinite;
-    border-radius: inherit;
-}
-
-@keyframes stripes {
-    from { background-position: 0 0; }
-    to { background-position: 18px 0; }
+    animation: shimmer 2.2s infinite;
 }
 
 @keyframes shimmer {
@@ -929,214 +916,10 @@ footer p {
 }
 
 @media (max-width: 768px) {
+    header h1 { font-size: 2.4rem; }
     .hero-content { flex-direction: column; align-items: flex-start; gap: 16px; }
     .hero-progress-group { width: 100%; min-width: auto; text-align: left; }
     .controls-bar { flex-direction: column; align-items: stretch; }
     .search-box { min-width: 100%; }
     .stats-grid { grid-template-columns: 1fr; }
-}
-
-/* ---------------------------------------------------------------- v1.3 */
-
-/* Remaining palette: every data-color gets a fill, number and badge color */
-.stat-card[data-color="cyan"] .progress-fill { background: linear-gradient(90deg, #0284c7, #06b6d4); }
-.stat-card[data-color="green"] .progress-fill { background: linear-gradient(90deg, #16a34a, #4ade80); }
-.stat-card[data-color="rose"] .progress-fill { background: linear-gradient(90deg, #e11d48, #fb7185); }
-.stat-card[data-color="cyan"] .percentage { color: var(--primary-cyan); }
-.stat-card[data-color="green"] .percentage { color: #15803d; }
-.stat-card[data-color="rose"] .percentage { color: var(--accent-rose); }
-.tag-badge.blue { color: var(--primary-blue); background: rgba(37, 99, 235, 0.08); border-color: rgba(37, 99, 235, 0.2); }
-.tag-badge.green { color: #15803d; background: rgba(22, 163, 74, 0.08); border-color: rgba(22, 163, 74, 0.22); }
-.tag-badge.rose { color: var(--accent-rose); background: rgba(225, 29, 72, 0.07); border-color: rgba(225, 29, 72, 0.2); }
-
-.hero-card[data-color="purple"] .hero-percentage { color: var(--accent-purple); }
-.hero-card[data-color="purple"] .hero-progress-fill { background: linear-gradient(90deg, #7c3aed, #a855f7); }
-.hero-card[data-color="emerald"] .hero-percentage { color: var(--accent-emerald); }
-.hero-card[data-color="emerald"] .hero-progress-fill { background: linear-gradient(90deg, #059669, #10b981); }
-.hero-card[data-color="green"] .hero-percentage { color: #15803d; }
-.hero-card[data-color="green"] .hero-progress-fill { background: linear-gradient(90deg, #16a34a, #4ade80); }
-.hero-card[data-color="orange"] .hero-percentage { color: var(--accent-orange); }
-.hero-card[data-color="orange"] .hero-progress-fill { background: linear-gradient(90deg, #ea580c, #f97316); }
-.hero-card[data-color="rose"] .hero-percentage { color: var(--accent-rose); }
-.hero-card[data-color="rose"] .hero-progress-fill { background: linear-gradient(90deg, #e11d48, #fb7185); }
-.hero-card[data-color="cyan"] .hero-percentage { color: var(--primary-cyan); }
-.hero-card[data-color="cyan"] .hero-progress-fill { background: linear-gradient(90deg, #0284c7, #06b6d4); }
-.hero-card.swap { animation: heroSwap 0.35s ease; }
-@keyframes heroSwap {
-    from { opacity: 0.2; transform: translateY(6px); }
-    to { opacity: 1; transform: none; }
-}
-
-/* Master loader: civilization.exe */
-.master-loader {
-    max-width: 620px;
-    margin: 28px auto 0;
-    text-align: left;
-    background: #0f172a;
-    color: #e2e8f0;
-    border-radius: 16px;
-    padding: 16px 18px 14px;
-    box-shadow: 0 18px 40px -16px rgba(15, 23, 42, 0.45);
-    font-family: var(--font-mono);
-}
-
-.master-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-}
-
-.master-label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.master-label strong { color: #ffffff; }
-
-.master-pct {
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: #7dd3fc;
-    font-variant-numeric: tabular-nums;
-}
-
-.master-track {
-    height: 18px;
-    border-radius: 6px;
-    background: #1e293b;
-    border: 1px solid #334155;
-    overflow: hidden;
-    padding: 2px;
-}
-
-.master-fill {
-    display: block;
-    position: relative;
-    height: 100%;
-    width: 0%;
-    border-radius: 4px;
-    background: linear-gradient(90deg, #2563eb, #06b6d4, #10b981);
-    transition: width 2.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.master-fill::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background-image: linear-gradient(-45deg, rgba(255,255,255,0.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.18) 75%, transparent 75%, transparent);
-    background-size: 18px 18px;
-    animation: stripes 1s linear infinite;
-}
-
-.master-status {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    font-size: 0.8rem;
-    min-height: 1.4em;
-}
-
-.master-status-text {
-    color: #94a3b8;
-    text-decoration: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: opacity 0.25s ease, color 0.2s ease;
-}
-
-.master-status-text:hover { color: #ffffff; }
-.master-status-text.fade { opacity: 0; }
-
-.spinner {
-    flex: none;
-    width: 12px;
-    height: 12px;
-    border: 2px solid #334155;
-    border-top-color: #7dd3fc;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* Cards rise in as they scroll into view (only once JS is running) */
-.js .stat-card:not(.in-view) {
-    opacity: 0;
-    transform: translateY(14px);
-}
-.js .stat-card.in-view {
-    animation: rise 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-@keyframes rise {
-    from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: none; }
-}
-
-/* 100% bars: a completion stamp and a confetti pop */
-.stat-card.complete .progress-bar {
-    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12), inset 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-.stat-card.complete .progress-fill::after { animation: none; background: none; }
-.stat-card.complete .percentage::after {
-    content: ' ✓';
-    font-size: 0.9em;
-}
-.progress-container { position: relative; }
-.confetti {
-    position: absolute;
-    right: 70px;
-    top: 50%;
-    width: 7px;
-    height: 7px;
-    border-radius: 2px;
-    pointer-events: none;
-    animation: confetti 0.9s cubic-bezier(0.2, 0.7, 0.4, 1) forwards;
-}
-@keyframes confetti {
-    from { transform: translate(0, 0) rotate(0); opacity: 1; }
-    to { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 0; }
-}
-
-/* Quiz scoreboard */
-.quiz-score {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--accent-purple);
-    background: #f5f3ff;
-    border: 1px solid #ddd6fe;
-    padding: 6px 10px;
-    border-radius: 8px;
-}
-
-.empty-state {
-    text-align: center;
-    color: var(--text-secondary);
-    padding: 40px 20px;
-    font-size: 1rem;
-}
-
-kbd {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    padding: 1px 6px;
-    border: 1px solid var(--border-hover);
-    border-bottom-width: 2px;
-    border-radius: 4px;
-    background: #ffffff;
-}
-
-.search-box { position: relative; }
-
-@media (max-width: 768px) {
-    .master-loader { margin-top: 22px; padding: 14px; }
-    .master-row { font-size: 0.8rem; }
-    .quiz-score { width: 100%; text-align: center; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .js .stat-card:not(.in-view) { opacity: 1; transform: none; }
-    .confetti { display: none; }
 }
