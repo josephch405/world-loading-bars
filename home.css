@@ -91,35 +91,13 @@ h1 {
     color: var(--ink-soft);
 }
 
-.year-line { margin-top: 40px; max-width: 640px; }
-
-.year-sentence {
-    font-family: var(--serif);
-    font-size: clamp(1.4rem, 3.4vw, 1.9rem);
-    line-height: 1.2;
-    margin-bottom: 12px;
-}
-
-.year-pct {
-    font-family: var(--mono);
-    font-size: 0.82em;
-    color: var(--live);
-    font-variant-numeric: tabular-nums;
-}
-
-.year-meta {
-    margin-top: 8px;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--muted);
-}
-
 .tally {
-    margin-top: 28px;
+    margin-top: 32px;
     font-family: var(--mono);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--ink-soft);
 }
+.tally-part { white-space: nowrap; }
 .tally strong { color: var(--ink); font-weight: 500; }
 
 /* ---------------------------------------------------------------- bars */
@@ -139,10 +117,6 @@ h1 {
     background: repeating-linear-gradient(90deg, var(--ink) 0 var(--seg), transparent var(--seg) calc(var(--seg) + var(--gap)));
 }
 
-.progress-bar--live { height: 18px; }
-.progress-bar--live .progress-fill {
-    background: repeating-linear-gradient(90deg, var(--live) 0 var(--seg), transparent var(--seg) calc(var(--seg) + var(--gap)));
-}
 
 .is-done .progress-fill {
     background: repeating-linear-gradient(90deg, var(--done) 0 var(--seg), transparent var(--seg) calc(var(--seg) + var(--gap)));

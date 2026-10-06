@@ -24,38 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toast = document.getElementById('toastNotification');
     let quizModeActive = false;
 
-    // 1. The year bar in the masthead ticks live
-    function startYearClock() {
-        const text = document.getElementById('yearProgressText');
-        const fill = document.getElementById('yearProgressFill');
-        const bar = document.getElementById('yearProgressBar');
-        const trend = document.getElementById('yearTrend');
-        if (!text) return;
-
-        const year = new Date().getUTCFullYear();
-        document.querySelectorAll('.js-year').forEach(el => { el.textContent = year; });
-        const start = Date.UTC(year, 0, 1);
-        const end = Date.UTC(year + 1, 0, 1);
-        const daysInYear = Math.round((end - start) / 864e5);
-
-        function tick() {
-            const now = Date.now();
-            const percent = (now - start) / (end - start) * 100;
-            text.textContent = percent.toFixed(4) + '%';
-            if (fill) fill.style.width = percent + '%';
-            if (bar) bar.setAttribute('aria-valuenow', percent.toFixed(1));
-            if (trend) {
-                const day = Math.floor((now - start) / 864e5) + 1;
-                const left = daysInYear - day + 1;
-                trend.textContent = `Day ${day} of ${daysInYear} · ${left} ${left === 1 ? 'day' : 'days'} until ${year + 1}`;
-            }
-        }
-        tick();
-        setInterval(tick, 100);
-    }
-    startYearClock();
-
-    // 2. Fixed-span timelines ("2000-2100") are computed from the clock, not hard-coded
+    // 1. Fixed-span timelines ("2000-2100") are computed from the clock, not hard-coded
     document.querySelectorAll('[data-live-span]').forEach(card => {
         const [from, to] = card.dataset.liveSpan.split('-').map(Number);
         const startMs = Date.UTC(from, 0, 1);
@@ -75,17 +44,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Tally line under the year bar
+    // 2. Tally line in the masthead
     const tally = document.getElementById('tally');
     if (tally) {
         const values = metricCards.map(c => parseFloat(c.dataset.percent));
         const done = values.filter(v => v >= 100).length;
         const half = values.filter(v => v >= 50 && v < 100).length;
         const low = values.filter(v => v < 20).length;
-        tally.innerHTML = `<strong>${done}</strong> finished · <strong>${half}</strong> past halfway · <strong>${low}</strong> under 20%`;
+        tally.innerHTML = [`<strong>${done}</strong> finished`, `<strong>${half}</strong> past halfway`, `<strong>${low}</strong> under 20%`]
+            .map(part => `<span class="tally-part">${part}</span>`).join(' · ');
     }
 
-    // 4. Bars fill in chunky steps, like a real progress bar, as soon as they scroll in.
+    // 3. Bars fill in chunky steps, like a real progress bar, as soon as they scroll in.
     //    Text and numbers are in the HTML already, so nothing waits on this.
     function fillRow(card, delay = 0) {
         const fill = card.querySelector('.progress-fill');
@@ -132,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Guess first: hide the numbers, slide to guess, then reveal
+    // 4. Guess first: hide the numbers, slide to guess, then reveal
     const quizModeBtn = document.getElementById('quizModeBtn');
     const quizScore = document.getElementById('quizScore');
     const quizResults = new Map(); // card -> signed error (guess - actual)
@@ -215,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Share modal
+    // 5. Share modal
     let lastShareOpener = null;
     let currentShareTitle = '';
     const shareModal = document.getElementById('shareModal');
@@ -282,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
-    // 7. Filters and search
+    // 6. Filters and search
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
