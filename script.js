@@ -44,7 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
             text.textContent = percent.toFixed(4) + '%';
             if (fill) fill.style.width = percent + '%';
             if (bar) bar.setAttribute('aria-valuenow', percent.toFixed(1));
-            if (trend) trend.textContent = `Day ${Math.floor((now - start) / 864e5) + 1} of ${daysInYear}`;
+            if (trend) {
+                const day = Math.floor((now - start) / 864e5) + 1;
+                const left = daysInYear - day + 1;
+                trend.textContent = `Day ${day} of ${daysInYear} · ${left} ${left === 1 ? 'day' : 'days'} until ${year + 1}`;
+            }
         }
         tick();
         setInterval(tick, 100);
