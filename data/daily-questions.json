@@ -1,0 +1,556 @@
+{
+ "generated": "2026-10-06",
+ "note": "World-level values; answer is a percentage (0-100).",
+ "questions": [
+  {
+   "id": "it-net-user-zs",
+   "question": "Out of every 100 people in the world, how many use the internet?",
+   "answer": 73.6,
+   "year": 2025,
+   "topic": "tech",
+   "source": "World Bank",
+   "source_detail": "Individuals using the Internet (% of population)",
+   "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS"
+  },
+  {
+   "id": "it-net-bbnd-p2",
+   "question": "For every 100 people in the world, how many fixed broadband subscriptions are there?",
+   "answer": 20.1,
+   "year": 2025,
+   "topic": "tech",
+   "source": "World Bank",
+   "source_detail": "Fixed broadband subscriptions (per 100 people)",
+   "url": "https://data.worldbank.org/indicator/IT.NET.BBND.P2"
+  },
+  {
+   "id": "fx-own-totl-zs",
+   "question": "Out of every 100 adults, how many have a bank or mobile-money account?",
+   "answer": 78.7,
+   "year": 2024,
+   "topic": "money",
+   "source": "World Bank",
+   "source_detail": "Account ownership at a financial institution or with a mobile-money-service provider (% of population ages 15+)",
+   "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+  },
+  {
+   "id": "eg-elc-accs-zs",
+   "question": "Out of every 100 people, how many have electricity at home?",
+   "answer": 91.9,
+   "year": 2024,
+   "topic": "energy",
+   "source": "World Bank",
+   "source_detail": "Access to electricity (% of population)",
+   "url": "https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS"
+  },
+  {
+   "id": "eg-cft-accs-zs",
+   "question": "Out of every 100 people, how many cook with clean fuels (not wood, coal or dung)?",
+   "answer": 74.4,
+   "year": 2023,
+   "topic": "energy",
+   "source": "World Bank",
+   "source_detail": "Access to clean fuels and technologies for cooking (% of population)",
+   "url": "https://data.worldbank.org/indicator/EG.CFT.ACCS.ZS"
+  },
+  {
+   "id": "share-electricity-renewables",
+   "question": "Out of every 100 units of electricity generated, how many come from renewables?",
+   "answer": 33.8,
+   "year": 2025,
+   "topic": "energy",
+   "source": "Our World in Data",
+   "source_detail": "Renewables",
+   "url": "https://ourworldindata.org/grapher/share-electricity-renewables"
+  },
+  {
+   "id": "share-electricity-coal",
+   "question": "Out of every 100 units of electricity generated, how many come from coal?",
+   "answer": 33.0,
+   "year": 2025,
+   "topic": "energy",
+   "source": "Our World in Data",
+   "source_detail": "Coal",
+   "url": "https://ourworldindata.org/grapher/share-electricity-coal"
+  },
+  {
+   "id": "share-electricity-nuclear",
+   "question": "Out of every 100 units of electricity generated, how many come from nuclear?",
+   "answer": 8.8,
+   "year": 2025,
+   "topic": "energy",
+   "source": "Our World in Data",
+   "source_detail": "Nuclear",
+   "url": "https://ourworldindata.org/grapher/share-electricity-nuclear"
+  },
+  {
+   "id": "share-electricity-solar",
+   "question": "Out of every 100 units of electricity generated, how many come from solar?",
+   "answer": 8.7,
+   "year": 2025,
+   "topic": "energy",
+   "source": "Our World in Data",
+   "source_detail": "Solar",
+   "url": "https://ourworldindata.org/grapher/share-electricity-solar"
+  },
+  {
+   "id": "share-electricity-wind",
+   "question": "Out of every 100 units of electricity generated, how many come from wind?",
+   "answer": 8.5,
+   "year": 2025,
+   "topic": "energy",
+   "source": "Our World in Data",
+   "source_detail": "Wind",
+   "url": "https://ourworldindata.org/grapher/share-electricity-wind"
+  },
+  {
+   "id": "share-electricity-hydro",
+   "question": "Out of every 100 units of electricity generated, how many come from hydropower?",
+   "answer": 14.0,
+   "year": 2025,
+   "topic": "energy",
+   "source": "Our World in Data",
+   "source_detail": "Hydropower",
+   "url": "https://ourworldindata.org/grapher/share-electricity-hydro"
+  },
+  {
+   "id": "share-electricity-fossil-fuels",
+   "question": "Out of every 100 units of electricity generated, how many come from fossil fuels?",
+   "answer": 57.4,
+   "year": 2025,
+   "topic": "energy",
+   "source": "Our World in Data",
+   "source_detail": "Fossil fuels",
+   "url": "https://ourworldindata.org/grapher/share-electricity-fossil-fuels"
+  },
+  {
+   "id": "electric-car-sales-share",
+   "question": "Out of every 100 new cars sold, how many are electric?",
+   "answer": 25.0,
+   "year": 2025,
+   "topic": "energy",
+   "source": "Our World in Data",
+   "source_detail": "Share of new cars that are electric",
+   "url": "https://ourworldindata.org/grapher/electric-car-sales-share"
+  },
+  {
+   "id": "sh-h2o-basw-zs",
+   "question": "Out of every 100 people, how many have at least basic drinking water?",
+   "answer": 91.5,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "People using at least basic drinking water services (% of population)",
+   "url": "https://data.worldbank.org/indicator/SH.H2O.BASW.ZS"
+  },
+  {
+   "id": "sh-h2o-smdw-zs",
+   "question": "Out of every 100 people, how many have safe drinking water at home, available whenever they need it?",
+   "answer": 73.7,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "People using safely managed drinking water services (% of population)",
+   "url": "https://data.worldbank.org/indicator/SH.H2O.SMDW.ZS"
+  },
+  {
+   "id": "sh-sta-bass-zs",
+   "question": "Out of every 100 people, how many have at least a basic toilet?",
+   "answer": 82.2,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "People using at least basic sanitation services (% of population)",
+   "url": "https://data.worldbank.org/indicator/SH.STA.BASS.ZS"
+  },
+  {
+   "id": "sh-sta-smss-zs",
+   "question": "Out of every 100 people, how many have a toilet whose waste is safely treated or disposed of?",
+   "answer": 58.5,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "People using safely managed sanitation services (% of population)",
+   "url": "https://data.worldbank.org/indicator/SH.STA.SMSS.ZS"
+  },
+  {
+   "id": "sh-sta-hygn-zs",
+   "question": "Out of every 100 people, how many have a place at home to wash hands with soap and water?",
+   "answer": 78.0,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "People with basic handwashing facilities including soap and water (% of population)",
+   "url": "https://data.worldbank.org/indicator/SH.STA.HYGN.ZS"
+  },
+  {
+   "id": "sh-sta-odfc-zs",
+   "question": "Out of every 100 people, how many have no toilet at all and go in the open?",
+   "answer": 4.3,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "People practicing open defecation (% of population)",
+   "url": "https://data.worldbank.org/indicator/SH.STA.ODFC.ZS"
+  },
+  {
+   "id": "sh-imm-idpt",
+   "question": "Out of every 100 one-year-olds, how many got the basic DTP3 vaccine?",
+   "answer": 84.8,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "Immunization, DPT (% of children ages 12-23 months)",
+   "url": "https://data.worldbank.org/indicator/SH.IMM.IDPT"
+  },
+  {
+   "id": "sh-dyn-mort",
+   "question": "Out of every 100 children born, how many die before age 5?",
+   "answer": 3.7,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "Mortality rate, under-5 (per 1,000 live births)",
+   "url": "https://data.worldbank.org/indicator/SH.DYN.MORT"
+  },
+  {
+   "id": "sh-sta-brtc-zs",
+   "question": "Out of every 100 births, how many are attended by a doctor, nurse or midwife?",
+   "answer": 83.3,
+   "year": 2019,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "Births attended by skilled health staff (% of total)",
+   "url": "https://data.worldbank.org/indicator/SH.STA.BRTC.ZS"
+  },
+  {
+   "id": "sn-itk-defc-zs",
+   "question": "Out of every 100 people, how many don’t get enough to eat?",
+   "answer": 8.5,
+   "year": 2023,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "Prevalence of undernourishment (% of population)",
+   "url": "https://data.worldbank.org/indicator/SN.ITK.DEFC.ZS"
+  },
+  {
+   "id": "sh-sta-diab-zs",
+   "question": "Out of every 100 adults (20–79), how many have diabetes?",
+   "answer": 10.8,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "Diabetes prevalence (% of population ages 20 to 79)",
+   "url": "https://data.worldbank.org/indicator/SH.STA.DIAB.ZS"
+  },
+  {
+   "id": "sh-anm-allw-zs",
+   "question": "Out of every 100 women aged 15–49, how many are anaemic?",
+   "answer": 30.7,
+   "year": 2023,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "Prevalence of anemia among women of reproductive age (% of women ages 15-49)",
+   "url": "https://data.worldbank.org/indicator/SH.ANM.ALLW.ZS"
+  },
+  {
+   "id": "sh-prv-smok",
+   "question": "Out of every 100 adults, how many use tobacco?",
+   "answer": 20.3,
+   "year": 2024,
+   "topic": "health",
+   "source": "World Bank",
+   "source_detail": "Prevalence of current tobacco use (% of adults)",
+   "url": "https://data.worldbank.org/indicator/SH.PRV.SMOK"
+  },
+  {
+   "id": "share-of-adults-defined-as-obese",
+   "question": "Out of every 100 adults, how many are obese?",
+   "answer": 16.4,
+   "year": 2024,
+   "topic": "health",
+   "source": "Our World in Data",
+   "source_detail": "Obesity among adults, BMI >= 30 kg/m2 (crude estimate) (%) - Sex: both sexes - Age group: 18+  years of age",
+   "url": "https://ourworldindata.org/grapher/share-of-adults-defined-as-obese"
+  },
+  {
+   "id": "se-adt-litr-zs",
+   "question": "Out of every 100 adults, how many can read and write?",
+   "answer": 87.7,
+   "year": 2024,
+   "topic": "education",
+   "source": "World Bank",
+   "source_detail": "Literacy rate, adult total (% of people ages 15 and above)",
+   "url": "https://data.worldbank.org/indicator/SE.ADT.LITR.ZS"
+  },
+  {
+   "id": "se-adt-1524-lt-zs",
+   "question": "Out of every 100 people aged 15–24, how many can read and write?",
+   "answer": 93.1,
+   "year": 2024,
+   "topic": "education",
+   "source": "World Bank",
+   "source_detail": "Literacy rate, youth total (% of people ages 15-24)",
+   "url": "https://data.worldbank.org/indicator/SE.ADT.1524.LT.ZS"
+  },
+  {
+   "id": "se-prm-cmpt-zs",
+   "question": "Out of every 100 children, how many finish primary school?",
+   "answer": 88.0,
+   "year": 2024,
+   "topic": "education",
+   "source": "World Bank",
+   "source_detail": "Primary completion rate, total (% of relevant age group)",
+   "url": "https://data.worldbank.org/indicator/SE.PRM.CMPT.ZS"
+  },
+  {
+   "id": "se-sec-cmpt-lo-zs",
+   "question": "Out of every 100 children, how many finish lower secondary school (about age 15)?",
+   "answer": 77.9,
+   "year": 2024,
+   "topic": "education",
+   "source": "World Bank",
+   "source_detail": "Lower secondary completion rate, total (% of relevant age group)",
+   "url": "https://data.worldbank.org/indicator/SE.SEC.CMPT.LO.ZS"
+  },
+  {
+   "id": "se-lpv-prim",
+   "question": "Out of every 100 ten-year-olds, how many can’t read and understand a simple story?",
+   "answer": 48.3,
+   "year": 2019,
+   "topic": "education",
+   "source": "World Bank",
+   "source_detail": "Learning poverty: Share of Children at the End-of-Primary age below minimum reading proficiency adjusted by Out-of-School Children (%)",
+   "url": "https://data.worldbank.org/indicator/SE.LPV.PRIM"
+  },
+  {
+   "id": "si-pov-dday",
+   "question": "Out of every 100 people, how many live on less than $3 a day?",
+   "answer": 10.4,
+   "year": 2024,
+   "topic": "money",
+   "source": "World Bank",
+   "source_detail": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)",
+   "url": "https://data.worldbank.org/indicator/SI.POV.DDAY"
+  },
+  {
+   "id": "si-pov-umic",
+   "question": "Out of every 100 people, how many live on less than $8.30 a day?",
+   "answer": 46.1,
+   "year": 2024,
+   "topic": "money",
+   "source": "World Bank",
+   "source_detail": "Poverty headcount ratio at $8.30 a day (2021 PPP) (% of population)",
+   "url": "https://data.worldbank.org/indicator/SI.POV.UMIC"
+  },
+  {
+   "id": "en-pop-slum-ur-zs",
+   "question": "Out of every 100 city dwellers, how many live in slums?",
+   "answer": 23.2,
+   "year": 2022,
+   "topic": "living",
+   "source": "World Bank",
+   "source_detail": "Population living in slums (% of urban population)",
+   "url": "https://data.worldbank.org/indicator/EN.POP.SLUM.UR.ZS"
+  },
+  {
+   "id": "sp-urb-totl-in-zs",
+   "question": "Out of every 100 people, how many live in cities or towns?",
+   "answer": 57.8,
+   "year": 2025,
+   "topic": "living",
+   "source": "World Bank",
+   "source_detail": "Urban population (% of total population)",
+   "url": "https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS"
+  },
+  {
+   "id": "sp-pop-65up-to-zs",
+   "question": "Out of every 100 people alive, how many are 65 or older?",
+   "answer": 10.4,
+   "year": 2025,
+   "topic": "people",
+   "source": "World Bank",
+   "source_detail": "Population ages 65 and above (% of total population)",
+   "url": "https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS"
+  },
+  {
+   "id": "sp-pop-0014-to-zs",
+   "question": "Out of every 100 people alive, how many are under 15?",
+   "answer": 24.4,
+   "year": 2025,
+   "topic": "people",
+   "source": "World Bank",
+   "source_detail": "Population ages 0-14 (% of total population)",
+   "url": "https://data.worldbank.org/indicator/SP.POP.0014.TO.ZS"
+  },
+  {
+   "id": "sm-pop-totl-zs",
+   "question": "Out of every 100 people, how many live outside the country they were born in?",
+   "answer": 3.7,
+   "year": 2024,
+   "topic": "people",
+   "source": "World Bank",
+   "source_detail": "International migrant stock (% of population)",
+   "url": "https://data.worldbank.org/indicator/SM.POP.TOTL.ZS"
+  },
+  {
+   "id": "sg-gen-parl-zs",
+   "question": "Out of every 100 seats in national parliaments, how many are held by women?",
+   "answer": 27.2,
+   "year": 2025,
+   "topic": "people",
+   "source": "World Bank",
+   "source_detail": "Proportion of seats held by women in national parliaments (%)",
+   "url": "https://data.worldbank.org/indicator/SG.GEN.PARL.ZS"
+  },
+  {
+   "id": "sl-tlf-cact-fe-zs",
+   "question": "Out of every 100 women (15+), how many are working or looking for work?",
+   "answer": 48.9,
+   "year": 2025,
+   "topic": "work",
+   "source": "World Bank",
+   "source_detail": "Labor force participation rate, female (% of female population ages 15+) (modeled ILO estimate)",
+   "url": "https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS"
+  },
+  {
+   "id": "sl-tlf-cact-ma-zs",
+   "question": "Out of every 100 men (15+), how many are working or looking for work?",
+   "answer": 73.1,
+   "year": 2025,
+   "topic": "work",
+   "source": "World Bank",
+   "source_detail": "Labor force participation rate, male (% of male population ages 15+) (modeled ILO estimate)",
+   "url": "https://data.worldbank.org/indicator/SL.TLF.CACT.MA.ZS"
+  },
+  {
+   "id": "sl-agr-empl-zs",
+   "question": "Out of every 100 workers, how many work in farming, forestry or fishing?",
+   "answer": 25.8,
+   "year": 2025,
+   "topic": "work",
+   "source": "World Bank",
+   "source_detail": "Employment in agriculture (% of total employment) (modeled ILO estimate)",
+   "url": "https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS"
+  },
+  {
+   "id": "sl-srv-empl-zs",
+   "question": "Out of every 100 workers, how many work in services?",
+   "answer": 50.6,
+   "year": 2025,
+   "topic": "work",
+   "source": "World Bank",
+   "source_detail": "Employment in services (% of total employment) (modeled ILO estimate)",
+   "url": "https://data.worldbank.org/indicator/SL.SRV.EMPL.ZS"
+  },
+  {
+   "id": "sl-emp-self-zs",
+   "question": "Out of every 100 workers, how many are self-employed?",
+   "answer": 46.4,
+   "year": 2025,
+   "topic": "work",
+   "source": "World Bank",
+   "source_detail": "Self-employed, total (% of total employment) (modeled ILO estimate)",
+   "url": "https://data.worldbank.org/indicator/SL.EMP.SELF.ZS"
+  },
+  {
+   "id": "sl-uem-totl-zs",
+   "question": "Out of every 100 people in the labour force, how many are unemployed?",
+   "answer": 4.8,
+   "year": 2025,
+   "topic": "work",
+   "source": "World Bank",
+   "source_detail": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
+   "url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS"
+  },
+  {
+   "id": "sl-uem-1524-zs",
+   "question": "Out of every 100 young people (15–24) in the labour force, how many are unemployed?",
+   "answer": 13.4,
+   "year": 2025,
+   "topic": "work",
+   "source": "World Bank",
+   "source_detail": "Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)",
+   "url": "https://data.worldbank.org/indicator/SL.UEM.1524.ZS"
+  },
+  {
+   "id": "nv-agr-totl-zs",
+   "question": "Out of every $100 of world GDP, how much comes from farming, forestry and fishing?",
+   "answer": 4.0,
+   "year": 2025,
+   "topic": "money",
+   "source": "World Bank",
+   "source_detail": "Agriculture, forestry, and fishing, value added (% of GDP)",
+   "url": "https://data.worldbank.org/indicator/NV.AGR.TOTL.ZS"
+  },
+  {
+   "id": "nv-ind-manf-zs",
+   "question": "Out of every $100 of world GDP, how much comes from manufacturing?",
+   "answer": 14.9,
+   "year": 2025,
+   "topic": "money",
+   "source": "World Bank",
+   "source_detail": "Manufacturing, value added (% of GDP)",
+   "url": "https://data.worldbank.org/indicator/NV.IND.MANF.ZS"
+  },
+  {
+   "id": "ag-lnd-frst-zs",
+   "question": "Out of every 100 acres of land on Earth, how many are forest?",
+   "answer": 31.1,
+   "year": 2023,
+   "topic": "nature",
+   "source": "World Bank",
+   "source_detail": "Forest area (% of land area)",
+   "url": "https://data.worldbank.org/indicator/AG.LND.FRST.ZS"
+  },
+  {
+   "id": "ag-lnd-agri-zs",
+   "question": "Out of every 100 acres of land on Earth, how many are farmland or pasture?",
+   "answer": 36.9,
+   "year": 2023,
+   "topic": "nature",
+   "source": "World Bank",
+   "source_detail": "Agricultural land (% of land area)",
+   "url": "https://data.worldbank.org/indicator/AG.LND.AGRI.ZS"
+  },
+  {
+   "id": "er-lnd-ptld-zs",
+   "question": "Out of every 100 acres of land on Earth, how many are officially protected?",
+   "answer": 16.5,
+   "year": 2025,
+   "topic": "nature",
+   "source": "World Bank",
+   "source_detail": "Terrestrial protected areas (% of total land area)",
+   "url": "https://data.worldbank.org/indicator/ER.LND.PTLD.ZS"
+  },
+  {
+   "id": "er-h2o-fwag-zs",
+   "question": "Out of every 100 litres of freshwater people withdraw, how many go to agriculture?",
+   "answer": 71.0,
+   "year": 2022,
+   "topic": "nature",
+   "source": "World Bank",
+   "source_detail": "Annual freshwater withdrawals, agriculture (% of total freshwater withdrawal)",
+   "url": "https://data.worldbank.org/indicator/ER.H2O.FWAG.ZS"
+  },
+  {
+   "id": "plastic-recycled",
+   "question": "Out of every 100 tonnes of plastic waste, how many get recycled?",
+   "answer": 9.3,
+   "year": 2019,
+   "topic": "nature",
+   "source": "Our World in Data (OECD)",
+   "source_detail": "Share of plastic waste: recycled",
+   "url": "https://ourworldindata.org/grapher/share-plastic-fate"
+  },
+  {
+   "id": "plastic-landfilled",
+   "question": "Out of every 100 tonnes of plastic waste, how many end up in landfill?",
+   "answer": 49.2,
+   "year": 2019,
+   "topic": "nature",
+   "source": "Our World in Data (OECD)",
+   "source_detail": "Share of plastic waste: landfilled",
+   "url": "https://ourworldindata.org/grapher/share-plastic-fate"
+  }
+ ]
+}
