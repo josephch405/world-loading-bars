@@ -47,7 +47,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="home.css?v=2.6">
+    <link rel="stylesheet" href="home.css?v=2.7">
 </head>
 <body>
     <a class="skip-link" href="#mainContent">Skip to main content</a>
@@ -60,6 +60,20 @@
             <p class="tally" id="tally"><strong>3</strong> finished · <strong>15</strong> past halfway · <strong>6</strong> under 20%</p>
         </header>
 
+        <section class="daily" id="daily" aria-labelledby="dailyTitle" hidden>
+            <div class="category-header">
+                <h2 class="category-title" id="dailyTitle">Daily</h2>
+                <span class="daily-meta" id="dailyMeta"></span>
+            </div>
+            <ol class="daily-list" id="dailyList"></ol>
+            <div class="daily-end" id="dailyEnd" hidden>
+                <p class="daily-score"><span class="daily-total"></span> / <span class="daily-max"></span></p>
+                <pre class="daily-share"></pre>
+                <button class="btn daily-copy" type="button">Copy</button>
+                <p class="daily-foot"></p>
+            </div>
+        </section>
+
         <nav class="controls-bar" aria-label="Filter metrics">
             <div class="filter-pills">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -70,8 +84,6 @@
                 <button class="filter-btn" data-filter="completed">Finished</button>
             </div>
             <div class="controls-right">
-                <span id="quizScore" class="quiz-score" aria-live="polite" hidden></span>
-                <button id="quizModeBtn" class="quiz-toggle-btn" type="button" aria-pressed="false" title="Hide the numbers and guess first">Guess first</button>
                 <label class="sr-only" for="searchInput">Search metrics</label>
                 <input type="search" id="searchInput" class="search-input" placeholder="Search  /" autocomplete="off">
             </div>
@@ -442,6 +454,7 @@
 
     <div id="toastNotification" class="toast" role="status" aria-live="polite"></div>
 
-    <script src="script.js?v=2.4"></script>
+    <script src="script.js?v=2.5"></script>
+    <script src="daily.js?v=1"></script>
 </body>
 </html>

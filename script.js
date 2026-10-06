@@ -4,9 +4,11 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
 // Analytics: PostHog is the only tracker loaded (see the snippet in <head>).
 function track(event, props) {
-    if (window.posthog && typeof window.posthog.capture === 'function') {
-        window.posthog.capture(event, props);
-    }
+    try {
+        if (window.posthog && typeof window.posthog.capture === 'function') {
+            window.posthog.capture(event, props);
+        }
+    } catch (e) { /* analytics must never break the page */ }
 }
 
 function formatPercent(value) {
@@ -21,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const categorySections = document.querySelectorAll('.category-section');
     const emptyState = document.getElementById('emptyState');
     const toast = document.getElementById('toastNotification');
-    let quizModeActive = false;
 
     // 1. Tally line in the masthead
     const tally = document.getElementById('tally');
@@ -75,96 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     statCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            if (e.target.closest('.share-btn') || e.target.closest('.quiz-box')) return;
+            if (e.target.closest('.share-btn')) return;
             if (!card.getAttribute('href')) return;
             track('card_click', { item_id: card.getAttribute('href'), item_name: card.querySelector('h3')?.textContent });
         });
     });
 
-    // 3. Guess first: hide the numbers, slide to guess, then reveal
-    const quizModeBtn = document.getElementById('quizModeBtn');
-    const quizScore = document.getElementById('quizScore');
-    const quizResults = new Map(); // card -> signed error (guess - actual)
-
-    function updateQuizScore() {
-        if (!quizScore) return;
-        const errors = Array.from(quizResults.values());
-        if (!errors.length) {
-            quizScore.textContent = '';
-            return;
-        }
-        const avgAbs = errors.reduce((a, e) => a + Math.abs(e), 0) / errors.length;
-        const bias = errors.reduce((a, e) => a + e, 0) / errors.length;
-        let verdict = '';
-        if (errors.length >= 3) {
-            if (avgAbs <= 5) verdict = ' — uncanny';
-            else if (bias < -5) verdict = ' — you underestimate the world';
-            else if (bias > 5) verdict = ' — an optimist';
-        }
-        quizScore.textContent = `${errors.length} guessed, off by ${avgAbs.toFixed(1)} on average${verdict}`;
-    }
-
-    statCards.forEach(card => {
-        const title = card.querySelector('h3')?.textContent || 'this metric';
-        const quizBox = document.createElement('div');
-        quizBox.className = 'quiz-box';
-        quizBox.innerHTML = `
-            <input type="range" min="0" max="100" value="50" class="quiz-slider" aria-label="Your guess for ${title}">
-            <span class="quiz-val-display">50%</span>
-            <button class="check-guess-btn" type="button">Check</button>
-            <span class="guess-feedback" aria-live="polite"></span>
-        `;
-        const slider = quizBox.querySelector('.quiz-slider');
-        const valDisplay = quizBox.querySelector('.quiz-val-display');
-        const feedback = quizBox.querySelector('.guess-feedback');
-
-        // The row is a link; keep quiz interactions from navigating
-        quizBox.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
-        slider.addEventListener('input', () => { valDisplay.textContent = slider.value + '%'; });
-
-        quizBox.querySelector('.check-guess-btn').addEventListener('click', () => {
-            const guess = parseFloat(slider.value);
-            const actual = parseFloat(card.dataset.percent);
-            const diff = Math.abs(guess - actual);
-            quizResults.set(card, guess - actual);
-            updateQuizScore();
-
-            card.classList.add('revealed');
-            card.querySelector('.percentage')?.removeAttribute('aria-hidden');
-            fillRow(card);
-
-            if (diff <= 5) {
-                feedback.textContent = `Within ${diff.toFixed(1)}. Nice.`;
-                feedback.className = 'guess-feedback accurate';
-            } else {
-                feedback.textContent = `${guess < actual ? 'Under' : 'Over'} by ${diff.toFixed(1)}`;
-                feedback.className = 'guess-feedback';
-            }
-            track('quiz_guess', { item_name: title, guess, actual, diff: Math.round(diff * 10) / 10 });
-        });
-
-        card.appendChild(quizBox);
-    });
-
-    if (quizModeBtn) {
-        quizModeBtn.addEventListener('click', () => {
-            quizModeActive = !quizModeActive;
-            document.body.classList.toggle('quiz-mode-on', quizModeActive);
-            quizModeBtn.classList.toggle('active', quizModeActive);
-            quizModeBtn.setAttribute('aria-pressed', quizModeActive);
-            quizModeBtn.textContent = quizModeActive ? 'Show numbers' : 'Guess first';
-            if (quizScore) quizScore.hidden = !quizModeActive;
-            statCards.forEach(card => {
-                const pct = card.querySelector('.percentage');
-                if (quizModeActive && !card.classList.contains('revealed')) pct?.setAttribute('aria-hidden', 'true');
-                else pct?.removeAttribute('aria-hidden');
-            });
-            if (quizModeActive) showToast('Numbers hidden. Slide to guess, then check.');
-            track('quiz_mode_toggle', { on: quizModeActive });
-        });
-    }
-
-    // 4. Share modal
+    // 3. Share modal
     let lastShareOpener = null;
     let currentShareTitle = '';
     const shareModal = document.getElementById('shareModal');
@@ -231,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
-    // 5. Filters and search
+    // 4. Filters and search
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
