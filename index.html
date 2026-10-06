@@ -47,7 +47,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="stylesheet" href="style.css?v=1.3">
 </head>
 <body>
     <a class="skip-link" href="#mainContent">Skip to main content</a>
@@ -59,12 +59,28 @@
             </div>
             <h1>World Loading Bars</h1>
             <p class="subtitle">Humanity's progress across AGI, space exploration, clean energy, and health — visualised as live loading bars.</p>
+
+            <!-- Master loader: average of every metric below, with a rotating status line -->
+            <div class="master-loader" id="masterLoader">
+                <div class="master-row">
+                    <span class="master-label">Installing <strong>civilization.exe</strong></span>
+                    <span class="master-pct" id="masterPct">0%</span>
+                </div>
+                <div class="master-track" id="masterBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Average progress across all metrics">
+                    <span class="master-fill" id="masterFill"></span>
+                </div>
+                <div class="master-status">
+                    <span class="spinner" aria-hidden="true"></span>
+                    <a id="masterStatus" class="master-status-text" href="#mainContent">Booting humanity…</a>
+                </div>
+            </div>
         </header>
 
         <!-- Featured Spotlight Hero Card -->
         <div class="featured-hero-container">
             <div class="hero-header-row">
                 <span class="hero-title-badge">🎯 SPOTLIGHT METRIC</span>
+                <button id="shuffleHeroBtn" class="randomize-btn" type="button">🎲 Shuffle</button>
             </div>
             <a id="heroCard" href="details/kardashev.html" class="hero-card" data-color="purple">
                 <!-- Dynamically populated by script.js -->
@@ -83,11 +99,12 @@
                 <button class="filter-btn" data-filter="completed">🏆 Completed</button>
             </div>
             <div class="controls-right">
+                <span id="quizScore" class="quiz-score" aria-live="polite" hidden></span>
                 <button id="quizModeBtn" class="quiz-toggle-btn" title="Guess before revealing!">🎮 Quiz Mode</button>
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
                     <label class="sr-only" for="searchInput">Search metrics</label>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search..." aria-label="Search metrics">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search…  ( / )" aria-label="Search metrics">
                 </div>
             </div>
         </div>
@@ -103,12 +120,12 @@
                     <!-- Year 2026 Live Ticking -->
                     <div id="yearProgressCard" class="stat-card realtime-card" data-category="realtime" data-color="blue" data-percent="65.8" data-search="year 2026 progress time elapsed countdown calendar live ticking">
                         <div class="card-top">
-                            <span class="tag-badge blue"><span class="live-dot-sm"></span> LIVE 2026</span>
+                            <span class="tag-badge blue"><span class="live-dot-sm"></span> LIVE <span class="js-year">2026</span></span>
                             <button class="share-btn" data-title="Year 2026 Progress" data-percent="65.8%" data-url="index.html" title="Share metric">🔗 Share</button>
                         </div>
                         <div class="stat-header">
-                            <h3>Year 2026 Loaded</h3>
-                            <p class="description">Real-time percentage of 2026 elapsed (ticks live every second)</p>
+                            <h3>Year <span class="js-year">2026</span> Loaded</h3>
+                            <p class="description">Real-time percentage of <span class="js-year">2026</span> elapsed (ticks live every second)</p>
                         </div>
                         <div class="progress-container">
                             <div class="progress-bar" id="yearProgressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65.8" aria-label="Year 2026 progress">
@@ -117,13 +134,13 @@
                             <span id="yearProgressText" class="percentage font-mono">65.8421%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">⚡ Live astronomical time</span>
+                            <span class="trend" id="yearTrend">⚡ Live astronomical time</span>
                             <span class="view-link">Real-Time</span>
                         </div>
                     </div>
 
                     <!-- 21st Century Progress -->
-                    <div class="stat-card" data-category="realtime" data-color="purple" data-percent="26.65" data-search="21st century progress year 2000 to 2100 era millennium">
+                    <div class="stat-card" data-category="realtime" data-color="purple" data-percent="26.65" data-live-span="2000-2100" data-search="21st century progress year 2000 to 2100 era millennium">
                         <div class="card-top">
                             <span class="tag-badge purple">CENTURY</span>
                             <button class="share-btn" data-title="21st Century Progress" data-percent="26.65%" data-url="index.html" title="Share metric">🔗 Share</button>
@@ -139,13 +156,13 @@
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">↗ 26.65 of 100 years</span>
+                            <span class="trend" data-live-trend>↗ 26.65 of 100 years</span>
                             <span class="view-link">Milestone</span>
                         </div>
                     </div>
 
                     <!-- UN 2030 Global Goals (SDGs) Countdown -->
-                    <div class="stat-card" data-category="realtime" data-color="green" data-percent="77.6" data-search="un sustainable development goals sdg 2030 agenda countdown timeline">
+                    <div class="stat-card" data-category="realtime" data-color="green" data-percent="77.6" data-live-span="2015-2030" data-search="un sustainable development goals sdg 2030 agenda countdown timeline">
                         <div class="card-top">
                             <span class="tag-badge green">SDG 2030</span>
                             <button class="share-btn" data-title="UN 2030 Agenda Timeline" data-percent="77.6%" data-url="index.html" title="Share metric">🔗 Share</button>
@@ -161,7 +178,7 @@
                             <span class="percentage">0%</span>
                         </div>
                         <div class="stat-footer">
-                            <span class="trend">⏳ 3.4 years remaining</span>
+                            <span class="trend" data-live-trend>⏳ 3.4 years remaining</span>
                             <span class="view-link">Deadline</span>
                         </div>
                     </div>
@@ -796,11 +813,12 @@
                     </a>
                 </div>
             </section>
+            <p id="emptyState" class="empty-state" hidden>No bars match that search. Humanity is still loading it. ⏳</p>
         </main>
 
         <footer>
             <p>Data Sources: World Bank, IEA, ITU, UNESCO, WHO, Our World in Data</p>
-            <p class="note">World Loading Bars • Interactive Global Statistics</p>
+            <p class="note">World Loading Bars • Interactive Global Statistics • Press <kbd>/</kbd> to search</p>
         </footer>
     </div>
 
@@ -831,6 +849,6 @@
 
     <div id="toastNotification" class="toast" role="status" aria-live="polite">Copied to clipboard!</div>
 
-    <script src="script.js?v=1.1"></script>
+    <script src="script.js?v=1.2"></script>
 </body>
 </html>

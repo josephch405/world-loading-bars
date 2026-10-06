@@ -1,3 +1,46 @@
+// Lets CSS hide not-yet-revealed cards only when JS is around to reveal them.
+document.documentElement.classList.add('js');
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Analytics: PostHog is the only tracker loaded (see the snippet in <head>).
+function track(event, props) {
+    if (window.posthog && typeof window.posthog.capture === 'function') {
+        window.posthog.capture(event, props);
+    }
+}
+
+// Playful status lines for the civilization.exe loader, keyed by detail page.
+const STATUS_LINES = {
+    'agi-benchmarks': 'Training a slightly smarter model',
+    'kardashev': 'Harnessing planetary energy',
+    'fusion-energy': 'Containing a small star',
+    'mars-colonization': 'Packing for Mars',
+    'electric-vehicles': 'Swapping gas tanks for batteries',
+    'autonomous-miles': 'Teaching cars to drive themselves',
+    'internet-access': 'Connecting the next billion',
+    'mobile-phone': 'Handing out phones',
+    'electricity': 'Wiring the last villages',
+    'renewable-energy': 'Unfolding solar panels',
+    'carbon-reduction': 'Un-burning carbon',
+    'protected-land': 'Protecting wild places',
+    'plastic-recycling': 'Sorting the recycling',
+    'ocean-conservation': 'Guarding the oceans',
+    'poverty': 'Lifting people out of poverty',
+    'literacy': 'Teaching the world to read',
+    'clean-water': 'Piping clean water',
+    'vaccination': 'Vaccinating the kids',
+    'urban-population': 'Building cities',
+    'life-expectancy': 'Adding birthdays',
+    'female-workforce': 'Closing the workforce gap',
+    'education-parity': 'Getting every girl to school',
+    'secondary-education': 'Graduating high school',
+    'smallpox-eradication': 'Deleting smallpox',
+    'human-genome': 'Reading all 3 billion letters',
+    'planets-visited': 'Saying hi to every planet',
+    'ozone-healing': 'Patching the ozone layer',
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const statCards = Array.from(document.querySelectorAll('.stat-card'));
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -29,9 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function setRandomHeroCard() {
         if (!statCards.length || !heroCard) return;
 
-        const candidateCards = statCards.filter(c => c.dataset.category !== 'realtime');
+        const candidateCards = statCards.filter(c => c.dataset.category !== 'realtime' && c !== heroSource);
         const randomIndex = Math.floor(Math.random() * candidateCards.length);
         const card = candidateCards[randomIndex];
+        heroSource = card;
 
         const title = card.querySelector('h3').textContent;
         const description = card.querySelector('.description').textContent;
@@ -59,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="hero-progress-group">
                     <div class="hero-percentage">${prefix}${displayVal}${unit}</div>
                     <div class="hero-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}" aria-label="${title}">
-                        <div class="hero-progress-fill" style="width: ${percent}%"></div>
+                        <div class="hero-progress-fill" style="width: 0%"></div>
                     </div>
                 </div>
             </div>
@@ -67,10 +111,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span>Click to view detailed metrics & timeline →</span>
             </div>
         `;
+        const heroFill = heroCard.querySelector('.hero-progress-fill');
+        requestAnimationFrame(() => requestAnimationFrame(() => { heroFill.style.width = percent + '%'; }));
     }
 
     // Initialize Hero Spotlight
+    let heroSource = null;
     setRandomHeroCard();
+
+    const shuffleHeroBtn = document.getElementById('shuffleHeroBtn');
+    if (shuffleHeroBtn) {
+        shuffleHeroBtn.addEventListener('click', () => {
+            setRandomHeroCard();
+            heroCard.classList.remove('swap');
+            void heroCard.offsetWidth; // restart the swap animation
+            heroCard.classList.add('swap');
+            track('hero_shuffle', { item_name: heroSource?.querySelector('h3')?.textContent });
+        });
+    }
 
     // 2. Real-Time Temporal Ticking Engine
     function startRealtimeTicking() {
@@ -78,6 +136,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const yearProgressText = document.getElementById('yearProgressText');
 
         if (!yearProgressText) return;
+
+        const thisYear = new Date().getUTCFullYear();
+        document.querySelectorAll('.js-year').forEach(el => { el.textContent = thisYear; });
+
+        // Fixed-span timelines ("2000-2100") are computed from the clock, not hard-coded.
+        document.querySelectorAll('[data-live-span]').forEach(card => {
+            const [from, to] = card.dataset.liveSpan.split('-').map(Number);
+            const startMs = Date.UTC(from, 0, 1);
+            const endMs = Date.UTC(to, 0, 1);
+            const fraction = Math.min(Math.max((Date.now() - startMs) / (endMs - startMs), 0), 1);
+            const pct = (fraction * 100).toFixed(1);
+            card.dataset.percent = pct;
+            card.querySelector('.progress-bar')?.setAttribute('aria-valuenow', pct);
+            card.querySelector('.share-btn')?.setAttribute('data-percent', pct + '%');
+            const trend = card.querySelector('[data-live-trend]');
+            if (trend) {
+                const yearsLeft = (endMs - Date.now()) / (365.2425 * 864e5);
+                const yearsIn = (to - from) * fraction;
+                trend.textContent = (to - from) >= 50
+                    ? `↗ ${yearsIn.toFixed(2)} of ${to - from} years`
+                    : `⏳ ${Math.max(yearsLeft, 0).toFixed(1)} years remaining`;
+            }
+        });
+
+        const yearTrend = document.getElementById('yearTrend');
 
         function tick() {
             const now = new Date();
@@ -97,6 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (yearProgressBar) {
                 yearProgressBar.setAttribute('aria-valuenow', percent.toFixed(2));
             }
+            if (yearTrend) {
+                const dayOfYear = Math.floor((currentMs - startOfYear) / 864e5) + 1;
+                const daysInYear = Math.round((endOfYear - startOfYear) / 864e5);
+                yearTrend.textContent = `⚡ Day ${dayOfYear} of ${daysInYear}`;
+            }
         }
 
         tick();
@@ -104,7 +192,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     startRealtimeTicking();
 
+    // 2b. civilization.exe: the average of every non-temporal bar, plus a status ticker
+    function startMasterLoader() {
+        const fill = document.getElementById('masterFill');
+        const pctEl = document.getElementById('masterPct');
+        const bar = document.getElementById('masterBar');
+        const status = document.getElementById('masterStatus');
+        if (!fill || !pctEl) return;
+
+        const metricCards = statCards.filter(c => c.dataset.category !== 'realtime');
+        const avg = metricCards.reduce((sum, c) => sum + parseFloat(c.dataset.percent), 0) / metricCards.length;
+
+        setTimeout(() => { fill.style.width = avg + '%'; }, 300);
+        animateNumber(pctEl, 0, avg, 2400, '%');
+        bar?.setAttribute('aria-valuenow', avg.toFixed(1));
+
+        if (!status) return;
+        const lines = metricCards
+            .map(c => {
+                const slug = (c.getAttribute('href') || '').replace(/^details\//, '').replace(/\.html$/, '');
+                const label = STATUS_LINES[slug];
+                return label && { label, href: c.getAttribute('href'), pct: parseFloat(c.dataset.percent) };
+            })
+            .filter(Boolean);
+        // Shuffle so every visit narrates a different order
+        for (let i = lines.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [lines[i], lines[j]] = [lines[j], lines[i]];
+        }
+
+        let idx = 0;
+        function show() {
+            const line = lines[idx % lines.length];
+            const pctText = line.pct >= 100 ? 'done ✓' : (line.pct < 1 ? line.pct.toFixed(2) : line.pct.toFixed(1)) + '%';
+            status.textContent = `${line.label}… ${pctText}`;
+            status.href = line.href;
+            idx++;
+        }
+        setTimeout(show, 1400);
+        if (prefersReducedMotion) return;
+        setInterval(() => {
+            if (document.hidden) return;
+            status.classList.add('fade');
+            setTimeout(() => { show(); status.classList.remove('fade'); }, 250);
+        }, 3200);
+    }
+    startMasterLoader();
+
     // 3. Quiz Mode ("Guess vs Reality") Engine
+    const quizScore = document.getElementById('quizScore');
+    const quizResults = new Map(); // card -> signed error (guess - actual)
+
+    function updateQuizScore() {
+        if (!quizScore) return;
+        const errors = Array.from(quizResults.values());
+        if (!errors.length) {
+            quizScore.textContent = 'Slide, then check your guess';
+            return;
+        }
+        const avgAbs = errors.reduce((a, e) => a + Math.abs(e), 0) / errors.length;
+        const bias = errors.reduce((a, e) => a + e, 0) / errors.length;
+        let verdict = '';
+        if (errors.length >= 3) {
+            if (avgAbs <= 5) verdict = ' · 🔮 oracle';
+            else if (bias < -5) verdict = ' · the world is better than you think';
+            else if (bias > 5) verdict = ' · optimist!';
+        }
+        quizScore.textContent = `${errors.length} guessed · avg off ${avgAbs.toFixed(1)}%${verdict}`;
+    }
+
     function setupQuizMode() {
         statCards.forEach(card => {
             if (card.dataset.category === 'realtime') return;
@@ -142,6 +298,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const guess = parseFloat(slider.value);
                 const actual = parseFloat(card.dataset.percent);
                 const diff = Math.abs(guess - actual).toFixed(1);
+                quizResults.set(card, guess - actual);
+                updateQuizScore();
 
                 card.classList.add('revealed');
                 card.querySelector('.percentage')?.removeAttribute('aria-hidden');
@@ -158,9 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     feedback.className = 'guess-feedback off';
                 }
 
-                if (typeof gtag === 'function') {
-                    gtag('event', 'quiz_guess', { item_name: card.querySelector('h3').textContent, diff: diff });
-                }
+                track('quiz_guess', { item_name: card.querySelector('h3').textContent, guess, actual, diff: parseFloat(diff) });
             });
 
             card.querySelector('.progress-container').after(quizBox);
@@ -173,6 +329,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 quizModeBtn.classList.toggle('active', quizModeActive);
                 quizModeBtn.setAttribute('aria-pressed', quizModeActive);
                 quizModeBtn.textContent = quizModeActive ? '🎯 Exit Quiz Mode' : '🎮 Quiz Mode';
+                if (quizScore) {
+                    quizScore.hidden = !quizModeActive;
+                    updateQuizScore();
+                }
+                track('quiz_mode_toggle', { on: quizModeActive });
                 // The quiz CSS blurs unrevealed percentages; hide them from screen readers as well
                 statCards.forEach(card => {
                     if (card.dataset.category === 'realtime') return;
@@ -203,6 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
                 if (!quizModeActive) {
                     animateStatCard(entry.target);
                 }
@@ -217,14 +379,9 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', (e) => {
             if (e.target.classList.contains('share-btn') || e.target.closest('.quiz-box')) return;
 
+            if (!card.getAttribute('href')) return;
             const title = card.querySelector('h3')?.textContent || 'Card';
-            if (typeof gtag === 'function') {
-                gtag('event', 'select_content', {
-                    content_type: 'loading_bar_card',
-                    item_id: card.getAttribute('href'),
-                    item_name: title
-                });
-            }
+            track('card_click', { item_id: card.getAttribute('href'), item_name: title });
         });
     });
 
@@ -237,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = btn.dataset.title;
             const percent = btn.dataset.percent;
             const relUrl = btn.dataset.url;
-            const baseUrl = window.location.origin + '/' + relUrl;
+            const baseUrl = new URL(relUrl, window.location.href).href.split(/[?#]/)[0];
             
             const shareUrlTwitter = `${baseUrl}?utm_source=twitter&utm_medium=social_share`;
             const shareUrlReddit = `${baseUrl}?utm_source=reddit&utm_medium=social_share`;
@@ -261,9 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lastShareOpener = document.activeElement;
             modalClose.focus();
 
-            if (typeof gtag === 'function') {
-                gtag('event', 'share_modal_open', { item_name: title });
-            }
+            track('share_modal_open', { item_name: title });
         });
     });
 
@@ -289,25 +444,19 @@ document.addEventListener('DOMContentLoaded', () => {
         copyQuoteBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(modalStatQuote.textContent);
             showToast("Copied stat link & quote!");
-            if (typeof gtag === 'function') {
-                gtag('event', 'share', { method: 'copy_link', item_id: currentShareData.title });
-            }
+            track('share', { method: 'copy_link', item_id: currentShareData.title });
         });
     }
 
     if (tweetBtn) {
         tweetBtn.addEventListener('click', () => {
-            if (typeof gtag === 'function') {
-                gtag('event', 'share', { method: 'twitter', item_id: currentShareData.title });
-            }
+            track('share', { method: 'twitter', item_id: currentShareData.title });
         });
     }
 
     if (redditBtn) {
         redditBtn.addEventListener('click', () => {
-            if (typeof gtag === 'function') {
-                gtag('event', 'share', { method: 'reddit', item_id: currentShareData.title });
-            }
+            track('share', { method: 'reddit', item_id: currentShareData.title });
         });
     }
 
@@ -316,9 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
         copyEmbedBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(embedSnippet.value);
             showToast("Copied embed snippet HTML!");
-            if (typeof gtag === 'function') {
-                gtag('event', 'share', { method: 'embed_copy', item_id: currentShareData.title });
-            }
+            track('share', { method: 'embed_copy', item_id: currentShareData.title });
         });
     }
 
@@ -337,6 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const filterValue = btn.dataset.filter;
             applyFilters(filterValue, searchInput ? searchInput.value : '');
+            track('filter', { filter: filterValue });
         });
     });
 
@@ -352,8 +500,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== '/' || !searchInput) return;
+        const tag = (e.target.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
+        e.preventDefault();
+        searchInput.focus();
+    });
+
+    const emptyState = document.getElementById('emptyState');
+
     function applyFilters(category, searchQuery) {
         const query = searchQuery.toLowerCase().trim();
+        let totalVisible = 0;
 
         categorySections.forEach(section => {
             const sectionGroup = section.dataset.categoryGroup;
@@ -369,6 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (categoryMatch && searchMatch) {
                     card.style.display = 'flex';
+                    card.classList.add('in-view');
                     visibleCount++;
                     if (!card.classList.contains('animated') && !quizModeActive) {
                         animateStatCard(card);
@@ -383,13 +543,18 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 section.style.display = 'block';
             }
+            totalVisible += visibleCount;
         });
+
+        if (emptyState) emptyState.hidden = totalVisible > 0;
     }
 });
 
 function animateStatCard(card) {
     if (card.classList.contains('animated') && !document.body.classList.contains('quiz-mode-on')) return;
     card.classList.add('animated');
+    // The live year card drives its own bar and number every tick
+    if (card.id === 'yearProgressCard') return;
 
     const progressFill = card.querySelector('.progress-fill');
     const percentageText = card.querySelector('.percentage');
@@ -407,6 +572,32 @@ function animateStatCard(card) {
 
     if (percentageText) {
         animateNumber(percentageText, 0, displayEnd, 1800, unit, prefix);
+    }
+
+    if (targetPercent >= 100 && !card.classList.contains('complete')) {
+        setTimeout(() => celebrate(card), 1500);
+    }
+}
+
+const CONFETTI_COLORS = ['#2563eb', '#06b6d4', '#10b981', '#a855f7', '#f97316', '#fb7185', '#facc15'];
+
+function celebrate(card) {
+    card.classList.add('complete');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const container = card.querySelector('.progress-container');
+    if (!container) return;
+    for (let i = 0; i < 16; i++) {
+        const bit = document.createElement('span');
+        bit.className = 'confetti';
+        bit.setAttribute('aria-hidden', 'true');
+        const angle = (Math.PI * (0.15 + 0.7 * Math.random())); // mostly upward
+        const dist = 30 + Math.random() * 45;
+        bit.style.setProperty('--dx', `${Math.cos(angle) * dist * (Math.random() < 0.5 ? -1 : 1)}px`);
+        bit.style.setProperty('--dy', `${-Math.sin(angle) * dist}px`);
+        bit.style.setProperty('--rot', `${Math.random() * 540 - 270}deg`);
+        bit.style.background = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+        container.appendChild(bit);
+        setTimeout(() => bit.remove(), 1000);
     }
 }
 
