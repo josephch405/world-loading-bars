@@ -16,7 +16,6 @@ function formatPercent(value) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const statCards = Array.from(document.querySelectorAll('.stat-card'));
-    const metricCards = statCards.filter(c => c.dataset.category !== 'realtime');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const searchInput = document.getElementById('searchInput');
     const categorySections = document.querySelectorAll('.category-section');
@@ -24,30 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const toast = document.getElementById('toastNotification');
     let quizModeActive = false;
 
-    // 1. Fixed-span timelines ("2000-2100") are computed from the clock, not hard-coded
-    document.querySelectorAll('[data-live-span]').forEach(card => {
-        const [from, to] = card.dataset.liveSpan.split('-').map(Number);
-        const startMs = Date.UTC(from, 0, 1);
-        const endMs = Date.UTC(to, 0, 1);
-        const fraction = Math.min(Math.max((Date.now() - startMs) / (endMs - startMs), 0), 1);
-        const pct = (fraction * 100).toFixed(1);
-        card.dataset.percent = pct;
-        card.querySelector('.percentage').textContent = pct + '%';
-        card.querySelector('.progress-bar')?.setAttribute('aria-valuenow', pct);
-        card.querySelector('.share-btn')?.setAttribute('data-percent', pct + '%');
-        const note = card.querySelector('[data-live-trend]');
-        if (note) {
-            const yearsLeft = Math.max((endMs - Date.now()) / (365.2425 * 864e5), 0);
-            note.textContent = (to - from) >= 50
-                ? `${((to - from) * fraction).toFixed(2)} of ${to - from} years`
-                : `${yearsLeft.toFixed(1)} years left`;
-        }
-    });
-
-    // 2. Tally line in the masthead
+    // 1. Tally line in the masthead
     const tally = document.getElementById('tally');
     if (tally) {
-        const values = metricCards.map(c => parseFloat(c.dataset.percent));
+        const values = statCards.map(c => parseFloat(c.dataset.percent));
         const done = values.filter(v => v >= 100).length;
         const half = values.filter(v => v >= 50 && v < 100).length;
         const low = values.filter(v => v < 20).length;
@@ -55,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .map(part => `<span class="tally-part">${part}</span>`).join(' · ');
     }
 
-    // 3. Bars fill in chunky steps, like a real progress bar, as soon as they scroll in.
+    // 2. Bars fill in chunky steps, like a real progress bar, as soon as they scroll in.
     //    Text and numbers are in the HTML already, so nothing waits on this.
     function fillRow(card, delay = 0) {
         const fill = card.querySelector('.progress-fill');
@@ -102,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Guess first: hide the numbers, slide to guess, then reveal
+    // 3. Guess first: hide the numbers, slide to guess, then reveal
     const quizModeBtn = document.getElementById('quizModeBtn');
     const quizScore = document.getElementById('quizScore');
     const quizResults = new Map(); // card -> signed error (guess - actual)
@@ -125,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         quizScore.textContent = `${errors.length} guessed, off by ${avgAbs.toFixed(1)} on average${verdict}`;
     }
 
-    metricCards.forEach(card => {
+    statCards.forEach(card => {
         const title = card.querySelector('h3')?.textContent || 'this metric';
         const quizBox = document.createElement('div');
         quizBox.className = 'quiz-box';
@@ -175,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             quizModeBtn.setAttribute('aria-pressed', quizModeActive);
             quizModeBtn.textContent = quizModeActive ? 'Show numbers' : 'Guess first';
             if (quizScore) quizScore.hidden = !quizModeActive;
-            metricCards.forEach(card => {
+            statCards.forEach(card => {
                 const pct = card.querySelector('.percentage');
                 if (quizModeActive && !card.classList.contains('revealed')) pct?.setAttribute('aria-hidden', 'true');
                 else pct?.removeAttribute('aria-hidden');
@@ -185,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Share modal
+    // 4. Share modal
     let lastShareOpener = null;
     let currentShareTitle = '';
     const shareModal = document.getElementById('shareModal');
@@ -252,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
-    // 6. Filters and search
+    // 5. Filters and search
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));

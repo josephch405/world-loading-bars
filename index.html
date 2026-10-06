@@ -47,7 +47,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="home.css?v=2.3">
+    <link rel="stylesheet" href="home.css?v=2.4">
 </head>
 <body>
     <a class="skip-link" href="#mainContent">Skip to main content</a>
@@ -64,7 +64,6 @@
         <nav class="controls-bar" aria-label="Filter metrics">
             <div class="filter-pills">
                 <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="realtime">Time</button>
                 <button class="filter-btn" data-filter="frontier">Frontier</button>
                 <button class="filter-btn" data-filter="tech">Technology</button>
                 <button class="filter-btn" data-filter="energy">Climate &amp; nature</button>
@@ -80,36 +79,6 @@
         </nav>
 
         <main id="mainContent">
-            <section class="category-section" data-category-group="realtime" aria-labelledby="sec-realtime">
-                <div class="category-header">
-                    <h2 class="category-title" id="sec-realtime">Time</h2>
-                    <p class="category-note">The only bars here guaranteed to finish.</p>
-                </div>
-                <div class="stats-grid">
-                <div class="stat-card" data-category="realtime" data-percent="26.65" data-live-span="2000-2100" data-search="21st century progress year 2000 to 2100 era millennium">
-                    <div class="row-text">
-                        <h3>The 21st century</h3>
-                        <p class="description">How far humanity has traveled through the 21st century <span class="live-note" data-live-trend>26.65 of 100 years</span></p>
-                    </div>
-                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="26.65" aria-label="The 21st century">
-                        <span class="progress-fill"></span>
-                    </div>
-                    <span class="percentage">26.65%</span>
-                    <button class="share-btn" type="button" data-title="The 21st century" data-percent="26.65%" data-url="index.html">Share</button>
-                </div>
-                <div class="stat-card" data-category="realtime" data-percent="77.6" data-live-span="2015-2030" data-search="un sustainable development goals sdg 2030 agenda countdown timeline">
-                    <div class="row-text">
-                        <h3>UN 2030 goals deadline</h3>
-                        <p class="description">Time elapsed toward the UN 2030 Sustainable Development target deadline (2015–2030) <span class="live-note" data-live-trend>3.4 years remaining</span></p>
-                    </div>
-                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="77.6" aria-label="UN 2030 goals deadline">
-                        <span class="progress-fill"></span>
-                    </div>
-                    <span class="percentage">77.6%</span>
-                    <button class="share-btn" type="button" data-title="UN 2030 goals deadline" data-percent="77.6%" data-url="index.html">Share</button>
-                </div>
-                </div>
-            </section>
             <section class="category-section" data-category-group="frontier" aria-labelledby="sec-frontier">
                 <div class="category-header">
                     <h2 class="category-title" id="sec-frontier">Frontier</h2>
@@ -480,6 +449,6 @@
 
     <div id="toastNotification" class="toast" role="status" aria-live="polite"></div>
 
-    <script src="script.js?v=2.3"></script>
+    <script src="script.js?v=2.4"></script>
 </body>
 </html>
