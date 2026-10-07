@@ -8,6 +8,7 @@
     const PER_DAY = 3;
     const STATE_KEY = 'wlb.daily';
     const STATS_KEY = 'wlb.dailyStats';
+    const HISTORY_KEY = 'wlb.dailyHistory';
     const DAY_MS = 86400000;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -306,9 +307,23 @@
                     stats.streak = stats.lastDay === dayNumber - 1 ? stats.streak + 1 : 1;
                     stats.lastDay = dayNumber;
                     stats.played = (stats.played || 0) + 1;
+                    stats.maxStreak = Math.max(stats.maxStreak || 0, stats.streak);
                     save(STATS_KEY, stats);
                 }
                 const streak = stats.lastDay >= dayNumber - 1 ? stats.streak : 0;
+
+                // Keep every finished round (also back-fills a round finished before history existed)
+                let history = load(HISTORY_KEY);
+                if (!Array.isArray(history)) history = [];
+                if (!history.some(r => r && r.day === dayNumber)) {
+                    history.push({
+                        day: dayNumber,
+                        q: questions.map((q, i) => [q.id, state.guesses[i], q.answer, q.topic || '']),
+                    });
+                    history = history.filter(r => r && Array.isArray(r.q)).sort((a, b) => a.day - b.day).slice(-1000);
+                    save(HISTORY_KEY, history);
+                }
+                renderRecord(history, streak, Math.max(stats.maxStreak || 0, streak));
 
                 const shareText = [
                     `World Loading Bars No. ${dayNumber}  ${total}/${max}`,
@@ -339,6 +354,115 @@
                     send('daily_complete', { day: dayNumber, score: total, streak });
                 }
             }
+        }
+
+        // ------------------------------------------------------------ record
+
+        function renderRecord(history, streak, storedMax) {
+            const rounds = history.filter(r => r && Array.isArray(r.q) && r.q.length);
+            if (!rounds.length) return;
+            const today = rounds[rounds.length - 1].day; // called right after today's round is saved
+            const scoreOf = r => r.q.reduce((sum, [, g, a]) => sum + points(roundErr(g, a)), 0);
+            const scores = rounds.map(scoreOf);
+            const guesses = rounds.flatMap(r => r.q);
+
+            let longest = 0, run = 0, prev = null;
+            rounds.forEach(r => {
+                run = prev !== null && r.day === prev + 1 ? run + 1 : 1;
+                longest = Math.max(longest, run);
+                prev = r.day;
+            });
+            const maxStreak = Math.max(longest, storedMax, streak);
+
+            const avg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+            const avgScore = Math.round(avg(scores));
+            const best = Math.max(...scores);
+            const avgMiss = avg(guesses.map(([, g, a]) => Math.abs(g - a)));
+            const high = guesses.filter(([, g, a]) => g > a).length;
+            const low = guesses.filter(([, g, a]) => g < a).length;
+
+            // Score bands of 50; the top band includes 300
+            const bands = [0, 0, 0, 0, 0, 0];
+            const band = sc => Math.min(5, Math.floor(sc / 50));
+            scores.forEach(sc => bands[band(sc)]++);
+            const todayBand = band(scores[scores.length - 1]);
+            const maxBand = Math.max(...bands);
+
+            const topics = new Map();
+            guesses.forEach(([, g, a, t]) => {
+                if (!t) return;
+                if (!topics.has(t)) topics.set(t, []);
+                topics.get(t).push(Math.abs(g - a));
+            });
+            const topicRows = Array.from(topics, ([t, errs]) => ({ t, n: errs.length, miss: avg(errs) }))
+                .sort((a, b) => a.miss - b.miss);
+
+            let box = end.querySelector('.daily-record');
+            if (!box) {
+                box = document.createElement('div');
+                box.className = 'daily-record';
+                end.appendChild(box);
+            }
+            box.innerHTML = '';
+
+            const el = (tag, cls, text) => {
+                const n = document.createElement(tag);
+                if (cls) n.className = cls;
+                if (text !== undefined) n.textContent = text;
+                return n;
+            };
+            const barRow = (label, pct, value, accent) => {
+                const row = el('div', 'record-row');
+                row.appendChild(el('span', 'record-label', label));
+                const bar = el('span', 'progress-bar record-bar' + (accent ? ' is-today' : ''));
+                const fill = el('span', 'progress-fill');
+                fill.style.width = pct + '%';
+                bar.appendChild(fill);
+                row.appendChild(bar);
+                row.appendChild(el('span', 'record-value', value));
+                return row;
+            };
+
+            box.appendChild(el('h3', 'record-title', 'Your record'));
+
+            const figures = el('dl', 'record-figures');
+            [['Played', rounds.length], ['Average', avgScore], ['Best', best],
+             ['Streak', streak], ['Longest', maxStreak]].forEach(([k, v]) => {
+                const cell = el('div');
+                cell.appendChild(el('dd', null, String(v)));
+                cell.appendChild(el('dt', null, k));
+                figures.appendChild(cell);
+            });
+            box.appendChild(figures);
+
+            box.appendChild(el('p', 'record-line',
+                `Average miss ${fmt(Math.round(avgMiss * 10) / 10)} · too high ${high}, too low ${low} of ${guesses.length}`));
+
+            const dist = el('div', 'record-block');
+            dist.appendChild(el('h4', 'record-sub', 'Scores'));
+            for (let b = 5; b >= 0; b--) {
+                const label = b === 5 ? '250–300' : `${b * 50}–${b * 50 + 49}`;
+                dist.appendChild(barRow(label, maxBand ? (bands[b] / maxBand) * 100 : 0, String(bands[b]), b === todayBand));
+            }
+            box.appendChild(dist);
+
+            if (topicRows.length) {
+                const tb = el('div', 'record-block');
+                tb.appendChild(el('h4', 'record-sub', 'By topic, average miss'));
+                topicRows.forEach(({ t, n, miss }) => {
+                    const name = t.charAt(0).toUpperCase() + t.slice(1);
+                    tb.appendChild(barRow(`${name} (${n})`, Math.max(0, 100 - 2 * miss), fmt(Math.round(miss * 10) / 10), false));
+                });
+                box.appendChild(tb);
+            }
+
+            const recent = el('div', 'record-block');
+            recent.appendChild(el('h4', 'record-sub', 'Recent'));
+            rounds.slice(-7).reverse().forEach(r => {
+                const sc = scoreOf(r);
+                recent.appendChild(barRow(`No. ${r.day}`, (sc / (r.q.length * 100)) * 100, String(sc), r.day === today));
+            });
+            box.appendChild(recent);
         }
 
         function copyText(text) {

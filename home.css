@@ -356,6 +356,36 @@ a.stat-card:hover h3 { text-decoration: underline; text-underline-offset: 3px; t
     color: var(--muted);
 }
 
+/* daily record */
+
+.daily-record { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--rule); max-width: 760px; }
+
+.record-title { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; }
+
+.record-figures { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-top: 14px; }
+.record-figures dd { font-family: var(--mono); font-size: 1.4rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.record-figures dt { font-size: 0.78rem; color: var(--muted); }
+
+.record-line { margin-top: 14px; font-family: var(--mono); font-size: 0.82rem; color: var(--ink-soft); }
+
+.record-block { margin-top: 22px; }
+.record-sub { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+
+.record-row {
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr) 3rem;
+    align-items: center;
+    gap: 12px;
+    padding: 3px 0;
+    font-size: 0.85rem;
+}
+.record-label { color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.record-bar { height: 10px; }
+.record-bar.is-today .progress-fill {
+    background: repeating-linear-gradient(90deg, var(--accent) 0 var(--seg), transparent var(--seg) calc(var(--seg) + var(--gap)));
+}
+.record-value { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+
 /* ---------------------------------------------------------------- footer */
 
 footer {
@@ -472,4 +502,7 @@ footer {
     .daily-q-text { font-size: 1.15rem; }
     .daily-q-row { grid-template-columns: minmax(0, 1fr) 3.4rem; gap: 12px; }
     .daily-submit { grid-column: 1 / -1; justify-self: start; }
+    .record-row { grid-template-columns: 7.5rem minmax(0, 1fr) 2.6rem; gap: 10px; }
+    .record-row .record-bar { grid-column: auto; }
+    .record-figures { gap: 10px 22px; }
 }
