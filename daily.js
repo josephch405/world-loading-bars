@@ -95,7 +95,7 @@
     // ------------------------------------------------------------ scoring
 
     function points(error) {
-        return Math.round(Math.max(0, 100 - 3 * error));
+        return Math.round(Math.max(0, 100 - 2 * error));
     }
     function roundErr(guess, answer) {
         return Math.round(Math.abs(guess - answer) * 10) / 10;
@@ -104,7 +104,7 @@
         return Number.isInteger(n) ? String(n) : n.toFixed(1);
     }
     function blocks(pts) {
-        const filled = Math.round(pts / 10);
+        const filled = Math.ceil(pts / 10);
         return '█'.repeat(filled) + '░'.repeat(10 - filled);
     }
 
