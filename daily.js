@@ -2,7 +2,7 @@
 // Answers come only from data/daily-questions.json. Uses track() from script.js when it loaded.
 
 (function () {
-    const DATA_URL = 'data/daily-questions.json?v=1';
+    const DATA_URL = 'data/daily-questions.json?v=2';
     const SITE_URL = 'https://worldpercent.com/';
     const EPOCH = Date.UTC(2026, 9, 6); // day 1
     const PER_DAY = 3;
@@ -148,8 +148,20 @@
             if (state.guesses.length >= questions.length) finish(false);
             else items[state.guesses.length].activate(false);
 
+            // A friend's challenge link: ?c=<day>-<score>
+            const challenge = parseChallenge(dayNumber);
+            if (challenge) {
+                const note = document.createElement('p');
+                note.className = 'daily-challenge';
+                note.textContent = challenge.day === dayNumber
+                    ? `A friend scored ${challenge.score} / ${questions.length * 100} on today’s set. Your turn.`
+                    : `A friend sent you No. ${challenge.day} (${challenge.score} / ${questions.length * 100}). Here’s today’s set.`;
+                list.before(note);
+                send('challenge_arrival', { day: dayNumber, challenge_day: challenge.day, friend_score: challenge.score });
+            }
+
             root.hidden = false;
-            send('daily_view', { day: dayNumber, answered: state.guesses.length });
+            send('daily_view', { day: dayNumber, answered: state.guesses.length, challenged: !!challenge });
 
             function buildItem(q, index) {
                 const el = document.createElement('li');
@@ -270,6 +282,12 @@
                     a.rel = 'noopener';
                     a.textContent = q.source;
                     result.append(a, '.');
+                    if (q.slug) {
+                        const more = document.createElement('a');
+                        more.href = `q/${q.slug}.html`;
+                        more.textContent = 'More';
+                        result.append(' ', more);
+                    }
 
                     fillTo(answerFill, valueEl, q.answer, animate && !reduceMotion);
                 }
@@ -325,11 +343,25 @@
                 }
                 renderRecord(history, streak, Math.max(stats.maxStreak || 0, streak));
 
+                const shareUrl = `${SITE_URL}?c=${dayNumber}-${total}`;
                 const shareText = [
                     `World Loading Bars No. ${dayNumber}  ${total}/${max}`,
                     ...pts.map(blocks),
-                    SITE_URL,
+                    `Beat me: ${shareUrl}`,
                 ].join('\n');
+
+                const challenge = parseChallenge(dayNumber);
+                let vs = end.querySelector('.daily-vs');
+                if (challenge && challenge.day === dayNumber) {
+                    if (!vs) {
+                        vs = document.createElement('p');
+                        vs.className = 'daily-vs';
+                        end.querySelector('.daily-score').after(vs);
+                    }
+                    const verdict = total > challenge.score ? 'You win.' : total === challenge.score ? 'A tie.' : 'They win this one.';
+                    vs.textContent = `Your friend: ${challenge.score}. ${verdict}`;
+                    if (justNow) send('challenge_result', { day: dayNumber, score: total, friend_score: challenge.score });
+                }
 
                 end.querySelector('.daily-total').textContent = total;
                 end.querySelector('.daily-max').textContent = max;
@@ -350,10 +382,35 @@
                     send('daily_share_copy', { day: dayNumber, score: total });
                 };
 
+                // Phones: open the system share sheet (Messages, WhatsApp, ...)
+                let shareBtn = end.querySelector('.daily-native-share');
+                if (navigator.share && !shareBtn) {
+                    shareBtn = document.createElement('button');
+                    shareBtn.className = 'btn primary-btn daily-native-share';
+                    shareBtn.type = 'button';
+                    shareBtn.textContent = 'Challenge a friend';
+                    copyBtn.before(shareBtn);
+                }
+                if (shareBtn) {
+                    shareBtn.onclick = () => {
+                        send('daily_share_native', { day: dayNumber, score: total });
+                        navigator.share({ text: shareText }).catch(() => {});
+                    };
+                }
+
                 if (justNow) {
                     send('daily_complete', { day: dayNumber, score: total, streak });
                 }
             }
+        }
+
+        function parseChallenge(today) {
+            const m = /^(\d{1,5})-(\d{1,3})$/.exec(new URLSearchParams(location.search).get('c') || '');
+            if (!m) return null;
+            const day = Number(m[1]);
+            const score = Number(m[2]);
+            if (day < 1 || day > today || score > PER_DAY * 100) return null;
+            return { day, score };
         }
 
         // ------------------------------------------------------------ record

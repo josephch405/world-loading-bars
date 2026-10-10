@@ -1,0 +1,68 @@
+/* Question pages (q/*.html). Builds on ../home.css. */
+
+.wordmark a { color: inherit; text-decoration: none; }
+.wordmark a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+.q-head { padding-bottom: 24px; border-bottom: 2px solid var(--ink); }
+.q-title { max-width: 22ch; font-size: clamp(2rem, 5vw, 3.2rem); }
+.q-ask { margin-top: 16px; max-width: 60ch; color: var(--ink-soft); font-size: 1.05rem; }
+
+.q-guess { margin-top: 28px; max-width: 760px; }
+.q-guess[hidden] { display: none; }
+.q-guess-label { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+.q-guess .guess-bar { cursor: ew-resize; }
+.q-guess .daily-q-value { color: var(--accent); }
+.q-guess.is-done .guess-bar { cursor: default; }
+.q-guess.is-done .daily-q-value { color: var(--ink); }
+.q-result { margin-top: 10px; font-family: var(--mono); font-size: 0.85rem; color: var(--ink-soft); }
+.q-result:empty { display: none; }
+
+.q-answer { margin-top: 36px; max-width: 760px; }
+.js-q .q-answer { display: none; }
+.js-q .q-answer.is-shown { display: block; }
+
+.q-big { font-family: var(--serif); font-size: clamp(3rem, 9vw, 5rem); line-height: 1; letter-spacing: -0.02em; }
+.q-big span { font-size: 0.4em; color: var(--muted); margin-left: 4px; }
+.q-sentence { margin-top: 10px; font-size: 1.1rem; max-width: 60ch; }
+
+.q-chart { margin-top: 24px; }
+.q-chart svg { width: 100%; height: auto; display: block; }
+.q-grid { stroke: var(--rule); stroke-width: 1; }
+.q-axis { font-family: var(--mono); font-size: 12px; fill: var(--muted); }
+.q-line { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.q-dot { fill: var(--accent); }
+
+.q-source { margin-top: 14px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.q-source a { color: var(--ink); text-underline-offset: 2px; }
+
+.q-play {
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+}
+.q-play-text { font-family: var(--serif); font-size: 1.25rem; }
+.q-play-btn {
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    padding: 9px 16px;
+    font-size: 0.92rem;
+}
+.q-play-btn:hover { background: #000; }
+
+.q-more, .q-group { margin-top: 36px; }
+.q-list { list-style: none; }
+.q-list li { border-bottom: 1px solid var(--rule); }
+.q-list a { display: block; padding: 10px 0; text-decoration: none; }
+.q-list a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.q-all { margin-top: 14px; font-size: 0.9rem; }
+.q-all a { text-underline-offset: 3px; }
+
+@media (max-width: 720px) {
+    .q-guess .daily-q-row { grid-template-columns: minmax(0, 1fr) 3.4rem; }
+}
