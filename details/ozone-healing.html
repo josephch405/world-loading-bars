@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f8fafc">
+    <meta name="theme-color" content="#f6f4ee">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <title>Ozone Layer CFC Phaseout (99%) - World Loading Bars</title>
 
@@ -49,18 +49,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1.2">
-    <link rel="stylesheet" href="detail-style.css?v=1.1">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../home.css?v=2.9">
+    <link rel="stylesheet" href="detail-style.css?v=2.0">
 </head>
 <body>
     <a class="skip-link" href="#mainContent">Skip to main content</a>
-    <div class="container">
-        <nav class="breadcrumb">
-            <a href="../index.html">← Back to all stats</a>
-        </nav>
-
-        <header class="detail-header">
+    <div class="page detail-page">
+        <header class="detail-head">
+            <p class="wordmark"><a href="../">World Loading Bars</a> · <a href="../#mainContent">All stats</a></p>
             <h1>Ozone Layer CFC Phaseout</h1>
             <p class="subtitle">Global phaseout of ozone-depleting chemicals under the Montreal Protocol</p>
         </header>
@@ -69,7 +66,7 @@
             <section class="current-stat">
                 <div class="big-number">99.0%</div>
                 <p class="stat-label">Ozone-Depleting Substances Phased Out Globally (UNEP / WMO 2026)</p>
-                <div class="progress-bar-large" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="99" aria-label="Progress"><div class="progress-fill-large" style="width: 99%; background: linear-gradient(90deg, #059669, #10b981);"></div>
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="99" aria-label="Progress"><div class="progress-fill" style="width: 99%"></div>
                 </div>
             </section>
 
@@ -118,6 +115,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="detail-chart.js?v=1"></script>
     <script>
         const ctx = document.getElementById('ozoneChart').getContext('2d');
         new Chart(ctx, {

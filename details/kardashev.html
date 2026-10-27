@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f8fafc">
+    <meta name="theme-color" content="#f6f4ee">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <title>Kardashev Scale Progress - World Loading Bars</title>
 
@@ -33,18 +33,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1.2">
-    <link rel="stylesheet" href="detail-style.css?v=1.1">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../home.css?v=2.9">
+    <link rel="stylesheet" href="detail-style.css?v=2.0">
 </head>
 <body>
     <a class="skip-link" href="#mainContent">Skip to main content</a>
-    <div class="container">
-        <nav class="breadcrumb">
-            <a href="../index.html">← Back to all stats</a>
-        </nav>
-
-        <header class="detail-header">
+    <div class="page detail-page">
+        <header class="detail-head">
+            <p class="wordmark"><a href="../">World Loading Bars</a> · <a href="../#mainContent">All stats</a></p>
             <h1>Kardashev Scale Progress</h1>
             <p class="subtitle">Humanity's journey to becoming a Type I planetary civilization</p>
         </header>
@@ -54,7 +51,7 @@
             <section class="current-stat">
                 <div class="big-number">0.73</div>
                 <p class="stat-label">Current Kardashev Rating (73% of scale to Type I planetary harness)</p>
-                <div class="progress-bar-large" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="73" aria-label="Progress"><div class="progress-fill-large" style="width: 73%; background: linear-gradient(90deg, #7c3aed, #c084fc);"></div>
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="73" aria-label="Progress"><div class="progress-fill" style="width: 73%"></div>
                 </div>
             </section>
 
@@ -62,13 +59,13 @@
             <section class="chart-section">
                 <h2>Energy Consumption Growth (Terawatts)</h2>
                 <div class="chart-container">
-                    <canvas id="kardashevChart" style="width: 100%; height: 350px;" role="img" aria-label="Line chart: Energy Consumption Growth (Terawatts) over time"></canvas>
+                    <canvas id="kardashevChart" role="img" aria-label="Line chart: Energy Consumption Growth (Terawatts) over time"></canvas>
                 </div>
             </section>
 
             <!-- Interactive Simulator Widget -->
             <section class="insights-section">
-                <h2>🔮 Interactive Type I Civilization Simulator</h2>
+                <h2>Interactive Type I Civilization Simulator</h2>
                 <div class="insight-card simulator-card">
                     <h3>Adjust Annual Energy Growth Rate: <span id="growthRateLabel">2.5%</span> / year</h3>
                     <input type="range" id="growthSlider" min="1.0" max="8.0" step="0.5" value="2.5" class="simulator-slider">
@@ -89,7 +86,7 @@
 
             <!-- Mind-Blowing Facts -->
             <section class="insights-section">
-                <h2>🤯 Mind-Blowing Cosmic Scale Facts</h2>
+                <h2>Mind-Blowing Cosmic Scale Facts</h2>
                 <div class="insights-grid">
                     <div class="insight-card">
                         <h3>1 Second of Sun = 500,000 Years</h3>
@@ -146,15 +143,15 @@
                 <h2>Explore Related Progress Bars</h2>
                 <div class="insights-grid">
                     <a href="agi-benchmarks.html" class="insight-card related-card">
-                        <h3>🤖 AGI Benchmark Progress (74.5%) →</h3>
+                        <h3>AGI Benchmark Progress (74.5%) →</h3>
                         <p>Track humanity's progress toward human-level AI reasoning across complex benchmark suites.</p>
                     </a>
                     <a href="fusion-energy.html" class="insight-card related-card">
-                        <h3>⚛️ Commercial Fusion Power (26.8%) →</h3>
+                        <h3>Commercial Fusion Power (26.8%) →</h3>
                         <p>Progress from net ignition to commercial electrical grid delivery.</p>
                     </a>
                     <a href="renewable-energy.html" class="insight-card related-card">
-                        <h3>🌱 Renewable Energy Share (34.0%) →</h3>
+                        <h3>Renewable Energy Share (34.0%) →</h3>
                         <p>Global electricity generated from clean solar, wind, and hydro power.</p>
                     </a>
                 </div>
@@ -182,6 +179,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="detail-chart.js?v=1"></script>
     <script>
         // Chart.js configuration
         const ctx = document.getElementById('kardashevChart').getContext('2d');

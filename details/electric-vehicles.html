@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f8fafc">
+    <meta name="theme-color" content="#f6f4ee">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <title>Electric Vehicles - World Progress Bars</title>
 
@@ -33,34 +33,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1.2">
-    <link rel="stylesheet" href="detail-style.css?v=1.1">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../home.css?v=2.9">
+    <link rel="stylesheet" href="detail-style.css?v=2.0">
 </head>
 <body>
     <a class="skip-link" href="#mainContent">Skip to main content</a>
-    <div class="container">
-        <nav class="breadcrumb">
-            <a href="../index.html">← Back to all stats</a>
-        </nav>
-
-        <header class="detail-header">
+    <div class="page detail-page">
+        <header class="detail-head">
+            <p class="wordmark"><a href="../">World Loading Bars</a> · <a href="../#mainContent">All stats</a></p>
             <h1>Electric Vehicles</h1>
             <p class="subtitle">Global electric car market share over time</p>
         </header>
 
         <main class="detail-main" id="mainContent">
-            <section class="chart-section">
-                <h2>Growth Trend</h2>
-                <div class="chart-container">
-                    <canvas id="evChart" role="img" aria-label="Line chart: Growth Trend over time"></canvas>
-                </div>
-            </section>
 
             <section class="current-stat">
                 <div class="big-number">25.0%</div>
                 <p class="stat-label">Current global EV market share of new sales (2025/2026)</p>
-                <div class="progress-bar-large" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25.0" aria-label="Progress"><div class="progress-fill-large" style="width: 25.0%"></div>
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25.0" aria-label="Progress"><div class="progress-fill" style="width: 25.0%"></div>
+                </div>
+            </section>
+            <section class="chart-section">
+                <h2>Growth Trend</h2>
+                <div class="chart-container">
+                    <canvas id="evChart" role="img" aria-label="Line chart: Growth Trend over time"></canvas>
                 </div>
             </section>
 
@@ -164,6 +161,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="detail-chart.js?v=1"></script>
     <script>
         // Chart.js configuration for EV adoption
         const ctx = document.getElementById('evChart');

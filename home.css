@@ -1,4 +1,4 @@
-/* Home page. Detail pages keep using style.css + details/detail-style.css. */
+/* Shared styles: home page, plus q/ and details/ pages on top of their own stylesheets. */
 
 :root {
     --paper: #f6f4ee;
