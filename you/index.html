@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6f4ee">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <title>Which of the 100 are you? · World Loading Bars</title>
+    <meta name="description" content="If the world were 100 people, how many would live like you? Ten yes-or-no questions, real World Bank numbers, one result card.">
+    <link rel="canonical" href="https://worldpercent.com/you/">
+    <meta property="og:title" content="Which of the 100 are you?">
+    <meta property="og:description" content="If the world were 100 people, how many would live like you? Ten quick questions, real data.">
+    <meta property="og:url" content="https://worldpercent.com/you/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://worldpercent.com/og-daily.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://worldpercent.com/og-daily.png">
+    <meta name="twitter:title" content="Which of the 100 are you?">
+    <meta name="twitter:description" content="If the world were 100 people, how many would live like you? Ten quick questions, real data.">
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        var POSTHOG_TOKEN = 'phc_x6mcpjzmAGW7JWbPVfPZatPVvpbymbhxTtN7uRJAcFFx';
+        if (POSTHOG_TOKEN.indexOf('YOUR_POSTHOG') !== 0) {
+            posthog.init(POSTHOG_TOKEN, { api_host: 'https://us.i.posthog.com', defaults: '2026-05-30' });
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../home.css?v=2.9">
+    <link rel="stylesheet" href="you.css?v=1">
+</head>
+<body>
+    <div class="page you-page">
+        <header class="you-head">
+            <p class="wordmark"><a href="../">World Loading Bars</a> · Which of the 100 are you?</p>
+            <h1 class="you-title">Which of the 100 are you?</h1>
+            <p class="you-lede">Shrink the world to 100 people. Ten yes-or-no questions show how many of them live like you.</p>
+            <p class="you-friend" id="friendNote" hidden></p>
+        </header>
+
+        <main id="mainContent">
+            <section class="you-intro" id="intro">
+                <button class="you-start" id="startBtn" type="button">Start</button>
+                <p class="you-fine">About a minute. Nothing you answer leaves your browser.</p>
+            </section>
+
+            <section class="you-quiz" id="quiz" hidden aria-live="polite">
+                <p class="you-step" id="step"></p>
+                <h2 class="you-q" id="qText"></h2>
+                <p class="you-hint" id="qHint"></p>
+                <div class="you-answers" id="answers">
+                    <button class="you-ans" type="button" data-a="1">Yes</button>
+                    <button class="you-ans" type="button" data-a="0">No</button>
+                </div>
+                <div class="you-reveal" id="reveal" hidden>
+                    <div class="you-dots" id="dots" aria-hidden="true"></div>
+                    <p class="you-reveal-text" id="revealText"></p>
+                    <button class="you-next" id="nextBtn" type="button">Next</button>
+                </div>
+            </section>
+
+            <section class="you-result" id="result" hidden>
+                <p class="you-step">Your result</p>
+                <h2 class="you-headline" id="headline"></h2>
+                <p class="you-sub" id="subline"></p>
+                <p class="you-compare" id="compare" hidden></p>
+                <ol class="you-rows" id="rows"></ol>
+                <p class="you-note">Each row shows how many of 100 people answer the same way you did. These are separate world averages. They can't tell how many people match all ten at once.</p>
+                <div class="you-share">
+                    <button class="btn primary-btn" id="shareBtn" type="button">Share</button>
+                    <button class="btn" id="imgBtn" type="button">Save image</button>
+                    <button class="btn" id="copyBtn" type="button">Copy text</button>
+                    <button class="btn" id="againBtn" type="button">Start over</button>
+                </div>
+                <pre class="you-share-text" id="shareText"></pre>
+            </section>
+        </main>
+
+        <section class="q-play you-play">
+            <p class="q-play-text">Guess three world numbers every day.</p>
+            <a class="q-play-btn" href="../#daily">Play today&rsquo;s round</a>
+        </section>
+    </div>
+    <script src="you.js?v=1"></script>
+</body>
+</html>

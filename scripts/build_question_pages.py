@@ -247,7 +247,8 @@ def sitemap(questions):
     <changefreq>{freq}</changefreq>
     <priority>{prio}</priority>
   </url>'''
-    entries = [url(SITE, 'daily', '1.0'), url(f'{SITE}q/', 'weekly', '0.9')]
+    entries = [url(SITE, 'daily', '1.0'), url(f'{SITE}q/', 'weekly', '0.9'),
+               url(f'{SITE}you/', 'monthly', '0.9')]
     for q in sorted(questions, key=lambda q: q['slug']):
         entries.append(url(f'{SITE}q/{q["slug"]}.html', 'monthly', '0.8'))
     for path in sorted(glob.glob(os.path.join(ROOT, 'details', '*.html'))):
