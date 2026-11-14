@@ -105,7 +105,9 @@ def hogql_query(host: str, project: str, hogql: str) -> dict:
 
 def fetch_events(host: str, project: str, days: int) -> list[dict]:
     # Keyset pagination: PostHog's query API rejects OFFSET on personal API
-    # keys, so page on (timestamp, uuid) instead.
+    # keys, so page on (timestamp, uuid) instead. PostHog-internal ids
+    # (e.g. `$posthog_anomaly_scorer`, which writes backdated `$anomaly_score`
+    # events) are not visitors, so they never enter the digest.
     events: list[dict] = []
     last_ts = "1970-01-01T00:00:00.000000Z"
     last_uuid = "00000000-0000-0000-0000-000000000000"
@@ -113,6 +115,7 @@ def fetch_events(host: str, project: str, days: int) -> list[dict]:
         q = (
             "SELECT uuid, timestamp, event, distinct_id, properties FROM events "
             f"WHERE timestamp > now() - INTERVAL {days} DAY "
+            "AND NOT startsWith(distinct_id, '$posthog') "
             f"AND (timestamp > toDateTime64('{last_ts}', 6) "
             f"OR (timestamp = toDateTime64('{last_ts}', 6) AND uuid > '{last_uuid}')) "
             f"ORDER BY timestamp, uuid LIMIT {BATCH}"
